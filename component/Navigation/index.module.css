@@ -1,0 +1,19 @@
+.navigator{
+    display: flex;
+}
+
+.navigatorContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainResponse{
+    height: 91vh;
+    width: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.mainResponse::-webkit-scrollbar{
+    display: none;
+}

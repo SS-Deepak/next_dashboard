@@ -1,0 +1,63 @@
+.listContainer,
+.listHeaderContainer{
+    height: 40px;
+    display: grid;
+    grid-template-columns: .3fr 1.5fr 2fr;
+    padding-left: 10px;
+    border-bottom: 1px solid #0003;
+    background-color: #fff;
+    font-size: .9rem;
+    color: #000000e0;
+}
+.listHeaderContainer{
+    font-weight: 600;
+    /* background-color: #3d98ccb2; */
+    color: #000;
+}
+.listHeaderContainer p,
+.listContainer p{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.listContainer:nth-child(even){
+    background-color: #f5f5f5;
+}
+
+
+.dashboardContainer{
+    padding: 20px;
+    height: 100vh;
+    width: 100%;
+    background-color: #ECF0F5;
+    display: flex;
+    /* align-items: flex-start; */
+    text-align: start;
+    flex-direction: column;
+    justify-content: center;
+}
+.dashboardContainer h1{
+    font-weight: 100;
+    font-size: 1.7rem;
+    color: #000000e0;
+}
+.dashboardData{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.dashboardList{
+    height: 100%;
+    width:550px;
+    padding: 20px 30px;
+    background-color: #fff;
+    margin: 0 10px;
+}
+.dashboardList h3{
+    line-height: 80px;
+    font-weight: 100;
+    color: #0009;
+    font-size: 1.4rem;
+}

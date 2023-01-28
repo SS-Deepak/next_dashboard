@@ -1,0 +1,82 @@
+.EmployeeContainer{
+    height: 100vh;
+    width: 100%;
+    padding: 15px;
+    background-color: #ECF0F5;
+}
+.EmployeeContainer h2{
+    font-weight: 100;
+    color: #0009;
+    margin: 0 0 20px 0;
+}
+
+.employeesListHeaderContainer,
+.employeesListContainer{
+    height: 40px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: .3fr 2fr .7fr .7fr .7fr 3fr;
+    font-size: .8rem;
+    color: #0009;
+    padding: 0 20px;
+}
+.employeesListContainer:nth-child(even){
+    background-color: #00000009;
+}
+
+.employeesListHeaderContainer{
+    color: #000;
+    font-weight: 700;
+    border-bottom: 1px solid #0001;
+}
+.employeesListContainer a{
+    color: #3C8DBC;
+}
+
+.employeesListHeaderContainer p,
+.employeesListContainer a,
+.employeesListContainer p{
+    display: flex;
+    align-items: center;
+}
+
+.EmployeesList{
+    height: 80%;
+    width: 100%;
+    border-top: 3px solid #0003;
+    background-color: #fff;
+    padding: 50px 10px;
+}
+
+
+
+.employeeListLinks{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.employeeListLinks button{
+    margin: 0 2px;
+    padding: 5px 4px ;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .1s;
+    font-size: .6rem;
+    font-weight: 700;
+}
+.employeeListLinks button:hover{
+    opacity: .7;
+}
+
+.employeeListLinks button.primary{
+    background-color: #2c76a1;
+}
+.employeeListLinks button.danger{
+    background-color: #DD4B39;
+}
+.employeeListLinks button.success{
+    background-color: #00A65A;
+}
