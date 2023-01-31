@@ -102,7 +102,7 @@ export default function componentName() {
 
 
   return (
-        <div className={styles.calendarContainer}>
+        <div className={`${styles.calendarContainer} ${styles.mainCalendar}`}>
             <div className={styles.calendarHeading}>
                 <span onClick={()=>handleShiftLeft()}>{"<<"}</span>
                 <p className={styles.calenderTitle}>{month[currentMonth][0]} {currentYear}</p>
@@ -111,6 +111,10 @@ export default function componentName() {
             <div className={styles.calendarBody}>
                 <CalendarHead days={month[currentMonth][1]}/>
                 <CalendarBody attendence={attendence[0]}/>
+                <CalendarBody attendence={attendence[1]} />
+                <CalendarBody attendence={attendence[0]}/>
+                <CalendarBody attendence={attendence[1]} />
+                <CalendarBody attendence={attendence[1]} />
                 <CalendarBody attendence={attendence[1]} />
                 <CalendarBody attendence={attendence[0]}/>
                 <CalendarBody attendence={attendence[1]} />

@@ -60,7 +60,7 @@ export default function index() {
           <ul>
             <Row icon={faHome} title="DashBoard" path='/'/>
             <Row icon={faPeopleGroup} title="Employees" path='/employees'/>
-            <Row icon={faCalendarDays} title="Attendence"/>
+            <Row icon={faCalendarDays} title="Attendence" path='/calendar'/>
             <Row icon={faCalendarXmark} title="Leave"/>
             <Row icon={faCircleArrowUp} title="Appraisal"/>
             <Row icon={faHandPeace} title="Reviews" path='/employee_review'/>

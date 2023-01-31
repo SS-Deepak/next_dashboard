@@ -8,20 +8,23 @@
     /* justify-content: center; */
     align-items: center;
 }
+
 .calenderTitle{
     width: 200px;
     text-align: center;
 }
 .singleCalender{
-    height: 70vh;
-    width: 100%;
+    height: 80vh;
+    width: 92%;
+    /* overflow: scroll; */
+    padding-left: 3vw;
 }
 .singlealendarHeader{
     display: flex;
 }
 .singlealendarHeader p{
-    height: 100px;
-    width: 203px;
+    height: 10vh;
+    width: 12vw;
     border: 1px solid #0009;
     display: flex;
     justify-content: center;
@@ -73,12 +76,11 @@
     display: flex;
     /* background-color: red; */
     /* width: 260px; */
-    flex-wrap: wrap;
 }
 .calenderItemFooter,
 .calenderItemHeader,
 .calendarItem{
-    height: 35px;
+    height: 4vh;
     border: 1px solid #0002;
     /* border-radius: 4px; */
     display: flex;
@@ -97,6 +99,10 @@
 .singleCalender .calenderItemHeader{
     display: none;
 }
+.singleCalender .calenerDates{
+    flex-wrap: wrap;
+
+}
 .calenderItemFooter{
     width: 80px;
     padding-left: 10px;
@@ -104,7 +110,7 @@
     border-left: 1px solid #000;
 }
 .calenderItemHeader{
-    width: 200px;
+    width: 12vw;
     padding-left: 10px;
     justify-content: flex-start;
     color: #367FA9;
@@ -112,11 +118,13 @@
 
 }
 .singleCalender .calendarItem{
-    height: 100px;
-    width: 203px;
+    height: 10vh;
+    width: 12vw;
+    font-size: 1rem;
+    color: #0009;
 }
 .calendarItem{
-    width: 35px;
+    width: 2vw;
     border-left: 1px solid #000;
     border-bottom: 1px solid #000;
 }
@@ -134,12 +142,14 @@
 .EdayN > span{
     position: absolute;
     transform: scale(0);
+    opacity: 0;
 }
 .EdayN:hover > span,
 .EdayP:hover > span,
 .EdayS:hover > span,
 .EdayH:hover > span{
     display: flex;
+    opacity: 1;
     justify-content: center;
     align-items: center;
     transform: scale(1);
@@ -148,11 +158,11 @@
     width: 120px;
     color: #fff;
     font-size: .8rem;
-    margin-top: -50px;
+    margin-top: -120px;
     margin-left: -50px;
     background-color: #333;
     border-radius: 4px;
-    transition: .4s;
+    transition: transform .4s, opacity .1s;
 }
 
 .EdayP > span::before,
@@ -167,4 +177,103 @@
     transform: rotateZ(45deg) translateX(10px) translateY(6px);
     clip-path: polygon(100% 100%, 100% 0, 0 100%);
     transition: .2s;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .singlealendarHeader{
+        border: none;
+    }
+    .singleCalender{
+        padding-left: 10vh;
+    }
+    .singleCalender .calenerDates{
+        flex-wrap: wrap;
+        width: 110%;
+        border: none;
+    
+    }
+}
+@media screen and (max-width: 1000px) {
+    .singleCalender{
+        padding-left: 6vh;
+        overflow: scroll;
+    }
+    
+    .singleCalender .calendarContainer{
+        align-items: center;
+    }
+    .calendarContainer{
+        align-items: flex-start;
+    }
+    .topHeader{
+        height: 100%;
+    }
+    .calendarContainer .calendarBody{
+        display: flex;
+        width: 80%;
+        overflow-x: scroll;
+    }
+    .singleCalender .calendarContainer .calendarBody{
+        display: block;
+        overflow-x: visible;
+        width: 110%;
+    }
+    
+    .singleCalender .calendarContainer .calenerDates{
+        flex-direction: row;
+
+    }
+    .calendarContainer .calenerDates{
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10vh;
+        border: none;
+    }
+    .calendarItem{
+        width: 7vw;
+        border-right: 1px solid #000;
+    }
+    .topHeader> .calendarItem{
+        padding: 11px 0;
+    }
+    .calenderItemHeader,
+    .topHeader .calenderItemHeader,
+    .calenderItemFooter,
+    .topHeader .calenderItemFooter{
+        justify-content: center;
+        padding: 15px 0;
+        word-wrap: break-word;
+        text-align: center;
+    }
+}
+
+
+@media screen and (max-width: 870px) {
+    .mainCalendar{
+        height: 75vh;
+    }
+    .singleCalender{
+        width: 600px;
+        overflow: visible;
+        padding-left: 5vh;
+    }
+    .singlealendarHeader{
+        border: none;
+    }
+    .singleCalender .calenerDates{
+        flex-wrap: wrap;
+        width: 100%;
+    }
+   
+    .singlealendarHeader p,
+    .singleCalender .calendarItem{
+        height: 80px;
+        width: 80px;
+        font-size: 1rem;
+        color: #0009;
+        font-size: .8rem !important;
+
+    }
 }

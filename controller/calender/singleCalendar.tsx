@@ -7,7 +7,6 @@ import { calculateAttendence,  SingleCalendarBody,sunday, YearCode } from "./Han
 
 export default function componentName() {
     const {query} = useRouter()
-    const yearCode = YearCode(2023)             // yearcode of year to calculate sunday of a month
     const [month] = useState<any>({             // month with Name and number of days
         1: ["January", 31],
         2: ["Febuary",28],
@@ -24,6 +23,7 @@ export default function componentName() {
     })
     const [currentMonth, setCM]=useState<number>(new Date().getMonth()+1)           //  current month
     const [currentYear, setCY]=useState(new Date().getFullYear())                   //  current Year
+    const yearCode = YearCode(currentYear)  
     const array = new Array(month[currentMonth][1]).fill(0)                         //  initial array is used to initiliaze the calender
     const [checkYear, setCheckYear] = useState<number>(0)                           //  used to recylce the month name
     const [dates1, setDates1] = useState<any>(array)                            
@@ -46,13 +46,14 @@ export default function componentName() {
     
     // it trigger when month changes
     useEffect(()=>{
+        console.log("cyear", currentYear, yearCode)
         const data1 = calculateAttendence({data:[11,19,20,21,23],days:month[currentMonth][1],month:currentMonth, YearCode:yearCode, year: currentYear})
         const data2 = calculateAttendence({data:[11,5,19,20,21,23,24,29],days:month[currentMonth][1],month:currentMonth, YearCode:yearCode, year: currentYear})
         const holiday = sunday(month[currentMonth][1],currentMonth,currentYear, yearCode)
 
         setDates1(data1)
         setDates2(data2)
-    },[currentMonth])
+    },[currentMonth, currentYear])
 
 
     // initial attendence
@@ -104,7 +105,7 @@ export default function componentName() {
 
 
   return (
-        <div className={styles.calendarContainer}>
+        <div className={`${styles.calendarContainer} ${styles.singlePageCalendar}`}>
             <h1>{query.name}</h1>
             <div className={styles.calendarHeading}>
                 <span onClick={()=>handleShiftLeft()}>{"<<"}</span>

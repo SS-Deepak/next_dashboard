@@ -1,5 +1,5 @@
 import { CalculateAttendence,  Attendence } from "../interface/List"
-import { Days, EDaysN,EDaysH,EDaysS,EDaysP } from "./tiles"
+import { Days, EDaysN,EDaysH,EDaysS,EDaysP, EDaysNB } from "./tiles"
 
 import styles from "../styles/calendar.module.css"
 import { useRouter } from "next/router"
@@ -29,13 +29,13 @@ const YY =(year:number)=>{
 
 // return yearcode
 export const YearCode =(year:number)=>{
- return (YY(2023) + (Math.round(YY(2023)/ 4))) % 7
+ return (YY(year) + (Math.round(YY(year)/ 4))) % 7
 }
 
 // check sunday
 export const check_sunday = (days:number,month:number,year:number, YearCode:number)=>{
     let day = []
-    for(let i=1; i<days; i++){
+    for(let i=1; i<=days; i++){
         const res = (YearCode + monthCode[month] + 6 + i - Math.round(4-(year/4)) + 1) % 7
         if(res === 0){
             day.push(11)
@@ -113,6 +113,7 @@ export const CalendarHead=({days}:any)=>{
 //build cell of calendar
 export const CalendarBody=({attendence,days}:Attendence)=>{
     const router = useRouter()
+    
 
     return(
      <div className={styles.calenerDates}>
@@ -154,13 +155,27 @@ export const CalendarBody=({attendence,days}:Attendence)=>{
 //build cell of calendar
 export const SingleCalendarBody=({attendence,days}:Attendence)=>{
     
+    const sundayIndex = attendence.days.findIndex((item)=>item === 11)
 
+    let addIndex = []
+        if(sundayIndex>0){
+            addIndex = new Array(7-sundayIndex).fill('')
+        }else{
+            addIndex.length = 0
+        }
     const single = true
+
     return(
      <div className={styles.calenerDates}>
     
         <p className={styles.calenderItemHeader}>{attendence.name}</p>
-
+        {
+            (addIndex.length>0)&&(
+                addIndex.map((item, index)=>(
+                    EDaysNB(item,index)
+                ))
+            )
+        }
         {
             !days?attendence.days.map((item:number,index:number)=>{
                 

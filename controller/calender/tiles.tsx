@@ -7,12 +7,24 @@ export const Days=(item:number, index:number)=>(
 )
 
 // normal day
-export const EDaysN=(item:number, index:number, single?: boolean)=>(
-    <div className={styles.EdayN} key={index}>
-    <p className={`${styles.calendarItem} ${styles.normal}`}>{single?index+1:""}</p>
-    <span>{item}</span>
-    </div>
-)
+export const EDaysNB=(item:number, index:number)=>{
+    return(
+        <div className={styles.EdayN} key={index}>
+        <p className={`${styles.calendarItem} ${styles.normal}`}></p>
+        <span>{item}</span>
+        </div>
+    )
+}
+
+// normal day
+export const EDaysN=(item:number, index:number, single?: boolean)=>{
+    return(
+        <div className={styles.EdayN} key={index}>
+        <p className={`${styles.calendarItem} ${styles.normal}`}>{single?index+1:""}</p>
+        <span>{item}</span>
+        </div>
+    )
+}
 
 // holiday
 export const EDaysH=(item:number, index:number, single?: boolean)=>(
