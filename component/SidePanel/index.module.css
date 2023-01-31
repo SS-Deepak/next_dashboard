@@ -4,6 +4,7 @@
     left: 0;
     width: 250px;
     height: 100vh;
+    font-size: .8rem;
     background-color: #222D32;
     transition: width .4s;
 }
@@ -54,12 +55,12 @@
     display: flex;
     align-items: center;
     color: #fff9;
-    height: 40px;
+    height: 30px;
     padding-left: 20px;
     cursor: pointer;
     transition:.1s;
     margin: 7px 0;
-    font-size: 15px;
+    font-size: .8rem;
 
 }
 .sidePanelContainer.hide .panelData > ul > li{
@@ -123,6 +124,7 @@
     width: 40%;
     height: 40px;
     padding-left: 20px;
+    font-size: .8rem;
     cursor: pointer;
 }
 .selectVisible  svg{
@@ -155,9 +157,9 @@
 }
 .selectHidden > li{
     list-style: none;
-    font-size: .85rem;
+    font-size: .75rem;
     color: #819299;
-    padding: 7px 10px;
+    padding: 5px 10px;
     cursor: pointer;
 }
 .selectHidden >li:hover{

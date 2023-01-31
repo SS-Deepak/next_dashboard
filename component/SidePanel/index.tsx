@@ -61,14 +61,14 @@ export default function index() {
             <Row icon={faHome} title="DashBoard" path='/'/>
             <Row icon={faPeopleGroup} title="Employees" path='/employees'/>
             <Row icon={faCalendarDays} title="Attendence" path='/calendar'/>
-            <Row icon={faCalendarXmark} title="Leave"/>
+            <Row icon={faCalendarXmark} title="Leave" path='/leave'/>
             <Row icon={faCircleArrowUp} title="Appraisal"/>
             <Row icon={faHandPeace} title="Reviews" path='/employee_review'/>
             <Row icon={faCalendarCheck} title="Holidays" path='/holiday'/>
             <Row icon={faUser} title="Admins"/>
 
-            <div className={styles.select} ref={showList} onClick={handleList}>
-              <div className={styles.selectVisible}>
+            <div className={styles.select} ref={showList} >
+              <div className={styles.selectVisible} onClick={handleList}>
                 <Row icon={faGauge} title="Masters"/>
                 <FontAwesomeIcon icon={faCaretDown}/>
               </div>

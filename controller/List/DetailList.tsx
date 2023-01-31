@@ -13,6 +13,7 @@ export function DetailList({data}:DetailListProps) {
                           data.page === "client" ? `${styles.employeesListContainer} ${styles.client}`:
                           data.page === "project" ? `${styles.employeesListContainer} ${styles.project}`:
                           data.page === "appraisal" ? `${styles.employeesListContainer} ${styles.appraisal}`:
+                          data.page === "leave" ? `${styles.employeesListContainer} ${styles.leave}`:
                           undefined}>
 
         {data.id?<p title="id">{data.id}</p>:null}
@@ -50,11 +51,20 @@ export function DetailList({data}:DetailListProps) {
         {data.ctc?<p>$ {data.ctc}</p>:null}
 
 
+        {data.subject?<p>{data.subject}</p>:null}
+        {data.Lfrom?<p>{data.Lfrom}</p>:null}
+        {data.Lto?<p>{data.Lto}</p>:null}
+        {data.status?<p className={data.status === "Pending"?`${styles.primary}`: data.status === "Reject"?`${styles.danger}`:`${styles.success}`}>{data.status}</p>:null}
+        {data.Lcomment?<p>{data.Lcomment}</p>:null}
+
+
         <div className={styles.employeeListLinks}>
           {data.loginBtn?<button className={styles.primary}>Login</button>:null}
           {data.editBtn?<button className={styles.primary}>Edit</button>:null}
           {data.deleteBtn?<button className={styles.danger}>Delete</button>:null}
           {data.detailBtn?<button className={styles.success}>Details</button>:null}
+          {data.rejectBtn?<button className={styles.danger}>Reject</button>:null}
+          {data.acceptBtn?<button className={styles.success}>Accept</button>:null}
           {data.welcomeMailBtn?<button className={styles.success}>Welcome Mail</button>:null}
           {data.mailEPloginBtn?<button className={styles.success}>Mail EmployeePortal Login</button>:null}
         </div>

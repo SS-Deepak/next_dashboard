@@ -1,14 +1,23 @@
 import styles from "./index.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass, faUser, faCaretDown } from "@fortawesome/free-solid-svg-icons"
+import { useRef } from "react"
 
 interface Props{
   title: string,
   page?: string
 }
 
-export const LeaveInput = ()=>(
-  <div className={styles.leaveInput}>
+export const LeaveInput = ()=>{
+  const refShow:any = useRef()
+
+  const handle = ()=>{
+    refShow.current.classList.toggle(`${styles.show}`)
+  }
+  return(
+
+ 
+  <div className={styles.leaveInput} onClick={()=>handle()}>
  
     <div className={styles.input}>
       <FontAwesomeIcon icon={faUser}/>
@@ -16,16 +25,16 @@ export const LeaveInput = ()=>(
     </div>
 
     <div className={styles.input}>
-      <FontAwesomeIcon icon={faUser}/>
-      <div className={styles.select}>
-        <div className={styles.options}>
+      <FontAwesomeIcon icon={faUser} onClick={()=>handle()}/>
+      <div className={styles.select} onClick={()=>handle()}>
+        <div ref={refShow} className={styles.options} >
 
           <div className={styles.option}>Pending</div>
           <div className={styles.option}>Approved</div>
           <div className={styles.option}>Rejected</div>
         </div>
+      <FontAwesomeIcon icon={faCaretDown}  onClick={()=>handle()}/>
       </div>
-      <FontAwesomeIcon icon={faCaretDown}/>
     </div>
 
     <span>
@@ -35,7 +44,7 @@ export const LeaveInput = ()=>(
  
   </div>
 )
-
+  }
 
 export function TopHeader({title, page}:Props) {
   return (
@@ -44,7 +53,7 @@ export function TopHeader({title, page}:Props) {
       {page==="holiday" ? <Select/> :
         <FontAwesomeIcon icon={faMagnifyingGlass}/>
       }
-      <input type="text" placeholder="Enter Keryword"/>
+      <input type="text" placeholder="Enter Keyword"/>
     </div>
     <button>{title}</button>
   </div>

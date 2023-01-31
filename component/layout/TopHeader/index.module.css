@@ -59,10 +59,10 @@
 }
 
 
-
+/* leave Page */
 .leaveInput{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 60px;
@@ -70,49 +70,63 @@
 
 .input{
     display: flex;
+    margin: 0 10px;
 }
 .input input{
     padding: 0 10px;
+    border: none;
+    outline: none;
 }
 .input input,
 .input .select{
     width: 350px;
     height: 30px;
-    /* background-color: red; */
-    margin-right: 30px;
 }
 .input svg:nth-child(1){
-    /* height: 30px;
-    width: 30px; */
     background: #0002;
-    border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: .9rem;
-    padding: 9px;
+    padding:7px 9px;
+    color: #0009;
+    border: 1px solid #0005;
+    border-right: none;
 }
+.input input,
 .select{
-    border: 1px solid #0009;
-    border-radius: 3px;
+    border: 1px solid #0005;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: #0009;
 }
 .options{
-    height: 30px;
+    height: 70px;
     width: 350px;
-    margin-top: 40px;
-    /* background-color: red; */
+    margin-top: 110px;
+    box-shadow: 0 0 10px #0001;
+    transform: scale(0);
+    transform-origin: top;
+    transition: .4s;
+}
+.options.show{
+    background-color: #fff;
+    transform-origin: top;
+    transform: scale(1);
 }
 .option{
-    display: none;
+    /* display: none; */
     height: 20px;
     width: 100%;
     font-size: .8rem;
+    margin: 2px 5px;
     padding-left: 10px;
-    /* transition: background .2s; */
+    cursor: pointer;
 }
-.select:hover .option{
+/* .select:hover .option{
     display: block;    
-}
+} */
 
 .option:hover{
     background: #0006;
@@ -132,6 +146,8 @@
     justify-content: center;
     font-size: .8rem;
     border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 

@@ -1,5 +1,5 @@
 import styles from "../CommonPage/index.module.css"
-import CompensationPage from "./singlePage"
+import {CompensationAllowences,CompensationDeductions} from "./singlePage"
 
 interface Props{
     title: string,
@@ -12,8 +12,8 @@ export default function index({title, page}:Props) {
     <div className={styles.EmployeeContainer}>
       <h2>{title}</h2>
 
-        <CompensationPage title="Allowences"/>
-        <CompensationPage title="Deductions"/>
+        <CompensationAllowences title="Allowences"/>
+        <CompensationDeductions title="Deductions"/>
 
     </div>
   )

@@ -12,6 +12,8 @@ export interface DetailListProps{
       welcomeMailBtn?: boolean,
       mailEPloginBtn?:boolean,
       detailBtn?:boolean,
+      acceptBtn?: boolean,
+      rejectBtn?:boolean,
 
       ERemark?:string,
       EName?:string,
@@ -41,7 +43,13 @@ export interface DetailListProps{
 
       AEName?: string,
       payday?: string,
-      ctc?: string
+      ctc?: string,
+
+      subject?: string,
+      Lfrom?: string,
+      Lto?: string,
+      status?: string,
+      Lcomment?: string
     }
   }
   

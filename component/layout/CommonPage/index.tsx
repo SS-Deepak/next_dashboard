@@ -10,7 +10,8 @@ import {
     StatusList,
     ClientList,
     ProjectList,
-    AppraisalList } from "@/controller/List/index"
+    AppraisalList,
+    LeaveList } from "@/controller/List/index"
 
 
 interface Props{
@@ -50,6 +51,7 @@ export default function index({title, btnTitle, page}:Props) {
           page === "client" ? <ClientList/>:
           page === "project" ? <ProjectList/>:
           page === "appraisal" ? <AppraisalList/>:
+          page === "leave" ? <LeaveList/>:
           null
         }
         </div>
