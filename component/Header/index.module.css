@@ -39,3 +39,26 @@
 .headerLink img{
     border-radius: 50%;
 }
+.companyLogo{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #357CA5;
+    color: #ffffffe5;
+    font-size: 1.3rem;
+}
+.companyLogo span{
+    font-weight: 700;
+    color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    .headerContainer{
+        /* position: fixed; */
+        width: 100%;
+        margin-top: 60px;
+        height: 50px;
+    }
+}

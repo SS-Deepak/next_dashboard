@@ -1,0 +1,49 @@
+import styles from "../CommonPage/index.module.css"
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+interface Props{
+    title?: string
+}
+
+export default function componentName({title}:Props) {
+  return (
+    <div className={`${styles.EmployeesList} ${styles.compensation}`}>
+        <div className={styles.upperHeader}>
+            <h3>{title}</h3>  
+            <p><span>+</span> Add</p>    
+        </div>
+
+        <div className={styles.lowerData}>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Taxable</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Percentage</td>
+                        <td>P123</td>
+                        <td>Yes</td>
+                        <td>5.00% of Basic</td>
+                        <td>
+                            <p>d</p>
+                            <p>o</p>
+                            {/* <FontAwesomeIcon icon={faEdit}/> */}
+                            {/* <FontAwesomeIcon icon={faTrash}/> */}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+  );
+}

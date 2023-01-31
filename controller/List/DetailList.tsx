@@ -12,38 +12,42 @@ export function DetailList({data}:DetailListProps) {
                           data.page === "status" ? `${styles.employeesListContainer} ${styles.designation}`:
                           data.page === "client" ? `${styles.employeesListContainer} ${styles.client}`:
                           data.page === "project" ? `${styles.employeesListContainer} ${styles.project}`:
+                          data.page === "appraisal" ? `${styles.employeesListContainer} ${styles.appraisal}`:
                           undefined}>
 
-        {data.id?<p >{data.id}</p>:null}
-        {data.email?<p >{data.email}</p>:null}
-        {data.firstName?<p >{data.firstName}</p>:null}
-        {data.lastName?<p >{data.lastName}</p>:null}
-        {data.DOJ?<p>{data.DOJ}</p>:null}
+        {data.id?<p title="id">{data.id}</p>:null}
+        {data.email?<p title="email">{data.email}</p>:null}
+        {data.firstName?<p title="firstname">{data.firstName}</p>:null}
+        {data.lastName?<p title="lastname">{data.lastName}</p>:null}
+        {data.DOJ?<p title="date of joining">{data.DOJ}</p>:null}
 
-        {data.EName?<p>{data.EName}</p>:null}
-        {data.ERemark?<p>{data.ERemark}</p>:null}
+        {data.EName?<p title="employeeName">{data.EName}</p>:null}
+        {data.ERemark?<p title="EmployeeRemark">{data.ERemark}</p>:null}
 
-        {data.holiDate?<p>{data.holiDate}</p>:null}
+        {data.holiDate?<p title="holiday">{data.holiDate}</p>:null}
         {data.holiDay?<p>{data.holiDay}</p>:null}
         {data.holdayTitle?<p>{data.holdayTitle}</p>:null}
 
-        {data.designTitle? <p>{data.designTitle}</p>:null}
-        {data.departTitle? <p>{data.departTitle}</p>:null}
+        {data.designTitle? <p title="title">{data.designTitle}</p>:null}
+        {data.departTitle? <p title="title">{data.departTitle}</p>:null}
 
-        {data.clientDateAdded? <p>{data.clientDateAdded}</p>:null}
-        {data.clientName? <p>{data.clientName}</p>:null}
-        {data.clientEmail? <p>{data.clientEmail}</p>:null}
-        {data.clientPhone? <p>{data.clientPhone}</p>:null}
-        {data.clientPhone? <p>{data.clientPhone}</p>:null}
+        {data.clientDateAdded? <p title="clientDateAdded">{data.clientDateAdded}</p>:null}
+        {data.clientName? <p title="name">{data.clientName}</p>:null}
+        {data.clientEmail? <p title="email">{data.clientEmail}</p>:null}
+        {data.clientPhone? <p title="phoneNo.">{data.clientPhone}</p>:null}
         
-        {data.projectDateAdded ? <p>{data.projectDateAdded}</p>:null}
-        {data.projectEstimmateDD ? <p>{data.projectEstimmateDD}</p>:null}
-        {data.projectName ? <p>{data.projectName}</p>:null}
-        {data.projectClient ? <p>{data.projectClient}</p>:null}
-        {data.projectStatus ? <p>{data.projectStatus}</p>:null}
-        {data.projectDesc ? <p>{data.projectDesc}</p>:null}
+        {data.projectDateAdded ? <p title="AddedDate">{data.projectDateAdded}</p>:null}
+        {data.projectEstimmateDD ? <p title="estimateDate">{data.projectEstimmateDD}</p>:null}
+        {data.projectName ? <p title="title">{data.projectName}</p>:null}
+        {data.projectClient ? <p title="client">{data.projectClient}</p>:null}
+        {data.projectStatus ? <p title="status">{data.projectStatus}</p>:null}
+        {data.projectDesc ? <p title="description">{data.projectDesc}</p>:null}
         {data.projectCreatedBy ? <p>{data.projectCreatedBy}</p>:null}
-        {data.projectAssignTo ? <p>{data.projectAssignTo.join(", ")}</p>:null}
+        {data.projectAssignTo ? <p title="member">{data.projectAssignTo.join(", ")}</p>:null}
+
+        {data.AEName?<p>{data.AEName}</p>:null}
+        {data.payday?<p>{data.payday}</p>:null}
+        {data.ctc?<p>$ {data.ctc}</p>:null}
 
 
         <div className={styles.employeeListLinks}>

@@ -20,29 +20,35 @@ import styles from "./index.module.css";
 
 interface Props{
   icon: IconDefinition,
-  title: string
+  title: string,
+  path?: string
 }
 
-const Row = ({icon, title}:Props)=>(
-  <li>
-    <FontAwesomeIcon icon={icon} />
-    <p>{title}</p>
-    <span>{title}</span>
-  </li>
-);
+
 
 
 export default function index() {
-  const {show,loading} = useToggle();
-  const hide = `${styles.sidePanelContainer} ${styles.hide}`
+  const {show,setShow,loading} = useToggle();
   const router = useRouter();
+
+  const hide = `${styles.sidePanelContainer} ${styles.hide}`
   const showList = useRef<any>(null)
 
   const handleList = ()=>{
     const span = showList.current; 
     span?.classList.toggle(`${styles.hidden}`)
   }
-  
+  const handleClick = (path:string|undefined)=>{
+    path?router.push(`${path}`):null
+  }
+  const Row = ({icon, title, path}:Props)=>(
+    <li onClick={()=>handleClick(path)}>
+      <FontAwesomeIcon icon={icon} />
+      <p>{title}</p>
+      <span>{title}</span>
+    </li>
+  );
+
   return (
     <div className={show?styles.sidePanelContainer: hide}>
      
@@ -52,13 +58,13 @@ export default function index() {
 
         <div className={styles.panelData}>
           <ul>
-            <Row icon={faHome} title="DashBoard"/>
-            <Row icon={faPeopleGroup} title="Employees"/>
+            <Row icon={faHome} title="DashBoard" path='/'/>
+            <Row icon={faPeopleGroup} title="Employees" path='/employees'/>
             <Row icon={faCalendarDays} title="Attendence"/>
             <Row icon={faCalendarXmark} title="Leave"/>
             <Row icon={faCircleArrowUp} title="Appraisal"/>
-            <Row icon={faHandPeace} title="Reviews"/>
-            <Row icon={faCalendarCheck} title="Holidays"/>
+            <Row icon={faHandPeace} title="Reviews" path='/employee_review'/>
+            <Row icon={faCalendarCheck} title="Holidays" path='/holiday'/>
             <Row icon={faUser} title="Admins"/>
 
             <div className={styles.select} ref={showList} onClick={handleList}>
@@ -70,12 +76,12 @@ export default function index() {
               <ul className={styles.selectHidden}>
                 <li>System</li>
                 <li>Setting</li>
-                <li>Compensation</li>
-                <li>Designation</li>
-                <li>Departments</li>
-                <li>Status</li>
-                <li>Clients</li>
-                <li>Projects</li>
+                <li onClick={()=>router.push("/compensation")}>Compensation</li>
+                <li onClick={()=>router.push("/designations")}>Designation</li>
+                <li onClick={()=>router.push("/departments")}>Departments</li>
+                <li onClick={()=>router.push("/status")}>Status</li>
+                <li onClick={()=>router.push("/clients")}>Clients</li>
+                <li onClick={()=>router.push("/projects")}>Projects</li>
                 <li>Timesheet</li>
               </ul>
             </div>

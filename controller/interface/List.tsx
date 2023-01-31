@@ -37,7 +37,11 @@ export interface DetailListProps{
       projectStatus?: string,
       projectDesc?: string,
       projectCreatedBy?: string,
-      projectAssignTo?: string[]
+      projectAssignTo?: string[],
+
+      AEName?: string,
+      payday?: string,
+      ctc?: string
     }
   }
   
@@ -54,3 +58,33 @@ export interface DetailListProps{
       
     }
   }
+
+  export interface monthProps{
+    January: number,
+    February:number,
+    March:number,
+    April:number,
+    May:number,
+    June:number,
+    July:number,
+    August:number,
+    September:number,
+    October:number,
+    November:number,
+    December:number
+  }
+
+  export interface CalculateAttendence{
+    data: number[],
+    days: number,
+    month: number,
+    YearCode:number,
+    year: number
+}
+export interface Attendence{
+  attendence:{
+    days: number[],
+    name: string
+  },
+  days?: number[]
+}

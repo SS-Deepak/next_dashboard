@@ -167,3 +167,29 @@
     transform: rotateX(90deg);
     transform-origin: top;
 }
+
+
+@media screen and (max-width: 600px){
+    .sidePanelContainer{
+        /* transform: translateX(-200px); */
+        /* opacity: 0; */
+        /* background-color: transparent; */
+        z-index: 0;
+    }
+    .panelData ul li{
+        font-size: .8rem;
+    }
+    .panelData{
+        margin-top: 70px;
+        font-size: .8rem;
+        /* margin-left: -250px; */
+    }
+    .companyLogo{
+        position: fixed;
+        width: 100%;
+    }
+    .sidePanelContainer.hide{
+        width: 0px;
+        /* overflow: hidden; */
+    }
+}

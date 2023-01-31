@@ -40,6 +40,9 @@
     grid-template-columns: 1fr 2fr 2fr 1fr 1fr 6fr 1fr 1fr 2fr;
 
 }
+.appraisal{
+    grid-template-columns: .4fr 5fr 3fr 2fr 5fr;
+}
 .employeesListContainer:nth-child(odd){
     background-color: #00000009;
 }
@@ -81,6 +84,7 @@
 .employeeListLinks button{
     margin: 0 2px;
     padding: 5px 4px ;
+    /* height: 20px; */
     color: #fff;
     border: none;
     outline: none;
@@ -102,4 +106,46 @@
 }
 .employeeListLinks button.success{
     background-color: #00A65A;
+}
+
+
+@media screen and (max-width: 1300px){
+    .employeesListContainer,
+    .employeesListHeaderContainer{
+        font-size: .7rem;
+    }
+
+}
+
+@media screen and (max-width: 1100px){
+
+    /* .employeesListContainer p{
+        min-width: fit-content !important;
+    } */
+    /* .employeesListHeaderContainer{
+        display: none;
+    } */
+    /* .employeesListContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 15px;
+        margin-top: 20px;
+        padding-bottom: 10px;
+    }
+    .employeesListContainer p:nth-child(1){
+        margin-left: -18px;
+        background-color: #000000ce;
+        padding: 0px 4px;
+        color: #fff;
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .employeeListLinks{
+        margin-top: 10px;
+        width: 320px;
+    } */
+
 }

@@ -65,23 +65,51 @@ export const DepartmentList =()=>(
       }}
     />
 )
+export const AppraisalList =()=>(
+    <DetailList data={{
+        id:"1",
+        AEName:"Kusum Maurya",
+        payday: "07/18/2018 05:30 AM",
+        ctc: "1200.00",
+        editBtn: true,
+        deleteBtn: true,
+        page:"appraisal"
+      }}
+    />
+)
 
 
 export const EmployeeDetailList = ()=>( 
+  <>
     <DetailList data={{
-        id:"1",
-        email:"deepak@simransoftwaresolutions.com",
-        firstName:"Deepak",
-        lastName:"Kumar",
-        DOJ:"16-01-2023",
-        loginBtn:true,
-        editBtn:true,
-        mailEPloginBtn:true,
-        deleteBtn:true,
-        welcomeMailBtn:true,
-        page:"employees"
+      id:"1",
+      email:"deepak@simransoftwaresolutions.com",
+      firstName:"Deepak",
+      lastName:"Kumar",
+      DOJ:"16-01-2023",
+      loginBtn:true,
+      editBtn:true,
+      mailEPloginBtn:true,
+      deleteBtn:true,
+      welcomeMailBtn:true,
+      page:"employees"
     }}
     />
+    <DetailList data={{
+      id:"1",
+      email:"deepak@simransoftwaresolutions.com",
+      firstName:"Deepak",
+      lastName:"Kumar",
+      DOJ:"16-01-2023",
+      loginBtn:true,
+      editBtn:true,
+      mailEPloginBtn:true,
+      deleteBtn:true,
+      welcomeMailBtn:true,
+      page:"employees"
+    }}
+    />
+    </>
 )
 
 export const ReviewDetailList = ()=>(
@@ -94,16 +122,628 @@ export const ReviewDetailList = ()=>(
     />
 )
 export const HolidayList = ()=>(
+  <>
     <DetailList data={{
-        id:"1",
-        holiDate:"01/26/2023",
-        holiDay: "Thu",
-        holdayTitle: "Republic Day",
-        editBtn: true,
-        deleteBtn:true,
-        page:"holiday"
-        }}
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
     />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+    <DetailList data={{
+      id:"1",
+      holiDate:"01/26/2023",
+      holiDay: "Thu",
+      holdayTitle: "Republic Day",
+      editBtn: true,
+      deleteBtn:true,
+      page:"holiday"
+    }}
+    />
+  </>
 )
 
 
@@ -116,6 +756,7 @@ export const ListHeader = ({data}:ListHeaderProps)=>(
     data.page === "status"? <DepartMent/> :
     data.page === "client"? <Client/> :
     data.page === "project"? <Project/> :
+    data.page === "appraisal"? <Appraisal/> :
      null)
    
   
@@ -161,6 +802,14 @@ export const ListHeader = ({data}:ListHeaderProps)=>(
       <p>Name</p>
       <p>Email ID</p>
       <p>Phone</p>
+    </div>
+  )
+ const Appraisal = () =>(
+    <div className={`${styles.employeesListHeaderContainer} ${styles.appraisal}`}>
+      <p>#</p>
+      <p>Employee Name</p>
+      <p>Pay Date</p>
+      <p>CTC</p>
     </div>
   )
  const Project = () =>(

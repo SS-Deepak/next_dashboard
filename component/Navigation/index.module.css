@@ -17,3 +17,16 @@
 .mainResponse::-webkit-scrollbar{
     display: none;
 }
+
+@media screen and (max-width: 600px){
+    .navigatorContainer{
+        width: 100%;
+        margin-left: 0px;
+        z-index: 10;
+    }
+    .navigatorContainer.show{
+        width: 100%;
+        margin-left: -250px;
+        z-index: 10;
+    }
+}

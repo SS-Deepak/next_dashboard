@@ -32,7 +32,7 @@
 }
 
 .employeesSearch .input input{
-    height: 40px;
+    height: 37px;
     width: 100%;
     border-color: #0001;
     border-radius: 5px;
@@ -49,11 +49,104 @@
     background-color: #3C8DBC;
     border: none;
     outline: none;
-    font-size: .9rem;
+    font-size: .8rem;
     color: #fff;
     border-radius: 4px;
     cursor: pointer;
 }
 .employeesSearch button:hover{
     background-color: #2c76a1;
+}
+
+
+
+.leaveInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+}
+
+.input{
+    display: flex;
+}
+.input input{
+    padding: 0 10px;
+}
+.input input,
+.input .select{
+    width: 350px;
+    height: 30px;
+    /* background-color: red; */
+    margin-right: 30px;
+}
+.input svg:nth-child(1){
+    /* height: 30px;
+    width: 30px; */
+    background: #0002;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .9rem;
+    padding: 9px;
+}
+.select{
+    border: 1px solid #0009;
+    border-radius: 3px;
+}
+.options{
+    height: 30px;
+    width: 350px;
+    margin-top: 40px;
+    /* background-color: red; */
+}
+.option{
+    display: none;
+    height: 20px;
+    width: 100%;
+    font-size: .8rem;
+    padding-left: 10px;
+    /* transition: background .2s; */
+}
+.select:hover .option{
+    display: block;    
+}
+
+.option:hover{
+    background: #0006;
+    color: #fff;
+}
+
+.leaveInput span:hover{
+    background-color: #2c76a1;
+}
+.leaveInput span{
+    height: 30px;
+    width: 70px;
+    background-color: #3C8DBC;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .8rem;
+    border-radius: 4px;
+}
+
+
+
+@media screen and (max-width: 810px){
+    .employeesSearch{
+        display: flex;
+        flex-direction: column;
+        height: 80px;
+    }
+    .employeesSearch button{
+        font-size: .8rem;
+        height: 40px;
+    }
+    .employeesSearch .input{
+        width: 100%;
+    }
 }

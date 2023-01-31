@@ -1,5 +1,5 @@
 import styles from "./index.module.css"
-import {TopHeader} from "../TopHeader/header"
+import {TopHeader,LeaveInput} from "../TopHeader/header"
 import {
     ListHeader ,
     EmployeeDetailList, 
@@ -9,12 +9,13 @@ import {
     DepartmentList,
     StatusList,
     ClientList,
-    ProjectList } from "@/controller/List/index"
+    ProjectList,
+    AppraisalList } from "@/controller/List/index"
 
 
 interface Props{
     title: string,
-    btnTitle: string,
+    btnTitle?: string,
     page: string
 }
 
@@ -24,7 +25,9 @@ export default function index({title, btnTitle, page}:Props) {
       <h2>{title}</h2>
 
       <div className={styles.EmployeesList}>
-        <TopHeader title={btnTitle} page={page}/>
+        {page === "leave"? <LeaveInput/>:
+        <TopHeader title={btnTitle || ""} page={page}/>
+        }
 
         <ListHeader data={{
             email:true,
@@ -34,18 +37,22 @@ export default function index({title, btnTitle, page}:Props) {
             page
           }}
         />
+        <div className={styles.checkScroll}>
+
 
         {
-            page === "employees" ? <EmployeeDetailList/>:
-            page === "Ereview" ? <ReviewDetailList/>:
-            page === "holiday" ? <HolidayList/>:
-            page === "designation" ? <DesignationList/>:
-            page === "department" ? <DepartmentList/>:
-            page === "status" ? <StatusList/>:
-            page === "client" ? <ClientList/>:
-            page === "project" ? <ProjectList/>:
-            null
+          page === "employees" ? <EmployeeDetailList/>:
+          page === "Ereview" ? <ReviewDetailList/>:
+          page === "holiday" ? <HolidayList/>:
+          page === "designation" ? <DesignationList/>:
+          page === "department" ? <DepartmentList/>:
+          page === "status" ? <StatusList/>:
+          page === "client" ? <ClientList/>:
+          page === "project" ? <ProjectList/>:
+          page === "appraisal" ? <AppraisalList/>:
+          null
         }
+        </div>
        
     
       </div>
