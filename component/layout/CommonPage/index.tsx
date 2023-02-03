@@ -1,5 +1,7 @@
 import styles from "./index.module.css"
 import {TopHeader,LeaveInput} from "../TopHeader/header"
+import { useRouter } from "next/router"
+
 import {
     ListHeader ,
     EmployeeDetailList, 
@@ -19,11 +21,19 @@ interface Props{
     btnTitle?: string,
     page: string
 }
+interface popover {
+  page: string,
+  show: string | boolean | string[]
+}
+
+
 
 export default function index({title, btnTitle, page}:Props) {
+  const {query} = useRouter()
   return (
     <div className={styles.EmployeeContainer}>
       <h2>{title}</h2>
+
 
       <div className={styles.EmployeesList}>
         {page === "leave"? <LeaveInput/>:
@@ -44,7 +54,7 @@ export default function index({title, btnTitle, page}:Props) {
         {
           page === "employees" ? <EmployeeDetailList/>:
           page === "Ereview" ? <ReviewDetailList/>:
-          page === "holiday" ? <HolidayList/>:
+          page === "holiday" ?  <HolidayList/>:
           page === "designation" ? <DesignationList/>:
           page === "department" ? <DepartmentList/>:
           page === "status" ? <StatusList/>:

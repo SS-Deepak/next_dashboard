@@ -1,7 +1,12 @@
 import styles from "./index.module.css"
+import {useState} from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass, faUser, faCaretDown } from "@fortawesome/free-solid-svg-icons"
 import { useRef } from "react"
+import Modal from "@mui/material/Modal"
+import {AddHolidayModal} from "../../Modals/Holiday/AddHolidaysModal"
+import {EditHoliday} from "../../Modals/Holiday/EditHolidayModal"
+import { useRouter } from "next/router"
 
 interface Props{
   title: string,
@@ -47,16 +52,35 @@ export const LeaveInput = ()=>{
   }
 
 export function TopHeader({title, page}:Props) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false)
+  };
+
   return (
-    <div className={styles.employeesSearch}>
-    <div className={styles.input}>
-      {page==="holiday" ? <Select/> :
-        <FontAwesomeIcon icon={faMagnifyingGlass}/>
-      }
-      <input type="text" placeholder="Enter Keyword"/>
-    </div>
-    <button>{title}</button>
-  </div>
+    <>
+    {
+      open ? <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <AddHolidayModal open={handleClose}/>
+          </Modal>:
+
+      <div className={styles.employeesSearch}>
+        <div className={styles.input}>
+          {page==="holiday" ? <Select/> :
+            <FontAwesomeIcon icon={faMagnifyingGlass}/>
+          }
+          <input type="text" placeholder="Enter Keyword"/>
+        </div>
+        <button onClick={handleOpen}>{title}</button>
+      </div>
+    }
+      </>
   )
 }
 

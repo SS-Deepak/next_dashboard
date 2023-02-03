@@ -1,8 +1,9 @@
 import {DetailListProps } from "../interface/List"
 import styles from "../styles/list.module.css"
-
+import {useRouter, NextRouter} from "next/router"
 
 export function DetailList({data}:DetailListProps) {
+  const router  = useRouter()
     return (
       <div className={data.page === "employees" ? styles.employeesListContainer:
                           data.page === "Ereview" ? `${styles.employeesListContainer} ${styles.Ereview}`:
@@ -60,8 +61,8 @@ export function DetailList({data}:DetailListProps) {
 
         <div className={styles.employeeListLinks}>
           {data.loginBtn?<button className={styles.primary}>Login</button>:null}
-          {data.editBtn?<button className={styles.primary}>Edit</button>:null}
-          {data.deleteBtn?<button className={styles.danger}>Delete</button>:null}
+          {data.editBtn?<button className={styles.primary} onClick={()=>handleEdit(router,data.EID, data.page)}>Edit</button>:null}
+          {data.deleteBtn?<button className={styles.danger} onClick={()=>handleDelete(router,data.EID, data.page)}>Delete</button>:null}
           {data.detailBtn?<button className={styles.success}>Details</button>:null}
           {data.rejectBtn?<button className={styles.danger}>Reject</button>:null}
           {data.acceptBtn?<button className={styles.success}>Accept</button>:null}
@@ -72,3 +73,31 @@ export function DetailList({data}:DetailListProps) {
     )
   }
   
+
+  const handleDelete = async(router:NextRouter ,id:string|undefined, page:string|undefined)=>{
+    id !== undefined && page !== undefined && fetch(`http://localhost:3000/api/${page}s/${id}`,{
+      method: "DELETE",
+      headers:{
+        "Authorization" : `Bearer ${localStorage.getItem("token")}`
+      }
+    }).then((data)=>data.json()).then(()=>{
+
+        router.push({
+          pathname: `/${page}`,
+          query:{
+            load: true
+          }
+        })
+    })
+      
+  }
+  const handleEdit = async(router:NextRouter ,id:string|undefined, page:string|undefined)=>{
+    router.push({
+      pathname: `/${page}`,
+      query:{
+        showModal : true,
+        page,
+        id
+      }
+    })
+  }

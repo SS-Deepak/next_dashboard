@@ -1,6 +1,11 @@
+import {useState, useEffect} from "react"
 import styles from "../styles/list.module.css"
-import { ListHeaderProps} from "../interface/List"
+import { ListHeaderProps, holidy} from "../interface/List"
 import { DetailList } from "./DetailList"
+import useSWR from "swr"
+import {useRouter} from "next/router"
+import { Modal } from "@mui/material"
+import { EditHoliday } from "@/component/Modals/Holiday/EditHolidayModal"
 
 
 export const DesignationList =()=>(
@@ -136,34 +141,74 @@ export const ReviewDetailList = ()=>(
     }}
     />
 )
-export const HolidayList = ()=>(
-  <>
-   
-    <DetailList data={{
-      id:"1",
-      holiDate:"01/26/2023",
-      holiDay: "Thu",
-      holdayTitle: "Republic Day",
-      editBtn: true,
-      deleteBtn:true,
-      page:"holiday"
-    }}
-    />
-    <DetailList data={{
-      id:"1",
-      holiDate:"01/26/2023",
-      holiDay: "Thu",
-      holdayTitle: "Republic Day",
-      editBtn: true,
-      deleteBtn:true,
-      page:"holiday"
-    }}
-    />
+
+
+export const HolidayList = ()=>{
+  const {query} = useRouter()
+  const [show,setShow]  = useState<boolean>(false)
+  const router = useRouter()
+  const [holidy, setHodays] = useState<holidy[]>()
+
+  useEffect(()=>{
+    setShow(Boolean(query.showModal))
+  })
+
+  const call = async ()=>{
+
+    const res= await fetch("http://localhost:3000/api/holidays",{
+      "headers":{
+        "Authorization" : `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+    const data = await res.json()
+    setHodays(data.data)
+  }
+
+  useEffect(()=>{
+    call()
+
+  },[query.load])
+    useSWR( "http://localhost:3000/api/holidays", call, {refreshInterval: 1000})
+  return(
+    
+    
+    <>
+    {
+      query.showModal ? 
+      <Modal
+        open={show}
+        onClose={()=>router.push("/holiday")}
+      ><EditHoliday id={query.id}/></Modal> : null
+    }
+   {
+     holidy?.map((item:any, index:number)=>{
+      const date =  new Date(item.date).toDateString().split(" ")
+      return(
+
+      
+      <DetailList key={index} data={{
+        id:String(index+1),
+        EID: item.id,  
+        holiDate:`${date[1]}-${date[2]}-${date[3]}`,
+        holiDay: `${date[0]}`,
+        holdayTitle: item.title,
+        editBtn: true,
+        deleteBtn:true,
+        page:"holiday"
+      }}
+      />
+
+    )})
+   }
+    
     
   </>
-)
+ )
+}
 
 
+
+// main function to call list header
 export const ListHeader = ({data}:ListHeaderProps)=>(
     data.page === "employees" ? <Employees/> :
     data.page === "Ereview"? <EmployeeReview/> :

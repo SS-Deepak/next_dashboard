@@ -1,5 +1,7 @@
 export interface DetailListProps{
     data:{
+      EID?: string,
+      
       id?: string,
       email?: string,
       firstName?: string,
@@ -95,4 +97,9 @@ export interface Attendence{
     name: string
   },
   days?: number[]
+}
+
+export interface holidy{
+  date: string,
+  title: string
 }

@@ -47,10 +47,10 @@
     width: 100%;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .dashboardList{
-    height: 100%;
+    height: 90%;
     width:550px;
     padding: 20px 30px;
     background-color: #fff;
@@ -63,12 +63,26 @@
     font-size: 1.4rem;
 }
 
+.dashboardDetails{
+    height: 100%;
+}
+.listEmp{
+    position: relative;
+    height: 80%;
+    overflow-y: scroll;
+
+}
+
 @media screen and (max-width: 1300px) {
     .dashboardData{
         display: flex;
         flex-direction: column !important;
         align-items: center;
-
+        
+    }
+    .dashboardContainer{
+        background: linear-gradient(#ECF0F5, transparent);
+        
     }
     .dashboardList{
         margin: 10px 0;
