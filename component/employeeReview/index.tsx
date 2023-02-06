@@ -6,6 +6,19 @@ export default function index() {
         title="Employee Reviews" 
         btnTitle="Add New Employee Review" 
         page="Ereview"
+      header={["hashIndex","en", "remark"]}
+
+      body={[
+      {
+        en:"Deepak",
+        remark:"Kumar",
+      },
+      {
+        en:"Deepak",
+        remark:"Kumar",
+      }
+    ]}
+
     />
   )
 }

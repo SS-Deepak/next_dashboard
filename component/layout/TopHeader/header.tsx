@@ -15,28 +15,37 @@ interface Props{
 
 export const LeaveInput = ()=>{
   const refShow:any = useRef()
+  const select:any = useRef()
+  
 
   const handle = ()=>{
     refShow.current.classList.toggle(`${styles.show}`)
   }
+  const handleSelect = (value:string) => {
+    select.current.innerHTML = value
+  }
+
+  const handleChange = (e:any) =>{
+    console.log(e.target.value)
+  }
   return(
 
  
-  <div className={styles.leaveInput} onClick={()=>handle()}>
+  <div className={styles.leaveInput}>
  
     <div className={styles.input}>
       <FontAwesomeIcon icon={faUser}/>
-      <input type="text" placeholder="Enter Name"/>
+      <input type="text" placeholder="Enter Name" onChange={(e)=>handleChange(e)}/>
     </div>
 
     <div className={styles.input}>
-      <FontAwesomeIcon icon={faUser} onClick={()=>handle()}/>
+      <FontAwesomeIcon icon={faUser} />
       <div className={styles.select} onClick={()=>handle()}>
+          <p ref={select}>ChooseOne</p>
         <div ref={refShow} className={styles.options} >
-
-          <div className={styles.option}>Pending</div>
-          <div className={styles.option}>Approved</div>
-          <div className={styles.option}>Rejected</div>
+          <div className={styles.option} onClick={(e)=>handleSelect("Approved")}>Approved</div>
+          <div className={styles.option} onClick={(e)=>handleSelect("Pending")}>Pending</div>
+          <div className={styles.option} onClick={(e)=>handleSelect("Rejected")}>Rejected</div>
         </div>
       <FontAwesomeIcon icon={faCaretDown}  onClick={()=>handle()}/>
       </div>
@@ -61,7 +70,8 @@ export function TopHeader({title, page}:Props) {
   return (
     <>
     {
-      open ? <Modal
+      open ?
+          <Modal
                   open={open}
                   onClose={handleClose}
                   aria-labelledby="modal-modal-title"

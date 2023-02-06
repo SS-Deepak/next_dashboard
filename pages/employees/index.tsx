@@ -3,8 +3,6 @@ import Employees from "../../component/Employees/index"
 
 export default function Home() {
   return (
-    <NavigationPanel>
-      <Employees/>
-    </NavigationPanel>
+    <NavigationPanel children={<Employees/>} />
   )
 }

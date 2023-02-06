@@ -6,6 +6,23 @@ export default function componentName() {
         title="Status" 
         btnTitle="Add New Status"
         page="status"
+        header={["hashIndex","title", "btns"]}
+
+      body={[
+      {
+        
+        title:"Sankranti",
+      },
+      {
+       
+        title:"Sankranti",
+      },
+   ]}
+
+      buttons={[
+        "editBtn",
+        "deleteBtn",
+      ]}
       />
   );
 }

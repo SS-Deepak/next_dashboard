@@ -6,6 +6,23 @@ export default function componentName() {
         title="Designation" 
         btnTitle="Add New Designation"
         page="designation"
+        header={["hashIndex","title", "btns"]}
+
+      body={[
+      {
+        
+        title:"Sankranti",
+      },
+      {
+       
+        title:"Sankranti",
+      },
+   ]}
+
+      buttons={[
+        "editBtn",
+        "deleteBtn",
+      ]}
       />
   );
 }

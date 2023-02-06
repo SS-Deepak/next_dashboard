@@ -1,6 +1,7 @@
 export interface DetailListProps{
     data:{
       EID?: string,
+      Sid ?: string,
       
       id?: string,
       email?: string,

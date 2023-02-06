@@ -101,6 +101,9 @@
     padding: 0 10px;
     color: #0009;
 }
+.select > p{
+    font-size: .8rem;
+}
 .options{
     height: 70px;
     width: 350px;

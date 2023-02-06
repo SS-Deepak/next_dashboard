@@ -1,0 +1,49 @@
+
+.filterDataRow{
+    width: 100%;
+    height: 40px;
+    display: flex;
+}
+.filterDataRow > *{
+    padding: 10px;
+    height: 100%;
+    font-size: .77rem;
+    font-weight: 700;
+    flex-wrap: wrap;
+}
+.verySmall{
+    width: 4%;
+}
+.S_small{
+    width: 9%;
+}
+.SS_small{
+    width: 6.6%;
+}
+.small{
+    width: 8vw;
+    margin: 0 1px;
+}
+.Xsmall{
+    width: 6vw;
+}
+.Lmedium{
+    width: 21%;
+}
+
+.medium{
+    width: 26%;
+}
+.Xmedium{
+    flex: 1;
+}
+.large{
+    width: 35%;
+}
+
+.danger{
+    color: #DD4B39;
+}
+.success{
+    color: #00A65A;
+}

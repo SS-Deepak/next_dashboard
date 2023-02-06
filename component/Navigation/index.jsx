@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "../../component/Header/index"
-import SidePanel from "../../component/sidePanel/index"
+import SidePanel from "../../component/SidePanel/index"
 import styles from "./index.module.css"
 import {Toggler} from "../../Context/headerToggle"
 
@@ -21,3 +21,5 @@ export default function componentName({children}) {
     </Toggler>
   );
 }
+
+

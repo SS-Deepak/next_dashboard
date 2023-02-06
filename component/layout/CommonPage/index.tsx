@@ -1,74 +1,39 @@
 import styles from "./index.module.css"
-import {TopHeader,LeaveInput} from "../TopHeader/header"
-import { useRouter } from "next/router"
+import {TopHeader} from "../TopHeader/header"
 
-import {
-    ListHeader ,
-    EmployeeDetailList, 
-    ReviewDetailList, 
-    HolidayList, 
-    DesignationList,
-    DepartmentList,
-    StatusList,
-    ClientList,
-    ProjectList,
-    AppraisalList,
-    LeaveList } from "@/controller/List/index"
+import BodyList from "./bodyList"
+import HeaderList from "@/controller/headerList/List"
 
 
 interface Props{
     title: string,
     btnTitle?: string,
-    page: string
+    page: string,
+    header: string[],
+    body:any,
+    buttons?: any
 }
-interface popover {
-  page: string,
-  show: string | boolean | string[]
-}
 
 
 
-export default function index({title, btnTitle, page}:Props) {
-  const {query} = useRouter()
+
+export default function index({title, btnTitle, page, header, body, buttons}:Props) {
+  
   return (
     <div className={styles.EmployeeContainer}>
       <h2>{title}</h2>
 
-
       <div className={styles.EmployeesList}>
-        {page === "leave"? <LeaveInput/>:
-        <TopHeader title={btnTitle || ""} page={page}/>
+        {page === "leave"? null:
+          <TopHeader title={btnTitle || ""} page={page}/>
         }
 
-        <ListHeader data={{
-            email:true,
-            fn: true,
-            ls: true,
-            doj:true,
-            page
-          }}
-        />
+        <HeaderList data={[...header]}/>
+
         <div className={styles.checkScroll}>
-
-
-        {
-          page === "employees" ? <EmployeeDetailList/>:
-          page === "Ereview" ? <ReviewDetailList/>:
-          page === "holiday" ?  <HolidayList/>:
-          page === "designation" ? <DesignationList/>:
-          page === "department" ? <DepartmentList/>:
-          page === "status" ? <StatusList/>:
-          page === "client" ? <ClientList/>:
-          page === "project" ? <ProjectList/>:
-          page === "appraisal" ? <AppraisalList/>:
-          page === "leave" ? <LeaveList/>:
-          null
-        }
+          <BodyList body={body} button={buttons} />
         </div>
-       
-    
       </div>
-
     </div>
   )
 }
