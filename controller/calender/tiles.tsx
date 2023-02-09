@@ -20,7 +20,7 @@ export const EDays=(item:number, index:number, single?: boolean, color?: any, ta
     return(
         <div className={styles.EdayN} key={index}>
         <p className={`${styles.calendarItem} ${styles[color]}`}>{single?index+1:""}</p>
-        {item === 13 && !single && <span>{ item === 13 && `${tag.timeIn}-${tag.timeOut}`}</span>}
+        {/* {item === 13 && !single && tag && <span>{ item === 13 && `${tag.timeIn}-${tag.timeOut}`}</span>} */}
         </div>
     )
 }

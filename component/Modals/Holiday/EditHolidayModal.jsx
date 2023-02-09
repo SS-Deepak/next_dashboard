@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import styles from "../index.module.css"
 import {useState, useRef} from "react"
 import { useRouter } from "next/router";
+import { editHolidayFetcher } from "@/services/modals";
 
 export  function EditHoliday({id}) {
   const ref = useRef()
@@ -32,22 +33,15 @@ export  function EditHoliday({id}) {
       }
     });
     
-    
-        const res = await fetch(`http://localhost:3000/api/holidays/${id}`,{
-            method:"PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization" : `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify({...holiday})
-        })
+    // holiday service
+    editHolidayFetcher({holiday,id})
 
-        router.push({
-            pathname: "/holiday",
-            query:{
-                load: true
-            },
-        })
+    router.push({
+        pathname: "/holiday",
+        query:{
+            load: true
+        },
+    })
   }
   return (
     <Box sx={style} ref={ref}>

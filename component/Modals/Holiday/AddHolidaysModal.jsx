@@ -2,6 +2,7 @@ import styles from "../index.module.css"
 import { Box } from "@mui/material";
 import {useState} from "react"
 import {useRouter} from  "next/router"
+import { addHolidayFetcher } from "@/services/modals";
 
 export function AddHolidayModal({open}) {
     const router = useRouter()
@@ -24,15 +25,9 @@ export function AddHolidayModal({open}) {
       const handleSubmit =async (e) => {
         e.preventDefault()
         if(holiday.date !== "" && holiday.title !== ""){
-            const res = await fetch("http://localhost:3000/api/holidays",{
-                method:"POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization" : `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify({date: holiday.date, title: holiday.title})
-            })
-            const data = await res.json()
+            // fetch holiday service
+            addHolidayFetcher({holiday})
+
             open()
             router.push({
                 pathname: "/holiday",

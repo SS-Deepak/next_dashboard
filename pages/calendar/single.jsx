@@ -3,15 +3,17 @@ import NavigationPanel from "@/component/Navigation/index"
 import styles from "@/component/layout/CommonPage/index.module.css"
 import style from "../../controller/styles/calendar.module.css"
 import Modal from "@mui/material/Modal"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import Holiday from "../../component/Modals/AddAttendance/add"
 
 export default function index() {
+
   const [openModal, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false)
   };
+  const [doj, setDoj] = useState()
   return (
     <NavigationPanel>
       <div className={styles.EmployeeContainer}>
@@ -24,7 +26,7 @@ export default function index() {
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                 >
-                  <Holiday open={handleClose}/>
+                  <Holiday doj={doj} open={handleClose}/>
             </Modal>:
             <div className={styles.upperHeader}>
               <h3></h3>  
@@ -32,10 +34,26 @@ export default function index() {
             </div>
         }
         <div className={style.singleCalender}>
-            <Calendar/>
+            <Calendar doj={setDoj}/>
         </div>
       </div>
       </div>
     </NavigationPanel>
+
   )
 }
+
+
+
+
+// export const getServerideProps=async(context: any)=>{
+//     const {query} = context
+
+//     const user =  await fetch(`http://localhost:3000/api/attendance/${query.id}?year=${currentYear}&month=${currentMonth-1}`,{
+//         headers: {
+//             "Authorization": `Bearer ${localStorage.getItem("token")}`
+//         }
+//     })
+//     const responseJSON = await user.json()
+//     console.log(responseJSON)
+// }

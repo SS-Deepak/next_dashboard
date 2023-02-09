@@ -29,7 +29,6 @@ export default function componentName() {
       }
     }
     
-    console.log(user)
     useEffect(()=>{
       const res = mailformat.test(user.email)
       const pass = passFormat.test(user.password)

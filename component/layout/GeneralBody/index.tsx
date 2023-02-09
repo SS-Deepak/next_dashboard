@@ -2,7 +2,7 @@ import styles from "../CommonPage/index.module.css"
 import {TopHeader} from "../TopHeader/header"
 import BodyList from "../CommonPage/bodyList"
 import HeaderList from "@/controller/headerList/List"
-import { FormEvent, useState } from "react"
+import { useState } from "react"
 import {
   TabsHeader,TabsBody
 } from "./components"
@@ -22,7 +22,7 @@ export function GeneralPage({btnTitle, page, header,data, buttons}:Props) {
   return (
     <div className={styles.EmployeesList}>
     {page === "leave"? null:
-      page && <TopHeader title={btnTitle || ""} page={page}/>
+      <TopHeader title={btnTitle || ""}/>
     }
 
     <HeaderList data={header&&[...header]}/>

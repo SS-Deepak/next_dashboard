@@ -25,7 +25,6 @@ export default function componentName({page,body, button,personal}:Props) {
         return ()=>{}
     },[page])
 
-    console.log(data, body, page)
 
     return (
         <div className={styles.listContainer}>

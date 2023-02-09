@@ -1,8 +1,8 @@
+import { fetchHolidayList } from "@/services/holiday";
 import CommonPage from "../layout/CommonPage/index"
-import {useEffect} from "react"
-import useSWR from "swr"
 
 export default function componentName() {
+  // fetchHolidayList()
 
   return (
     <CommonPage 

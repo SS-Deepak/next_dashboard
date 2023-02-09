@@ -25,8 +25,6 @@ export const TabsBody = ({tabIndex}:any) => {
   )
 }
 
-
-
 // function for the activity of tabs
 const handleTabs = (e:FormEvent<HTMLInputElement> | any, setTabIndex:any) => {
  
@@ -80,8 +78,7 @@ const TabsBody3 =()=>{
           page="reviews"
           btnTitle="Add New Review"
         />
-  )}
-
+)}
 const TabsBody2 =()=>{
   const details = useDetails()
   return( 

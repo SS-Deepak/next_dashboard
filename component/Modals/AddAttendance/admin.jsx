@@ -3,13 +3,13 @@ import { Box } from "@mui/material";
 import {useState} from "react"
 import { useRouter } from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
-import { CalendarFetcher } from "../../../services/modals";
+import {CalendarFetcher} from "../../../services/modals"
 
 export default function AddHolidayModal({open, doj}) {
     const router= useRouter()
 
     const [visible, setVisible] = useState(false)
-    const [date, setDate] = useState(new Date(Date.now()))
+    const [date, setDate] = useState()
     const currentYear = new Date(Date.now()).getFullYear()
     
     const dojYear = new Date(doj).getFullYear()
@@ -22,6 +22,7 @@ export default function AddHolidayModal({open, doj}) {
     const [data, setData] = useState({
         timeIn: "",
         timeOut: "",
+        // date: new Date().getDate()
         date: selectedDate
     })
 
@@ -56,12 +57,10 @@ export default function AddHolidayModal({open, doj}) {
             
             <form>
                 <div className={styles.input}>
-                    <label>Time In</label>
-                    <input type="date" value={data.timeIn} onChange={(e)=>setData({...data, timeIn: e.target.value})}/>
-                </div>
-                <div className={styles.input}>
-                    <label>Time Out</label>
-                    <input type="date"  value={data.timeOut} onChange={(e)=>setData({...data, timeOut: e.target.value})}/>
+                    <label>Admin Attendence</label>
+                    <input type="date"  value={date} onChange={(e)=>{setDate(e.target.value)
+                    setData({...data, date:new Date(e.target.value).getDate()})
+                    }}/>
                 </div>
 
                 <button onClick={handleSubmit} >{!visible?"Add":<CircularProgress style={{height: "28px", width: '28px'}} color="inherit" />}</button>
