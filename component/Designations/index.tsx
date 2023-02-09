@@ -5,7 +5,6 @@ export default function componentName() {
       <CommonPage 
         title="Designation" 
         btnTitle="Add New Designation"
-        page="designation"
         header={["hashIndex","title", "btns"]}
 
       body={[

@@ -1,5 +1,5 @@
 import { CalculateAttendence,  Attendence } from "../interface/List"
-import { Days, EDaysN,EDaysH,EDaysS,EDaysP, EDaysNB } from "./tiles"
+import { Days, EDays, EDaysNB } from "./tiles"
 
 import styles from "../styles/calendar.module.css"
 import { useRouter } from "next/router"
@@ -70,7 +70,7 @@ export const calculateAttendence = ({data, days,month,year, YearCode}:CalculateA
     ))
 
     //inset all working days
-    data.map((item:number)=>(
+    data &&data.map((item:number)=>(
         result.splice(item-1, 1, 13)
     ))
     // insert all holidays
@@ -111,51 +111,50 @@ export const CalendarHead=({days}:any)=>{
 
 
 //build cell of calendar
-export const CalendarBody=({attendence,days}:Attendence)=>{
+export const CalendarBody=({attendence,name,days, id, tag}:Attendence)=>{
+    console.log(id)
     const router = useRouter()
-    
-
     return(
      <div className={styles.calenerDates}>
     
-        <p className={styles.calenderItemHeader} onClick={()=>router.push({pathname: "/calendar/single", query:{name:attendence.name}})}>{attendence.name}</p>
+        <p className={styles.calenderItemHeader} onClick={()=>router.push({pathname: "/calendar/single", query:{name, id}})}>{name}</p>
 
         {
-            !days?attendence.days.map((item:number,index:number)=>{
+            !days?attendence.map((item:number,index:number)=>{
                 
                 if(item === 11){
-                    return EDaysS(item, index)
+                    return EDays(item, index,false,"sunday",tag)
                 }else if(item === 0){
-                    return EDaysN(item,index)
+                    return EDays(item,index,false,"normal",tag)
                 }else if(item === 13){
-                    return EDaysP(item, index)
+                    return EDays(item, index,false,"present",tag)
                 }else if(item===12){
-                    return EDaysH(item, index)
+                    return EDays(item, index,false,"holiday",tag)
                 }
             }):days.map((item:number,index:number)=>{
                 
                 if(item === 11){
-                    return EDaysS(item, index)
+                    return EDays(item, index,false,"sunday",tag)
                 }else if(item === 0){
-                    return EDaysN(item,index)
+                    return EDays(item,index,false,"normal",tag)
                 }else if(item === 13){
-                    return EDaysP(item, index)
+                    return EDays(item, index,false,"present",tag)
                 }else if(item===12){
-                    return EDaysH(item, index)
+                    return EDays(item, index,false,"holiday",tag)
                 }
             })
         }
             
         <p className={styles.calenderItemFooter}>
-            {attendence.days.filter((item:number)=>item===13).length}
+            {attendence.filter((item:number)=>item===13).length}
         </p>
      </div>
     )
 }
 //build cell of calendar
-export const SingleCalendarBody=({attendence,days}:Attendence)=>{
+export const SingleCalendarBody=({attendence,name,days}:Attendence)=>{
     
-    const sundayIndex = attendence.days.findIndex((item)=>item === 11)
+    const sundayIndex = attendence.findIndex((item:any)=>item === 11)
 
     let addIndex = []
         if(sundayIndex>0){
@@ -168,7 +167,7 @@ export const SingleCalendarBody=({attendence,days}:Attendence)=>{
     return(
      <div className={styles.calenerDates}>
     
-        <p className={styles.calenderItemHeader}>{attendence.name}</p>
+        <p className={styles.calenderItemHeader}>{name}</p>
         {
             (addIndex.length>0)&&(
                 addIndex.map((item, index)=>(
@@ -177,33 +176,33 @@ export const SingleCalendarBody=({attendence,days}:Attendence)=>{
             )
         }
         {
-            !days?attendence.days.map((item:number,index:number)=>{
+            !days?attendence.map((item:number,index:number)=>{
                 
                 if(item === 11){
-                    return EDaysS(item, index, single)
+                    return EDays(item, index,single,"sunday")
                 }else if(item === 0){
-                    return EDaysN(item,index,single)
+                    return EDays(item,index,single,"normal")
                 }else if(item === 13){
-                    return EDaysP(item, index, single)
+                    return EDays(item, index,single,"present")
                 }else if(item===12){
-                    return EDaysH(item, index, single)
+                    return EDays(item, index,single,"holiday")
                 }
             }):days.map((item:number,index:number)=>{
                 
                 if(item === 11){
-                    return EDaysS(item, index, single)
+                    return EDays(item, index,single,"sunday")
                 }else if(item === 0){
-                    return EDaysN(item,index,single)
+                    return EDays(item,index,single,"normal")
                 }else if(item === 13){
-                    return EDaysP(item, index, single)
+                    return EDays(item, index,single,"present")
                 }else if(item===12){
-                    return EDaysH(item, index, single)
+                    return EDays(item, index,single,"holiday")
                 }
             })
         }
             
         <p className={styles.calenderItemFooter}>
-            {attendence.days.filter((item:number)=>item===13).length}
+            {attendence.filter((item:number)=>item===13).length}
         </p>
      </div>
     )

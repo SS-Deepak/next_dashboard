@@ -8,19 +8,19 @@ const Type = ( key, width)=>{
 export const ListPanel = [
   
     Type("hashIndex","verySmall"),
-    Type("emp_email","medium"),
-    Type("firstName","small"),
-    Type("lastName","small"),
+    Type("email","medium"),
+    Type("firstname","small"),
+    Type("lastname","small"),
     Type("doj","Xsmall"),
     
     Type("name","Xsmall"),
-    Type("sol","Lmedium"),
-    Type("fd","small"),
-    Type("td","small"),
+    Type("subject","Lmedium"),
+    Type("fromdate","small"),
+    Type("todate","small"),
     Type("status","small"),
-    Type("comment","medium"),
+    Type("comment","small"),
     
-    Type("en","large"),
+    Type("employeeName","large"),
     Type("remark","large"),
     
     Type("hd","medium"),

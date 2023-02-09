@@ -93,11 +93,11 @@ export interface DetailListProps{
     year: number
 }
 export interface Attendence{
-  attendence:{
-    days: number[],
-    name: string
-  },
-  days?: number[]
+  name?: string,
+  attendence?:any,
+  days?: number[],
+  id?: string,
+  tag?: any
 }
 
 export interface holidy{

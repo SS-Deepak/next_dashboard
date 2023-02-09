@@ -5,7 +5,6 @@ export default function componentName() {
       <CommonPage 
         title="Clients" 
         btnTitle="Add New Client"
-        page="client"
         header={["blankIndex","cda","cname", "cemail","cphone"]}
 
       body={[

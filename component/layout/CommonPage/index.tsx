@@ -1,39 +1,35 @@
 import styles from "./index.module.css"
-import {TopHeader} from "../TopHeader/header"
-
-import BodyList from "./bodyList"
-import HeaderList from "@/controller/headerList/List"
-
+import {GeneralPage, DetailsPage} from "../GeneralBody/index"
 
 interface Props{
-    title: string,
+    title?: string,
     btnTitle?: string,
-    page: string,
-    header: string[],
-    body:any,
-    buttons?: any
+    page?: string,
+    header?: string[],
+    body?:any,
+    buttons?: any,
+    details?: boolean
 }
 
 
-
-
-export default function index({title, btnTitle, page, header, body, buttons}:Props) {
+export default function index({title, btnTitle, page, header, body, buttons,details}:Props) {
   
   return (
     <div className={styles.EmployeeContainer}>
       <h2>{title}</h2>
 
-      <div className={styles.EmployeesList}>
-        {page === "leave"? null:
-          <TopHeader title={btnTitle || ""} page={page}/>
-        }
+      {
+        details ? <DetailsPage/> : <GeneralPage
+                                      btnTitle={btnTitle}
+                                      page={page}
+                                      header={header}
+                                      data={body}
+                                      buttons={buttons}
+                                  />
 
-        <HeaderList data={[...header]}/>
+      }
 
-        <div className={styles.checkScroll}>
-          <BodyList body={body} button={buttons} />
-        </div>
-      </div>
+
     </div>
   )
 }

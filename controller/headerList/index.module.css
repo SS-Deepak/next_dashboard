@@ -47,3 +47,11 @@
 .success{
     color: #00A65A;
 }
+
+.email{
+    color: dodgerblue;
+    cursor: pointer !important;
+}
+.email:hover{
+    color: #0764c0;
+}

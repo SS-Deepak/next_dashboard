@@ -5,7 +5,6 @@ export default function index() {
     <CommonPage 
         title="Employee Reviews" 
         btnTitle="Add New Employee Review" 
-        page="Ereview"
       header={["hashIndex","en", "remark"]}
 
       body={[

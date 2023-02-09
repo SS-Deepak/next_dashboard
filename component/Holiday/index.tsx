@@ -8,7 +8,6 @@ export default function componentName() {
     <CommonPage 
     title="Holidays" 
     btnTitle="Add New Holiday" 
-    page="holiday"
       header={["hashIndex","hd", "day","title", "btns"]}
 
       body={[

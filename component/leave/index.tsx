@@ -1,6 +1,7 @@
 import CommonPage from "../layout/CommonPage/index"
 
 export default function index() {
+  // const data = use 
   return (
     <CommonPage 
         title="Leave"
@@ -38,6 +39,6 @@ export default function index() {
         "acceptBtn",
       ]} 
 
-        page="leave"/>
+        />
   )
 }

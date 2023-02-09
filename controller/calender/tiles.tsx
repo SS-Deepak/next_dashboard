@@ -11,42 +11,17 @@ export const EDaysNB=(item:number, index:number)=>{
     return(
         <div className={styles.EdayN} key={index}>
         <p className={`${styles.calendarItem} ${styles.normal}`}></p>
-        <span>{item}</span>
         </div>
     )
 }
 
 // normal day
-export const EDaysN=(item:number, index:number, single?: boolean)=>{
+export const EDays=(item:number, index:number, single?: boolean, color?: any, tag?: any)=>{
     return(
         <div className={styles.EdayN} key={index}>
-        <p className={`${styles.calendarItem} ${styles.normal}`}>{single?index+1:""}</p>
-        <span>{item}</span>
+        <p className={`${styles.calendarItem} ${styles[color]}`}>{single?index+1:""}</p>
+        {item === 13 && !single && <span>{ item === 13 && `${tag.timeIn}-${tag.timeOut}`}</span>}
         </div>
     )
 }
 
-// holiday
-export const EDaysH=(item:number, index:number, single?: boolean)=>(
-    <div className={styles.EdayN} key={index}>
-    <p className={`${styles.calendarItem} ${styles.holiday}`}>{single?index+1:""}</p>
-    <span>{item}</span>
-    </div>
-)
-
-// sunday
-export const EDaysS=(item:number, index:number, single?: boolean)=>{
-    return(
-    <div className={styles.EdayN} key={index}>
-    <p className={`${styles.calendarItem} ${styles.sunday}`}>{single?index+1:""}</p>
-    <span>{item}</span>
-    </div>
-)}
-
-// present day
-export const EDaysP=(item:number, index:number, single?: boolean)=>(
-    <div className={styles.EdayN} key={index}>
-    <p className={`${styles.calendarItem} ${styles.present}`}>{single?index+1:""}</p>
-    <span>{item}</span>
-    </div>
-)

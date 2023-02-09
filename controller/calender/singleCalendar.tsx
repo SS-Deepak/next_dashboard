@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import styles from "../styles/calendar.module.css"
 import { calculateAttendence,  SingleCalendarBody,sunday, YearCode } from "./Handler"
+import useSWR from "swr"
 
 
 
@@ -26,47 +27,22 @@ export default function componentName() {
     const yearCode = YearCode(currentYear)  
     const array = new Array(month[currentMonth][1]).fill(0)                         //  initial array is used to initiliaze the calender
     const [checkYear, setCheckYear] = useState<number>(0)                           //  used to recylce the month name
-    const [dates1, setDates1] = useState<any>(array)                            
-    const [dates2, setDates2] = useState<any>(array)
+
+    const [data, setData] = useState<any>()  
     
-    // it trigger when attendence changes
-    useEffect(()=>{
-        setAttendence([
-            {
-                days:dates1,
-                name: "Ishwer Sharma"
-            },
-            {
-                days:dates2,
-                name: "Ishwer Sharma"
+    const fetchAttendance =async ()=>{
+        const response = await fetch(`http://localhost:3000/api/attendance/${query.id}?year=${currentYear}&month=${currentMonth-1}`,{
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
-        ])
-    },[dates1, dates2])
+        })
+        const responseJSON = await response.json()
+
+        setData(responseJSON.data)
+    }
+    useSWR(`http://localhost:3000/api/attendance/${query.id}?year=${currentYear}&month=${currentMonth-1}` ,fetchAttendance ,{refreshInterval: 0})
+
     
-    
-    // it trigger when month changes
-    useEffect(()=>{
-        console.log("cyear", currentYear, yearCode)
-        const data1 = calculateAttendence({data:[11,19,20,21,23],days:month[currentMonth][1],month:currentMonth, YearCode:yearCode, year: currentYear})
-        const data2 = calculateAttendence({data:[11,5,19,20,21,23,24,29],days:month[currentMonth][1],month:currentMonth, YearCode:yearCode, year: currentYear})
-        const holiday = sunday(month[currentMonth][1],currentMonth,currentYear, yearCode)
-
-        setDates1(data1)
-        setDates2(data2)
-    },[currentMonth, currentYear])
-
-
-    // initial attendence
-    const [attendence, setAttendence] = useState<any>([
-        {
-            days:dates1,
-            name: "Ishwer Sharma"
-        },
-        {
-            days:dates2,
-            name: "Ishwer Sharma"
-        }
-    ])
 
 
     //  trigger when left button click
@@ -103,6 +79,18 @@ export default function componentName() {
         
     }
 
+    // modify dates
+    const setDates = () =>{
+        const days = data &&data.map((item:any)=>(
+                item.date
+        ))
+        const final = calculateAttendence({data:days, days:month[currentMonth][1],month:currentMonth, YearCode:yearCode, year: currentYear})
+        return final
+    }
+
+
+
+    
 
   return (
         <div className={`${styles.calendarContainer} ${styles.singlePageCalendar}`}>
@@ -122,7 +110,7 @@ export default function componentName() {
                     <p>Friday</p>
                     <p>Saturday</p>
                 </div>
-                <SingleCalendarBody attendence={attendence[0]}/>
+                <SingleCalendarBody attendence={setDates()}/>
             </div>
         </div>
   );

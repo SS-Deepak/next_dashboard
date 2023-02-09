@@ -3,7 +3,7 @@ import styles from "./index.module.css"
 
 export default function componentName({data}) {
 
-  const FilterList = List.filter(item=>[...data].includes(item.key))
+  const FilterList = List.filter(item=>data&&[...data].includes(item.key))
     
   return (
     <div className={styles.filterDataRow}>

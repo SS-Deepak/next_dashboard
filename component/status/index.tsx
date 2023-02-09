@@ -5,7 +5,6 @@ export default function componentName() {
       <CommonPage 
         title="Status" 
         btnTitle="Add New Status"
-        page="status"
         header={["hashIndex","title", "btns"]}
 
       body={[
