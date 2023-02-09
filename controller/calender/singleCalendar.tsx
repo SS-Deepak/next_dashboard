@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import { useState } from "react"
 import styles from "../styles/calendar.module.css"
-import { setDates,  SingleCalendarBody, YearCode , handleShiftLeft, handleShiftRight} from "./Handler"
+import { setDates,  SingleCalendarBody, YearCode , handleShiftLeft, handleShiftRight, holidayList} from "./Handler"
 import { fetchSingleCalendar } from "@/services/calender"
 
 export default function componentName({doj}:any) {
@@ -25,11 +25,13 @@ export default function componentName({doj}:any) {
     const yearCode = YearCode(currentYear)  
     const [checkYear, setCheckYear] = useState<number>(0)                           //  used to recylce the month name
     const [data, setData] = useState<any>()  
-    
-    
-    fetchSingleCalendar({id:query.id, currentMonth, currentYear, doj, setData})
-    const setDate = setDates({data, month, currentMonth, currentYear, yearCode,single:true}) as any
+    const [holiday, setHoliday] = useState<any>()
 
+    
+    
+    fetchSingleCalendar({id:query.id, currentMonth, currentYear,setHoliday, doj, setData})
+    const holidays = holidayList({holiday, currentMonth})
+    const setDate = holidays && setDates({data, month,holidays, currentMonth, currentYear, yearCode,single:true}) as any
 
   return (
         <div className={`${styles.calendarContainer} ${styles.singlePageCalendar}`}>
@@ -51,7 +53,7 @@ export default function componentName({doj}:any) {
                     <p>Friday</p>
                     <p>Saturday</p>
                 </div>
-                <SingleCalendarBody attendence={setDate}/>
+                <SingleCalendarBody attendence={setDate}/> 
             </div>
         </div>
   );

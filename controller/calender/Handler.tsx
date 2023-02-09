@@ -59,46 +59,10 @@ export const sunday = (days:number,month:number,year:number, YearCode:number)=>{
 }
 
 //  make final attendece
-export const calculateAttendence1 = ({data, days,month,year,holidays, YearCode}:any)=>{
-
+export const calculateAttendence = ({data, days,month,year,holidays, YearCode}:any)=>{
     let result:any = []
     const sunday = check_sunday(days,month,year,YearCode)
     const holiday = holidays
-
-    // insert all sundays
-    sunday.map((item:number,index:number)=>(
-        result.splice(index, 0, item)
-    ))
-
-    //inset all working days
-    data &&data.map((item:number)=>(
-        result.splice(item-1, 1, 13)
-    ))
-    // insert all holidays
-    holiday.map((item:number)=>(
-        result.splice(item-1, 1, 12)
-    ))
-
-    // fill empty space
-    if(result.length<days){
-        const len = result.length
-        const res = new Array(days-len).fill(0)
-        
-        res.map((item, index)=>(
-            result.splice(index+len, 0, item)
-        ))
-    }
-
-
-    // returning attendence
-    return result
-}
-
-//  make final attendece
-export const calculateAttendence = ({data, days,month,year, YearCode}:CalculateAttendence)=>{
-    let result:any = []
-    const sunday = check_sunday(days,month,year,YearCode)
-    const holiday = [26]
 
     // insert all sundays
     sunday.map((item:number,index:number)=>(
@@ -189,7 +153,7 @@ export const CalendarBody=({attendence,name,days, id, tag}:Attendence)=>{
 //build cell of calendar
 export const SingleCalendarBody=({attendence,name,days}:Attendence)=>{
     
-    const sundayIndex = attendence.findIndex((item:any)=>item === 11)
+    const sundayIndex = attendence&&attendence.findIndex((item:any)=>item === 11)
 
     let addIndex = []
         if(sundayIndex>0){
@@ -200,46 +164,50 @@ export const SingleCalendarBody=({attendence,name,days}:Attendence)=>{
     const single = true
 
     return(
-     <div className={styles.calenerDates}>
-    
-        <p className={styles.calenderItemHeader}>{name}</p>
-        {
-            (addIndex.length>0)&&(
-                addIndex.map((item, index)=>(
-                    EDaysNB(item,index)
-                ))
-            )
-        }
-        {
-            !days?attendence.map((item:number,index:number)=>{
-                
-                if(item === 11){
-                    return EDays(item, index,single,"sunday")
-                }else if(item === 0){
-                    return EDays(item,index,single,"normal")
-                }else if(item === 13){
-                    return EDays(item, index,single,"present")
-                }else if(item===12){
-                    return EDays(item, index,single,"holiday")
-                }
-            }):days.map((item:number,index:number)=>{
-                
-                if(item === 11){
-                    return EDays(item, index,single,"sunday")
-                }else if(item === 0){
-                    return EDays(item,index,single,"normal")
-                }else if(item === 13){
-                    return EDays(item, index,single,"present")
-                }else if(item===12){
-                    return EDays(item, index,single,"holiday")
-                }
-            })
-        }
+        <>{
+            attendence&&
+            <div className={styles.calenerDates}>
             
-        <p className={styles.calenderItemFooter}>
-            {attendence.filter((item:number)=>item===13).length}
-        </p>
-     </div>
+                <p className={styles.calenderItemHeader}>{name}</p>
+                {
+                    (addIndex.length>0)&&(
+                        addIndex.map((item, index)=>(
+                            EDaysNB(item,index)
+                        ))
+                    )
+                }
+                {
+                    !days?attendence.map((item:number,index:number)=>{
+                        
+                        if(item === 11){
+                            return EDays(item, index,single,"sunday")
+                        }else if(item === 0){
+                            return EDays(item,index,single,"normal")
+                        }else if(item === 13){
+                            return EDays(item, index,single,"present")
+                        }else if(item===12){
+                            return EDays(item, index,single,"holiday")
+                        }
+                    }):days.map((item:number,index:number)=>{
+                        
+                        if(item === 11){
+                            return EDays(item, index,single,"sunday")
+                        }else if(item === 0){
+                            return EDays(item,index,single,"normal")
+                        }else if(item === 13){
+                            return EDays(item, index,single,"present")
+                        }else if(item===12){
+                            return EDays(item, index,single,"holiday")
+                        }
+                    })
+                }
+                    
+                <p className={styles.calenderItemFooter}>
+                    {attendence.filter((item:number)=>item===13).length}
+                </p>
+            </div>
+        }</>
+
     )
 }
 
@@ -247,9 +215,9 @@ export const SingleCalendarBody=({attendence,name,days}:Attendence)=>{
 
 
 // return proper format of dates for preview
-export const setDates = ({data,currentMonth,yearCode,currentYear,month, single}:any) =>{
+export const setDates = ({data,currentMonth,yearCode,currentYear,month,holidays, single}:any) =>{
     const calculate = (data:any) =>{
-        return calculateAttendence({data,days:month[currentMonth][1],month:currentMonth, YearCode:yearCode, year: currentYear})
+        return calculateAttendence({data,days:month[currentMonth][1],holidays,month:currentMonth, YearCode:yearCode, year: currentYear})
     }
     
     // return when single [page] calendar access this
@@ -267,9 +235,12 @@ export const setDates = ({data,currentMonth,yearCode,currentYear,month, single}:
             item1.date
         ))
     ))
+
+    // console.log(data)
     const tags = data &&data.map((item:any)=>(
         item.attendance.month.days.map((item1:any)=>(
-            {
+            {   
+                date: item1.date,
                 timeIn: item1.timeIn,
                 timeOut: item1.timeOut
             }
@@ -324,4 +295,15 @@ export const handleShiftRight=({checkYear,setCY,setCheckYear,setCM,currentMonth}
     setCM(changeMonth+1)
     
     
+}
+
+
+export const holidayList = ({holiday, currentMonth}:any) =>{
+    const holi = holiday && holiday.filter((item:any)=>(
+        new Date(item.date).getMonth()+1 === currentMonth
+    ))
+    const holidays = holi &&  holi.map((item:any)=>(
+        new Date(item.date).getDate()
+    ))
+    return holidays
 }

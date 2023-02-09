@@ -93,11 +93,12 @@ export interface DetailListProps{
     year: number
 }
 export interface Attendence{
+  holidays?:any,
   name?: string,
   attendence?:any,
   days?: number[],
   id?: string,
-  tag?: any
+  tag?: any,
 }
 
 export interface holidy{

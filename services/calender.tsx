@@ -1,6 +1,6 @@
 import useSWR from "swr"
 
-export function fetchSingleCalendar({id, currentMonth, currentYear, doj, setData}:any) {
+export function fetchSingleCalendar({id, currentMonth, currentYear,setHoliday, doj, setData}:any) {
     const fetchAttendance =async ()=>{
         const yes = (id && currentMonth && currentYear)
         if(yes){
@@ -10,10 +10,11 @@ export function fetchSingleCalendar({id, currentMonth, currentYear, doj, setData
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
                 }
             })
-            const responseJSON = await response.json()
-            doj(responseJSON.doj)
+        const responseJSON = await response.json()
+        doj(responseJSON.doj)
 
-            setData(responseJSON.data)
+        setHoliday(responseJSON.holiday)
+        setData(responseJSON.data)
         }
     }
     useSWR(`http://localhost:3000/api/attendance/${id}?year=${currentYear}&month=${currentMonth-1}` ,fetchAttendance ,{refreshInterval: 0})
