@@ -125,15 +125,15 @@ const PersonalTable = ({data}:any) => {
       </tr>
       <tr>
         <th>Phone</th>
-        <td>{data.phoneNo}</td>
+        <td>{data.phoneNo?data.phoneNo:"N/A"}</td>
       </tr>
       <tr>
         <th>DOB</th>
-        <td>{data.dob}</td>
+        <td>{data.dob?data.dob:"N/A"}</td>
       </tr>
       <tr>
         <th>Father Name</th>
-        <td>{data.fatherName}</td>
+        <td>{data.fatherName?data.fatherName:"N/A"}</td>
       </tr>
       <tr>
         <th>Mother Name</th>
@@ -141,15 +141,15 @@ const PersonalTable = ({data}:any) => {
       </tr>
       <tr>
         <th>Gender</th>
-        <td>{data.gender}</td>
+        <td>{data.gender?data.gender:"N/A"}</td>
       </tr>
       <tr>
         <th>Religion</th>
-        <td>{data.religion}</td>
+        <td>{data.religion?data.religion:"N/A"}</td>
       </tr>
       <tr>
         <th>Nationality</th>
-        <td>{data.nationality}</td>
+        <td>{data.nationality?data.nationality:"N/A"}</td>
       </tr>
     </tbody>
   </table>
@@ -170,23 +170,23 @@ const BankTable = ()=>{
     <tbody>
       <tr>
         <td>Bank Name</td>
-        <td>{details.BankName}</td>
+        <td>{details.BankName?details.BankName:"N/A"}</td>
       </tr>
       <tr>
         <td>Bank Account Number</td>
-        <td>{details.BankAccountNo}</td>
+        <td>{details.BankAccountNo?details.BankAccountNo:"N/A"}</td>
       </tr>
       <tr>
         <td>Bank IFSC Code</td>
-        <td>{details.BankIFSCCode}</td>
+        <td>{details.BankIFSCCode?details.BankIFSCCode:"N/A"}</td>
       </tr>
       <tr>
         <td>Branch Name</td>
-        <td>{details.BankBranch}</td>
+        <td>{details.BankBranch?details.BankBranch:"N/A"}</td>
       </tr>
       <tr>
         <td>Name on Account</td>
-        <td>{details.BankAccountName}</td>
+        <td>{details.BankAccountName?details.BankAccountName:"N/A"}</td>
       </tr>
     </tbody>
   </table>

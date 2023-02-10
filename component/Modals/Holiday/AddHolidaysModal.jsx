@@ -18,7 +18,7 @@ export function AddHolidayModal({open}) {
         transform: 'translate(-50%, -50%)',
         width: 400,
         bgcolor: 'background.paper',
-        boxShadow: 24,
+        boxShadow: 20,
         p: 4,
       };
 
@@ -39,7 +39,7 @@ export function AddHolidayModal({open}) {
       }
 
   return (
-    <Box sx={style}>
+    <Box sx={style} className={styles.box} onClick={()=>open()}>
 
         <div className={styles.model_container}>
             <h1>Add Holiday</h1>

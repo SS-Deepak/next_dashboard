@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass, faUser, faCaretDown } from "@fortawesome/free-solid-svg-icons"
 import { useRef } from "react"
 import Modal from "@mui/material/Modal"
-import {AddHolidayModal} from "../../Modals/Holiday/AddHolidaysModal"
+// import {AddHolidayModal} from "../../Modals/Holiday/AddHolidaysModal"
 import {EditHoliday} from "../../Modals/Holiday/EditHolidayModal"
 import { useRouter } from "next/router"
 
 interface Props{
   title: string,
-  page?: string
+  page?: string,
+  ModalPopUp?: any
 }
 
 export const LeaveInput = ()=>{
@@ -60,7 +61,7 @@ export const LeaveInput = ()=>{
 )
   }
 
-export function TopHeader({title, page}:Props) {
+export function TopHeader({title, page, ModalPopUp}:Props) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -77,7 +78,7 @@ export function TopHeader({title, page}:Props) {
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                 >
-                  <AddHolidayModal open={handleClose}/>
+                  <ModalPopUp open={handleClose}/>
           </Modal>:
 
       <div className={styles.employeesSearch}>

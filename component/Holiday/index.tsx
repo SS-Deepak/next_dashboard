@@ -1,8 +1,9 @@
-import { fetchHolidayList } from "@/services/holiday";
 import CommonPage from "../layout/CommonPage/index"
+import {AddHolidayModal} from "../Modals/Holiday/AddHolidaysModal"
+import { fetchHolidayList } from "@/services/holiday";
+import {useState} from "react"
 
 export default function componentName() {
-  // fetchHolidayList()
 
   return (
     <CommonPage 
@@ -27,6 +28,7 @@ export default function componentName() {
         "editBtn",
         "deleteBtn",
       ]}
+      modal={AddHolidayModal}
     />
   );
 }

@@ -5,6 +5,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    /* box-shadow: 0 0 10px 100px #000; */
+}
+.box{
+    box-shadow: 0 0 10px 100vw #0004 !important;
 }
 .model_container > h1{
     margin-bottom: 40px;

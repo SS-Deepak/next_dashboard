@@ -5,8 +5,6 @@ export default function index() {
   return (
     <CommonPage 
         title="Leave"
-        // btnTitle="Add New Employee" 
-      
       header={["hashIndex","name", "sol","fd","td", "status", "comment", "btns"]}
 
       body={[{

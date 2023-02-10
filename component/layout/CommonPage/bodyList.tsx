@@ -3,20 +3,23 @@ import {ListButtons, ListPanel} from "./commonList"
 import stylesData from "../../../controller/headerList/index.module.css"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { deleteData } from "@/services/CRUD"
 
 interface Props{
     page?:string,
     body:any,
     button:any,
-    personal?:any
+    personal?:any,
+    deletePopUp?: any,
+    title?: any
 }
 
 
-export default function componentName({page,body, button,personal}:Props) {
+export default function componentName({page,body, button,deletePopUp, title}:Props) {
     const [data, setData] = useState(body)
     const router = useRouter()
     const btns = button && ListButtons.map(btn=>button.includes(btn.key))
-    
+    // console.log(body)
     useEffect(()=>{
         if(page !== undefined){
             setData(body[page])
@@ -41,8 +44,10 @@ export default function componentName({page,body, button,personal}:Props) {
                 <p className={stylesData.verySmall}>{Bodyindex+1}</p>
                 {
                     filterData.map((item, index)=>{
-                        const displayText = list[item.key]
+                        // console.log(item)
+                        let displayText = list[item.key]
                         const displayStyle= item.width
+                        if(index === 2) displayText = " "
 
                         // work only in leave page -- for acceptance and rejection
                         const style = displayText === "Rejected" ? `${stylesData[displayStyle]} ${stylesData.danger}` :
@@ -59,9 +64,22 @@ export default function componentName({page,body, button,personal}:Props) {
                 {/* buttons */}
                 <div className={styles.employeeListLinks}>
                     {
-                        ListButtons.map((item, index)=>(
-                            button && btns[index] === true && <button key={index} className={styles[item.color]}>{item.title}</button>
-                        ))
+                        ListButtons.map((item, index)=>{
+                            const del = item.title === "Delete" 
+                            const handleClick = () =>{
+                                if(del){
+                                    deleteData({title, id:list.id})
+
+                                    setTimeout(()=>{
+                                        router.reload()
+                                    },1000)
+                                }
+                            }
+                            return(
+                                button && 
+                                btns[index] === true && 
+                                <button key={index} onClick={()=>handleClick()} className={styles[item.color]}>{item.title}</button>
+                        )})
                     }
                 </div>
             </div>

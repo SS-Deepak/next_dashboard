@@ -8,11 +8,13 @@ interface Props{
     header?: string[],
     body?:any,
     buttons?: any,
-    details?: boolean
+    details?: boolean,
+    modal?:any,
+    deleteModal?: any
 }
 
 
-export default function index({title, btnTitle, page, header, body, buttons,details}:Props) {
+export default function index({title, btnTitle, page, header, body, buttons,details, modal,deleteModal}:Props) {
   
   return (
     <div className={styles.EmployeeContainer}>
@@ -20,11 +22,14 @@ export default function index({title, btnTitle, page, header, body, buttons,deta
 
       {
         details ? <DetailsPage/> : <GeneralPage
+                                      title={title}
                                       btnTitle={btnTitle}
                                       page={page}
                                       header={header}
                                       data={body}
                                       buttons={buttons}
+                                      modal={modal}
+                                      deleteModal={deleteModal}
                                   />
 
       }

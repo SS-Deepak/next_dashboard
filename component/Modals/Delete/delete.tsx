@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
 import { CalendarFetcher } from "../../../services/modals";
 
-export default function AddHolidayModal({open, doj}) {
+export function DeleteModal({open, doj}:any) {
     const router= useRouter()
 
     const [visible, setVisible] = useState(false)
@@ -36,7 +36,7 @@ export default function AddHolidayModal({open, doj}) {
         p: 4,
       };
 
-      const handleSubmit = async (e)=>{
+      const handleSubmit = async (e:any)=>{
         e.preventDefault()
         setVisible(true)
         setTimeout(()=>{
@@ -52,19 +52,19 @@ export default function AddHolidayModal({open, doj}) {
     <Box sx={style}>
 
         <div className={styles.model_container}>
-            <h1>Add Attendence</h1>
+            <h1>Add Employee</h1>
             
             <form>
                 <div className={styles.input}>
                     <label>Time In</label>
-                    <input type="time" value={data.timeIn} onChange={(e)=>setData({...data, timeIn: e.target.value})}/>
+                    <input type="date" value={data.timeIn} onChange={(e)=>setData({...data, timeIn: e.target.value})}/>
                 </div>
                 <div className={styles.input}>
                     <label>Time Out</label>
-                    <input type="time"  value={data.timeOut} onChange={(e)=>setData({...data, timeOut: e.target.value})}/>
+                    <input type="date"  value={data.timeOut} onChange={(e)=>setData({...data, timeOut: e.target.value})}/>
                 </div>
 
-                <button onClick={()=>handleSubmit} >{!visible?"Add":<CircularProgress style={{height: "28px", width: '28px'}} color="inherit" />}</button>
+                <button onClick={handleSubmit} >{!visible?"Add":<CircularProgress style={{height: "28px", width: '28px'}} color="inherit" />}</button>
             </form>
         </div>
     </Box>

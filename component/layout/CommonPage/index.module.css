@@ -504,7 +504,7 @@
 }
 .doc{
     padding: 10px;
-    height: 80%;
+    height: 60%;
     width: 100%;
     background-color: #fff;
 }
@@ -534,7 +534,7 @@
 }
 
 .letter{
-    height: 60%;
+    height: 40%;
     width: 100%;
     background-color: #fff;
     padding: 10px;
@@ -544,7 +544,7 @@
 
 
 .chip{
-    height: 27px;
+    height: 25px;
     margin: 3px;
     font-size: .65rem;
     padding: 0 10px ;

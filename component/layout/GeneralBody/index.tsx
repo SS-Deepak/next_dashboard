@@ -13,22 +13,25 @@ interface Props{
     page?: string,
     header?: string[] | any,
     data?:any,
-    buttons?: any
+    buttons?: any,
+    modal?: any,
+    deleteModal?: any,
+    title?: any
 }
 
 
-export function GeneralPage({btnTitle, page, header,data, buttons}:Props) {
+export function GeneralPage({btnTitle, page, header,data, buttons, modal, deleteModal,title}:Props) {
   const body = useEmpList()
   return (
     <div className={styles.EmployeesList}>
     {page === "leave"? null:
-      <TopHeader title={btnTitle || ""}/>
+      <TopHeader ModalPopUp={modal} title={btnTitle || ""}/>
     }
 
     <HeaderList data={header&&[...header]}/>
 
     <div className={styles.checkScroll}>
-      <BodyList page={page} body={data?data:body} button={buttons} />
+      <BodyList title={title} page={page} body={data?data:body} button={buttons} deletePopUp={deleteModal}/>
     </div>
   </div>
   );
