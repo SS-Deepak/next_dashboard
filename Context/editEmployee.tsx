@@ -1,0 +1,52 @@
+const setData = ({key , value}:any) =>{
+    employeesData[key] = value as any
+
+    return true
+}
+
+export const employeesData:any = {
+    email:"",
+    password: "",
+    firstName: "",
+    lastName:"",
+    dob:"",
+    gender:"",
+    fatherName: "",
+    motherName: "",
+    religion :"",
+    nationality: "",
+    doj: "",
+    designation :"",
+    department: "",
+    resume:"",
+    employeePhotograph: "",
+    offerLetterDate:"",
+    offerJoiningDate: "",
+    salary: "",
+    regination: "",
+    review: "",
+    bankName: "",
+    accountNumber:"",
+    bankIfscCode:"",
+    branchName :"",
+    nameOnAccount: "",
+    address:"",
+    address2:"",
+    city: "",
+    state: "",
+    zip: "",
+    country: "",
+    phoneNumber: "",
+    panNo: "",
+    passportNumber: "",
+    drivingLicenceNumber: "",
+    mailingAddress: "",
+    mailingAddress2: "",
+    mailingCIty:"",
+    maillingState: "",
+    mailingZIP: "",
+    mailingCountry: "",
+    mailingTimeZone:"",
+    mailingPhoneNumber: "",
+    setData 
+}

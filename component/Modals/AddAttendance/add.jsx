@@ -1,3 +1,5 @@
+'client only'
+
 import styles from "../index.module.css"
 import { Box } from "@mui/material";
 import {useState} from "react"

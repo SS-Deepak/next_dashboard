@@ -32,8 +32,10 @@ export default function componentName() {
     const holidays = holidayList({holiday, currentMonth})
     const final = setDates({data, month,holidays, currentMonth, currentYear, yearCode,single:false}) as any
         
-    // console.log(final)
-  return (
+
+
+
+    return (
         <div className={`${styles.calendarContainer} ${styles.mainCalendar}`}>
             <div className={styles.calendarHeading}>
                 <span onClick={()=>handleShiftLeft({setCY,setCM,setCheckYear,currentMonth,checkYear})}>{"<<"}</span>
@@ -56,7 +58,6 @@ export default function componentName() {
                     ))
 
                 }
-                
             </div>
         </div>
   );

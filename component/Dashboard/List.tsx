@@ -35,7 +35,6 @@ export const Page = ({title, data, headerTitle }:PageProps) =>{
     var dateB = new Date(b.date) as any
     return  dateA - dateB;
   });
-  console.log(data)
 return(
   <div className={styles.dashboardList}>
       <h3>{title}</h3>
@@ -44,7 +43,6 @@ return(
 
           {
               data.length>0?sorted.map((item, index)=>{
-                console.log(index)
                 const date =  new Date(item.dob || item.date).toDateString().split(" ")
                 if(date&&date[0].includes("Invalid")) return
 

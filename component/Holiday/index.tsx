@@ -29,6 +29,7 @@ export default function componentName() {
         "deleteBtn",
       ]}
       modal={AddHolidayModal}
+    
     />
   );
 }

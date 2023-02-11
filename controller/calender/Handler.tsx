@@ -79,7 +79,7 @@ export const calculateAttendence = ({data, days,month,year,holidays, YearCode}:a
     ))
 
     // fill empty space
-    if(result.length<days){
+    if(result && result.length<days){
         const len = result.length
         const res = new Array(days-len).fill(0)
         

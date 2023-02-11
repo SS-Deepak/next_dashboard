@@ -8,10 +8,12 @@ export default function componentName() {
     const passFormat = /^[0-9]{4,10}$/
     const [checkmail, setMailCheck] = useState(false)
     const [checkpass, setPassCheck] = useState(false)
+    const [error, setError] = useState(false)
     const [user, setUser] = useState({
         email:"",
         password:""
     })
+    
     const handleSubmit =async (e)=>{
       e.preventDefault()
       const res = await fetch("http://localhost:3000/api/login",{
@@ -22,6 +24,7 @@ export default function componentName() {
         body: JSON.stringify(user)
       })  
       const data = await res.json()
+      if(data.status === false) setError(true)
       
       if(data.token){
         localStorage.setItem("token", data.token)
@@ -37,10 +40,15 @@ export default function componentName() {
       setMailCheck(res)
     },[user.email, user.password])
 
-    
+    useEffect(()=>{
+
+      setTimeout(()=>{
+        setError(false)
+      },4000)
+    },[])
   return (
     <div className={styles.loginContainer}>
-
+      { <div className={!error ? styles.wentWrong: `${styles.wentWrong} ${styles.show}`}>Something went wrong!</div>}
       <form>
         <h1>Login</h1>
         <div className={styles.input}>

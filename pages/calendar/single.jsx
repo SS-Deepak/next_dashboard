@@ -4,7 +4,7 @@ import styles from "@/component/layout/CommonPage/index.module.css"
 import style from "../../controller/styles/calendar.module.css"
 import Modal from "@mui/material/Modal"
 import {useEffect, useState} from "react"
-import Holiday from "../../component/Modals/AddAttendance/add"
+import Holiday from "../../component/Modals/AddAttendance/admin"
 
 export default function index() {
 

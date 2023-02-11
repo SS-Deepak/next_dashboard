@@ -66,13 +66,18 @@ export default function componentName({page,body, button,deletePopUp, title}:Pro
                     {
                         ListButtons.map((item, index)=>{
                             const del = item.title === "Delete" 
+                            const edit = item.title === "Edit"
+
                             const handleClick = () =>{
                                 if(del){
-                                    deleteData({title, id:list.id})
+                                    const check = prompt("Are you sure??","YES")
+                                    check === "YES" ? deleteData({title, id:list.id}):null
 
                                     setTimeout(()=>{
                                         router.reload()
                                     },1000)
+                                }else if(edit){
+                                    router.push(`/employees/edit/${list.id}`)
                                 }
                             }
                             return(
