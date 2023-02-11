@@ -21,7 +21,8 @@ interface Props{
 
 
 export function GeneralPage({btnTitle, page, header,data, buttons, modal, deleteModal,title}:Props) {
-  const body = useEmpList()
+    // console.log(data)
+    const body = useEmpList()
   return (
     <div className={styles.EmployeesList}>
     {page === "leave"? null:

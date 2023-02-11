@@ -44,8 +44,8 @@ export default function componentName({page,body, button,deletePopUp, title}:Pro
                 <p className={stylesData.verySmall}>{Bodyindex+1}</p>
                 {
                     filterData.map((item, index)=>{
-                        // console.log(item)
                         let displayText = list[item.key]
+
                         const displayStyle= item.width
                         if(index === 2) displayText = " "
 
@@ -77,7 +77,8 @@ export default function componentName({page,body, button,deletePopUp, title}:Pro
                                         router.reload()
                                     },1000)
                                 }else if(edit){
-                                    router.push(`/employees/edit/${list.id}`)
+                                    const link = router.asPath.split("/")[1]
+                                    router.push(`/${link}/edit/${list.id}`)
                                 }
                             }
                             return(

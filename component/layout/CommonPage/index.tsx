@@ -15,7 +15,6 @@ interface Props{
 
 
 export default function index({title, btnTitle, page, header, body, buttons,details, modal,deleteModal}:Props) {
-  
   return (
     <div className={styles.EmployeeContainer}>
       <h2>{title}</h2>

@@ -16,6 +16,12 @@ export default function componentName() {
     
     const handleSubmit =async (e)=>{
       e.preventDefault()
+
+      if(user.email.trim() === "" || user.password.trim() === ""){
+        setError(true)
+        return
+      }
+      
       const res = await fetch("http://localhost:3000/api/login",{
         method: "POST",
         headers: {
@@ -28,6 +34,7 @@ export default function componentName() {
       
       if(data.token){
         localStorage.setItem("token", data.token)
+        localStorage.setItem("user", JSON.stringify(data))
         router.push("/")
       }
     }
@@ -45,7 +52,7 @@ export default function componentName() {
       setTimeout(()=>{
         setError(false)
       },4000)
-    },[])
+    })
   return (
     <div className={styles.loginContainer}>
       { <div className={!error ? styles.wentWrong: `${styles.wentWrong} ${styles.show}`}>Something went wrong!</div>}

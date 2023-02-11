@@ -23,9 +23,9 @@ export const ListPanel = [
     Type("employeeName","large"),
     Type("remark","large"),
     
-    Type("hd","medium"),
+    Type("date","medium"),
     Type("day","small"),
-    Type( "title", "small"),
+    Type( "title", "large"),
     
     Type("cda","Lmedium"),
     Type("cname","Lmedium"),

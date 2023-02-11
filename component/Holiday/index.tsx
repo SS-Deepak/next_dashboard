@@ -3,26 +3,14 @@ import {AddHolidayModal} from "../Modals/Holiday/AddHolidaysModal"
 import { fetchHolidayList } from "@/services/holiday";
 import {useState} from "react"
 
-export default function componentName() {
-
+export default function componentName({data}:any) {
   return (
     <CommonPage 
     title="Holidays" 
     btnTitle="Add New Holiday" 
-      header={["hashIndex","hd", "day","title", "btns"]}
-
-      body={[
-      {
-        hd:"16-01-2023",
-        day:"Wed",
-        title:"Sankranti",
-      },
-      {
-        hd:"16-01-2023",
-        day:"Wed",
-        title:"Sankranti",
-      },
-   ]}
+      header={["hashIndex","hd","title", "btns"]}
+      
+      body={data.data}
 
       buttons={[
         "editBtn",
