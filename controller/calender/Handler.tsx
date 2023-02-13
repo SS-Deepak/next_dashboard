@@ -63,6 +63,7 @@ export const calculateAttendence = ({data, days,month,year,holidays, YearCode}:a
     let result:any = []
     const sunday = check_sunday(days,month,year,YearCode)
     const holiday = holidays
+    // console.log(sunday)
 
     // insert all sundays
     sunday.map((item:number,index:number)=>(
@@ -116,7 +117,7 @@ export const CalendarBody=({attendence,name,days, id, tag}:Attendence)=>{
     return(
      <div className={styles.calenerDates}>
     
-        <p className={styles.calenderItemHeader} onClick={()=>router.push({pathname: "/calendar/single", query:{name, id}})}>{name}</p>
+        <p className={styles.calenderItemHeader} onClick={()=>router.push({pathname: "/admin/calendar/single", query:{name, id}})}>{name}</p>
 
         {
             !days?attendence.map((item:number,index:number)=>{
@@ -152,7 +153,6 @@ export const CalendarBody=({attendence,name,days, id, tag}:Attendence)=>{
 }
 //build cell of calendar
 export const SingleCalendarBody=({attendence,name,days}:Attendence)=>{
-    
     const sundayIndex = attendence&&attendence.findIndex((item:any)=>item === 11)
 
     let addIndex = []
@@ -216,12 +216,15 @@ export const SingleCalendarBody=({attendence,name,days}:Attendence)=>{
 
 // return proper format of dates for preview
 export const setDates = ({data,currentMonth,yearCode,currentYear,month,holidays, single}:any) =>{
+    console.log("data")
     const calculate = (data:any) =>{
         return calculateAttendence({data,days:month[currentMonth][1],holidays,month:currentMonth, YearCode:yearCode, year: currentYear})
     }
     
+    
     // return when single [page] calendar access this
     if(single){
+        console.log(data, "data")
         const days = data &&data.map((item:any)=>(
             item.date
         ))

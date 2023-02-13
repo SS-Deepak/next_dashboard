@@ -4,27 +4,19 @@ import stylesData from "../../../controller/headerList/index.module.css"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { deleteData } from "@/services/CRUD"
-
-interface Props{
-    page?:string,
-    body:any,
-    button:any,
-    personal?:any,
-    deletePopUp?: any,
-    title?: any
-}
+import {BodyListProps} from "@/models/layout"
 
 
-export default function componentName({page,body, button,deletePopUp, title}:Props) {
-    const [data, setData] = useState(body)
+export default function componentName({page,body, button,deletePopUp, title}:BodyListProps) {
+    
+    const [data, setData] = useState( Array(body))
     const router = useRouter()
     const btns = button && ListButtons.map(btn=>button.includes(btn.key))
-    // console.log(body)
     useEffect(()=>{
         if(page !== undefined){
             setData(body[page])
         }
-            
+        
         return ()=>{}
     },[page])
 
@@ -32,7 +24,7 @@ export default function componentName({page,body, button,deletePopUp, title}:Pro
     return (
         <div className={styles.listContainer}>
     {
-        data&&data.length>0? data.map((list:any, Bodyindex:any)=>{
+        data&&data.length>0? body.map((list:any, Bodyindex:any)=>{
             const data = Object.keys(body && list)    // it will return keys if body data exist
             const filterData = ListPanel.filter((item)=>data.includes(item.key))   // it will return filterd data from json file
             return(
@@ -47,7 +39,7 @@ export default function componentName({page,body, button,deletePopUp, title}:Pro
                         let displayText = list[item.key]
 
                         const displayStyle= item.width
-                        if(index === 2) displayText = " "
+                        // if(index === 2) displayText = " "
 
                         // work only in leave page -- for acceptance and rejection
                         const style = displayText === "Rejected" ? `${stylesData[displayStyle]} ${stylesData.danger}` :

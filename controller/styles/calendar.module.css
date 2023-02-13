@@ -118,8 +118,9 @@
 
 }
 .singleCalender .calendarItem{
-    height: 10vh;
-    width: 12vw;
+    height: 90px;
+    width: 157.3px;
+    margin: 0;
     font-size: 1rem;
     color: #0009;
 }

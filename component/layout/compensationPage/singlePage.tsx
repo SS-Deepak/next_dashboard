@@ -1,12 +1,10 @@
 import styles from "../CommonPage/index.module.css"
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {CompensationSingleProps} from "@/models/layout"
 
-interface Props{
-    title?: string
-}
 
-export function CompensationAllowences({title}:Props) {
+export function CompensationAllowences({title}:CompensationSingleProps) {
   return (
     <div className={`${styles.EmployeesList} ${styles.compensation}`}>
         <div className={styles.upperHeader}>
@@ -89,7 +87,7 @@ export function CompensationAllowences({title}:Props) {
       </div>
   );
 }
-export function CompensationDeductions({title}:Props) {
+export function CompensationDeductions({title}:CompensationSingleProps) {
   return (
     <div className={`${styles.EmployeesList} ${styles.compensation}`}>
         <div className={styles.upperHeader}>

@@ -1,7 +1,7 @@
 import styles from "../CommonPage/index.module.css"
 import { FormEvent } from "react"
 import { GeneralPage } from "."
-import { useDetails } from "@/pages/employees/detail/[id]"
+import { useDetails } from "@/pages/admin/employees/detail/[id]"
 
  // upper tabs
  export const TabsHeader = ({mainTabs, setTabIndex}:any) => (
@@ -13,12 +13,12 @@ import { useDetails } from "@/pages/employees/detail/[id]"
 )
 
 // main tabs body
-export const TabsBody = ({tabIndex}:any) => {
-
+export const TabsBody = ({tabIndex,modal}:any) => {
+  console.log(modal)
   return(
     <div className={styles.tabsBody}>
         <>{
-          tabIndex === 0 ?<TabsBody1/>: tabIndex ===1?<TabsBody2/>:<TabsBody3/>
+          tabIndex === 0 ?<TabsBody1/>: tabIndex ===1?<TabsBody2 modal={modal}/>:<TabsBody3/>
         }</>
       
     </div>
@@ -79,14 +79,16 @@ const TabsBody3 =()=>{
           btnTitle="Add New Review"
         />
 )}
-const TabsBody2 =()=>{
-  const details = useDetails()
+const TabsBody2 =({modal}:any)=>{
+  console.log(modal)
+  const {leave} = useDetails()
   return( 
     <GeneralPage 
       btnTitle="Search"
       header={["hashIndex","name", "sol","fd","td", "status", "comment", "btns"]}
-      data={details}
+      data={leave}
       page="leaves"
+      modal={modal}
     />
     )
 }
@@ -94,7 +96,7 @@ const TabsBody2 =()=>{
 
 // personal tabs data
 const PersonalDetail = () =>{
-  const details = useDetails()
+  const {personal} = useDetails()
   
   return(
 <div className={styles.biography}>
@@ -103,14 +105,14 @@ const PersonalDetail = () =>{
           <span>150X150</span>
 
           <div className={styles.bioDetails}>
-            <h2>{details.firstname}</h2>
-            <p><span>Designation:</span> {details.designation} ({details.doj})</p>
-            <p><span>Department:</span>{details.department}</p>
+            <h2>{personal.firstname}</h2>
+            <p><span>Designation:</span> {personal.designation} ({personal.doj})</p>
+            <p><span>Department:</span>{personal.department}</p>
           </div>
         </div>
 
         <div className={styles.bioTable}>
-            <PersonalTable data={details}/>
+            <PersonalTable data={personal}/>
         </div>
       </div>
 )}

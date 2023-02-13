@@ -1,4 +1,5 @@
 import CommonPage from "@/component/layout/CommonPage/index"
+import {reviewEmployee} from "../../Modals/Employee/review"
 
 export default function componentName() {
   
@@ -6,6 +7,7 @@ export default function componentName() {
     <CommonPage
         title="Employees"
         details={true} 
-    /> 
+        modal={reviewEmployee}
+        /> 
   );
 }

@@ -96,6 +96,7 @@ const Select = ({keyItem, list}:any)=>{
 
     return(
         <select onChange={(e)=>edit.setData({key:keyItem, value: e.target.value})}>
+            <option value=""></option>
             {
                 list.map((item:any, index: number)=>(
                     <option key={index} value={item}>{item}</option>

@@ -1,14 +1,5 @@
 import styles from "./index.module.css"
-interface Props{
-    id: string,
-    date: string,
-    title: string
-}
-export interface PageProps{
-  title: string,
-  data: any[],
-  headerTitle: string[]
-}
+import {Props, PageProps} from "@/models/Dashboard"
 
 export function List({id, date, title}:Props) {
   return (
@@ -29,12 +20,26 @@ export  function ListHeader({id, date, title}:Props) {
   );
 }
 
+
+const sort = (a:any,b:any) =>{
+  var dateA = new Date(a) as any
+  var dateB = new Date(b) as any
+  return  dateA - dateB;
+}
+
 export const Page = ({title, data, headerTitle }:PageProps) =>{
-  const sorted = data && data.sort(function compare(a, b) {
-    var dateA = new Date(a.date) as any
-    var dateB = new Date(b.date) as any
-    return  dateA - dateB;
+  
+  
+  const sorted = data && data.sort(function compare(a, b):any {
+    let data;
+    if(a.dob){
+      data = sort(a.dob,b.dob)
+    }else if(a.date){
+      data = sort(a.date,b.date)
+    }
+    return data
   });
+
 return(
   <div className={styles.dashboardList}>
       <h3>{title}</h3>

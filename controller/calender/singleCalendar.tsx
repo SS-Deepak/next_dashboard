@@ -30,9 +30,8 @@ export default function componentName({doj}:any) {
     
     
     fetchSingleCalendar({id:query.id, currentMonth, currentYear,setHoliday, doj, setData})
-    const holidays = holidayList({holiday, currentMonth})
-    const setDate = holidays && setDates({data, month,holidays, currentMonth, currentYear, yearCode,single:true}) as any
-
+    const holidays = holidayList({holiday, currentMonth}) ?? []
+    const setDate = setDates({data, month,holidays, currentMonth, currentYear, yearCode,single:true}) as any
   return (
         <div className={`${styles.calendarContainer} ${styles.singlePageCalendar}`}>
             <h1>{query.name}</h1>
@@ -53,6 +52,7 @@ export default function componentName({doj}:any) {
                     <p>Friday</p>
                     <p>Saturday</p>
                 </div>
+
                 <SingleCalendarBody attendence={setDate}/> 
             </div>
         </div>

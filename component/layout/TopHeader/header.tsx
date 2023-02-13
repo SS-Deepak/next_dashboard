@@ -7,12 +7,8 @@ import Modal from "@mui/material/Modal"
 // import {AddHolidayModal} from "../../Modals/Holiday/AddHolidaysModal"
 import {EditHoliday} from "../../Modals/Holiday/EditHolidayModal"
 import { useRouter } from "next/router"
+import { TopHeaderProps } from "@/models/layout"
 
-interface Props{
-  title: string,
-  page?: string,
-  ModalPopUp?: any
-}
 
 export const LeaveInput = ()=>{
   const refShow:any = useRef()
@@ -61,7 +57,7 @@ export const LeaveInput = ()=>{
 )
   }
 
-export function TopHeader({title, page, ModalPopUp}:Props) {
+export function TopHeader({title, page, ModalPopUp}:TopHeaderProps) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {

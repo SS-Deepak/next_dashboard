@@ -6,23 +6,13 @@ import { useState } from "react"
 import {
   TabsHeader,TabsBody
 } from "./components"
-import { useEmpList } from "@/pages/employees"
-
-interface Props{
-    btnTitle?: string,
-    page?: string,
-    header?: string[] | any,
-    data?:any,
-    buttons?: any,
-    modal?: any,
-    deleteModal?: any,
-    title?: any
-}
+import { useEmpList } from "@/pages/admin/employees"
+import { GeneralBodyProps } from "@/models/layout"
 
 
-export function GeneralPage({btnTitle, page, header,data, buttons, modal, deleteModal,title}:Props) {
-    // console.log(data)
+export function GeneralPage({btnTitle, page, header,data, buttons, modal, deleteModal,title}:GeneralBodyProps) {
     const body = useEmpList()
+    
   return (
     <div className={styles.EmployeesList}>
     {page === "leave"? null:
@@ -32,19 +22,19 @@ export function GeneralPage({btnTitle, page, header,data, buttons, modal, delete
     <HeaderList data={header&&[...header]}/>
 
     <div className={styles.checkScroll}>
-      <BodyList title={title} page={page} body={data?data:body} button={buttons} deletePopUp={deleteModal}/>
+      <BodyList title={title} body={data?data:body} button={buttons} deletePopUp={deleteModal}/>
     </div>
   </div>
   );
 }
 
-export const DetailsPage = () => {
-
+export const DetailsPage = ({modal}:any) => {
+  
   const [tabIndex, setTabIndex] = useState<number>(0)
   return (
     <div className={styles.mainTabsContainer}>
       <TabsHeader setTabIndex={setTabIndex}/>
-      <TabsBody tabIndex={tabIndex}/>      
+      <TabsBody tabIndex={tabIndex} modal={modal}/>      
     </div>
   )
 }

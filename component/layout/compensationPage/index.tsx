@@ -1,13 +1,9 @@
 import styles from "../CommonPage/index.module.css"
 import {CompensationAllowences,CompensationDeductions} from "./singlePage"
+import { CompensationIndexProps } from "@/models/layout"
 
-interface Props{
-    title: string,
-    btnTitle?: string,
-    page: string
-}
 
-export default function index({title, page}:Props) {
+export default function index({title, page}:CompensationIndexProps) {
   return (
     <div className={styles.EmployeeContainer}>
       <h2>{title}</h2>

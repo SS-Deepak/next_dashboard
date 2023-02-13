@@ -17,6 +17,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./index.module.css";
+import { useRole } from '@/pages/_app';
+
 
 interface Props{
   icon: IconDefinition,
@@ -29,6 +31,8 @@ interface Props{
 
 export default function index() {
   const {show,setShow,loading} = useToggle();
+  const role = useRole()
+
   const router = useRouter();
 
   const hide = `${styles.sidePanelContainer} ${styles.hide}`
@@ -45,9 +49,62 @@ export default function index() {
     <li onClick={()=>handleClick(path)}>
       <FontAwesomeIcon icon={icon} />
       <p>{title}</p>
-      <span>{title}</span>
+      { title !== "Masters"?<span>{title}</span>: null}
     </li>
   );
+
+  const AdminPanel = () =>(
+    <ul>
+      <Row icon={faHome} title="DashBoard" path='/'/>
+      <Row icon={faPeopleGroup} title="Employees" path='/admin/employees'/>
+      <Row icon={faCalendarDays} title="Attendence" path='/admin/calendar'/>
+      <Row icon={faCalendarXmark} title="Leave" path='/admin/leave'/>
+      <Row icon={faCircleArrowUp} title="Appraisal"/>
+      <Row icon={faHandPeace} title="Reviews" path='/admin/employee_review'/>
+      <Row icon={faCalendarCheck} title="Holidays" path='/admin/holiday'/>
+      <Row icon={faUser} title="Admins"/>
+
+      <div className={styles.select} ref={showList} >
+        <div className={styles.selectVisible} onClick={handleList}>
+          <Row icon={faGauge} title="Masters"/>
+          <FontAwesomeIcon icon={faCaretDown}/>
+        </div>
+
+        <ul className={styles.selectHidden}>
+          <li>System</li>
+          <li>Setting</li>
+          <li onClick={()=>router.push("/admin/compensation")}>Compensation</li>
+          <li onClick={()=>router.push("/admin/designations")}>Designation</li>
+          <li onClick={()=>router.push("/admin/departments")}>Departments</li>
+          <li onClick={()=>router.push("/admin/status")}>Status</li>
+          <li onClick={()=>router.push("/admin/clients")}>Clients</li>
+          <li onClick={()=>router.push("/admin/projects")}>Projects</li>
+          <li>Timesheet</li>
+        </ul>
+      </div>
+    </ul>
+  )
+
+  const EmployeePanel = () =>(
+    <div className={styles.select} ref={showList} >
+        <div className={styles.selectVisible} onClick={handleList}>
+          <Row icon={faGauge} title="Masters"/>
+          <FontAwesomeIcon icon={faCaretDown}/>
+        </div>
+
+        <ul className={styles.selectHidden}>
+          <li>System</li>
+          <li>Setting</li>
+          <li onClick={()=>router.push("/compensation")}>Compensation</li>
+          <li onClick={()=>router.push("/designations")}>Designation</li>
+          <li onClick={()=>router.push("/departments")}>Departments</li>
+          <li onClick={()=>router.push("/status")}>Status</li>
+          <li onClick={()=>router.push("/clients")}>Clients</li>
+          <li onClick={()=>router.push("/projects")}>Projects</li>
+          <li>Timesheet</li>
+        </ul>
+      </div>
+  )
 
   return (
     <div className={show?styles.sidePanelContainer: hide}>
@@ -57,37 +114,14 @@ export default function index() {
         </div>
 
         <div className={styles.panelData}>
-          <ul>
-            <Row icon={faHome} title="DashBoard" path='/'/>
-            <Row icon={faPeopleGroup} title="Employees" path='/employees'/>
-            <Row icon={faCalendarDays} title="Attendence" path='/calendar'/>
-            <Row icon={faCalendarXmark} title="Leave" path='/leave'/>
-            <Row icon={faCircleArrowUp} title="Appraisal"/>
-            <Row icon={faHandPeace} title="Reviews" path='/employee_review'/>
-            <Row icon={faCalendarCheck} title="Holidays" path='/holiday'/>
-            <Row icon={faUser} title="Admins"/>
-
-            <div className={styles.select} ref={showList} >
-              <div className={styles.selectVisible} onClick={handleList}>
-                <Row icon={faGauge} title="Masters"/>
-                <FontAwesomeIcon icon={faCaretDown}/>
-              </div>
-
-              <ul className={styles.selectHidden}>
-                <li>System</li>
-                <li>Setting</li>
-                <li onClick={()=>router.push("/compensation")}>Compensation</li>
-                <li onClick={()=>router.push("/designations")}>Designation</li>
-                <li onClick={()=>router.push("/departments")}>Departments</li>
-                <li onClick={()=>router.push("/status")}>Status</li>
-                <li onClick={()=>router.push("/clients")}>Clients</li>
-                <li onClick={()=>router.push("/projects")}>Projects</li>
-                <li>Timesheet</li>
-              </ul>
-            </div>
-          </ul>
+          {
+            role === "admin" ? <AdminPanel/> : <EmployeePanel/>
+          }
           
         </div>
     </div>
   )
 }
+
+
+

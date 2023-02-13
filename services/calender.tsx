@@ -35,3 +35,18 @@ export function fetchMainCalendar({currentMonth, currentYear, setHoliday, setDat
     useSWR(`http://localhost:3000/api/attendance?year=${currentYear}&month=${currentMonth-1}` ,fetchAttendance )
 
 }
+
+
+export function addAttendance (date:any, check:any){
+    const fetchAttendance =async ()=>{
+        await fetch(`http://localhost:3000/api/attendance`,{
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify({check, date})
+        })
+    }
+    fetchAttendance()
+}

@@ -33,6 +33,10 @@ export default function componentName() {
       if(data.status === false) setError(true)
       
       if(data.token){
+        const d = new Date();
+      d.setTime(d.getTime() + (40*24*60*60*1000));
+      let expires = "expires="+ d.toUTCString();
+      document.cookie = "role" + "=" + data.role + ";" + expires + ";path=/";
         localStorage.setItem("token", data.token)
         localStorage.setItem("user", JSON.stringify(data))
         router.push("/")
@@ -53,6 +57,7 @@ export default function componentName() {
         setError(false)
       },4000)
     })
+
   return (
     <div className={styles.loginContainer}>
       { <div className={!error ? styles.wentWrong: `${styles.wentWrong} ${styles.show}`}>Something went wrong!</div>}
@@ -60,11 +65,11 @@ export default function componentName() {
         <h1>Login</h1>
         <div className={styles.input}>
           <input type="text" placeholder='enter an email' onBlur={()=>checkmail&&setMailCheck(true)} onChange={(e)=>setUser({...user, email:e.target.value})} value={user.email}/>
-           {!checkmail && <p className={styles.danger}>Enter valid email</p>}
+           {/* {!checkmail && <p className={styles.danger}>Enter valid email</p>} */}
         </div>
         <div className={styles.input}>
           <input type="text" placeholder='enter an password' onBlur={()=> setPassCheck(true)} onChange={(e)=>setUser({...user, password:e.target.value})} value={user.password}/>
-          {!checkpass && <p className={styles.danger}>password should be minimum 4 in length</p>}
+          {/* {!checkpass && <p className={styles.danger}>password should be minimum 4 in length</p>} */}
         </div>
 
           <button onClick={(e)=>handleSubmit(e)}>Login</button>
