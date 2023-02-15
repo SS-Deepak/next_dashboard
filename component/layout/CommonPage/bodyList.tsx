@@ -24,7 +24,7 @@ export default function componentName({page,body, button,deletePopUp, title}:Bod
     return (
         <div className={styles.listContainer}>
     {
-        data&&data.length>0? body.map((list:any, Bodyindex:any)=>{
+        (data||body) &&data.length>0? body.map((list:any, Bodyindex:any)=>{
             const data = Object.keys(body && list)    // it will return keys if body data exist
             const filterData = ListPanel.filter((item)=>data.includes(item.key))   // it will return filterd data from json file
             return(
@@ -47,7 +47,7 @@ export default function componentName({page,body, button,deletePopUp, title}:Bod
                                     displayText === "Accepted" ? `${stylesData[displayStyle]} ${stylesData.success}` :
                                      stylesData[displayStyle]
                         return(
-                            <p key={index} className={style} onClick={()=>item.key === "email" && router.push(`/employees/detail/${list.id}`)}>{displayText}</p>
+                            <p key={index} className={style} onClick={()=>item.key === "email" && router.push(`/admin/employees/detail/${list.id}`)}>{displayText}</p>
                         )
                     })
                 }
@@ -70,7 +70,8 @@ export default function componentName({page,body, button,deletePopUp, title}:Bod
                                     },1000)
                                 }else if(edit){
                                     const link = router.asPath.split("/")[1]
-                                    router.push(`/${link}/edit/${list.id}`)
+                                    const link1 = router.asPath.split("/")[2]
+                                    router.push(`/${link}/${link1}/edit/${list.id}`)
                                 }
                             }
                             return(

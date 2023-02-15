@@ -1,4 +1,4 @@
-import { useEdit } from "@/pages/employees/edit/[id]";
+import { useEdit } from "@/pages/admin/employees/edit/[id]";
 import { edit } from "@/services/editEmployeeAdmin";
 import { useRouter } from "next/router";
 import { useState } from "react";

@@ -14,13 +14,11 @@ import { useDetails } from "@/pages/admin/employees/detail/[id]"
 
 // main tabs body
 export const TabsBody = ({tabIndex,modal}:any) => {
-  console.log(modal)
   return(
     <div className={styles.tabsBody}>
         <>{
           tabIndex === 0 ?<TabsBody1/>: tabIndex ===1?<TabsBody2 modal={modal}/>:<TabsBody3/>
         }</>
-      
     </div>
   )
 }
@@ -100,6 +98,8 @@ const PersonalDetail = () =>{
   
   return(
 <div className={styles.biography}>
+  {
+    personal&&<>
         <h1>Biography</h1>
         <div className={styles.bioTop}>
           <span>150X150</span>
@@ -114,7 +114,10 @@ const PersonalDetail = () =>{
         <div className={styles.bioTable}>
             <PersonalTable data={personal}/>
         </div>
+        </>
+    }
       </div>
+
 )}
 const PersonalTable = ({data}:any) => {
   return(

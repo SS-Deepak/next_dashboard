@@ -12,6 +12,7 @@
 .calenderTitle{
     width: 200px;
     text-align: center;
+    /* background-color: red; */
 }
 .singleCalender{
     height: 80vh;
@@ -32,6 +33,14 @@
     font-weight: 600;
     color: #0009;
 }
+.calendarHeading>p>span{
+    color: #0009;
+    font-size: 1.1rem;
+}
+.calendarHeading > p{
+    height: 50px;
+    line-height: 68px;
+}
 .calendarHeading{
     display: flex;
     align-items: center;
@@ -39,6 +48,7 @@
     font-size: 1.6rem;
     font-weight: 600;
     cursor: default;
+    
 }
 .calenderTitle::selection,
 .calendarHeading span::selection{

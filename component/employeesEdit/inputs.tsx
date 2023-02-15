@@ -1,4 +1,4 @@
-import { useEdit } from "@/pages/employees/edit/[id]"
+import { useEdit } from "@/pages/admin/employees/edit/[id]"
 import styles from "./index.module.css"
 
 const TimeZone = ({keyItem}:any)=>{

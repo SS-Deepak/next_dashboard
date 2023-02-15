@@ -27,7 +27,7 @@ export default function index({data}:any) {
   const handleClick = () =>{
     const date = new Date(Date.now())
     
-    // addAttendance(date, check.type)
+    addAttendance(date, check.type)
     setTimeout(()=>[
       router.push("/attendance/single")
     ],2000)

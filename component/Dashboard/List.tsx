@@ -29,7 +29,6 @@ const sort = (a:any,b:any) =>{
 
 export const Page = ({title, data, headerTitle }:PageProps) =>{
   
-  
   const sorted = data && data.sort(function compare(a, b):any {
     let data;
     if(a.dob){
@@ -47,7 +46,7 @@ return(
           <ListHeader id="#" title={headerTitle[0]} date={headerTitle[1]}/>
 
           {
-              data.length>0?sorted.map((item, index)=>{
+              data && data.length>0?sorted.map((item, index)=>{
                 const date =  new Date(item.dob || item.date).toDateString().split(" ")
                 if(date&&date[0].includes("Invalid")) return
 

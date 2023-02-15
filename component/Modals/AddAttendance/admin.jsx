@@ -46,7 +46,7 @@ export default function AddHolidayModal({open, doj}) {
         setTimeout(()=>{
             open()
             setVisible(false)
-            router.push("/calendar")
+            router.push("/admin/calendar")
         },2500)
         
         CalendarFetcher({id:router.query.id, year, month, yearCode, data})

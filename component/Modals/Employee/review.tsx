@@ -39,7 +39,6 @@ export function reviewEmployee({open, doj}:any) {
             setVisible(false)
             router.push("/calendar")
         },2500)
-        console.log(data)
         // CalendarFetcher({id:router.query.id, year, month, yearCode, data})
       } 
 

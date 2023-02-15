@@ -31,15 +31,11 @@ export default function componentName() {
     
     const holidays = holidayList({holiday, currentMonth})
     const final = setDates({data, month,holidays, currentMonth, currentYear, yearCode,single:false}) as any
-        
-
-
-
     return (
         <div className={`${styles.calendarContainer} ${styles.mainCalendar}`}>
             <div className={styles.calendarHeading}>
                 <span onClick={()=>handleShiftLeft({setCY,setCM,setCheckYear,currentMonth,checkYear})}>{"<<"}</span>
-                <p className={styles.calenderTitle}>{month[currentMonth][0]} {currentYear}</p>
+                <p className={styles.calenderTitle}><span>{month[currentMonth][0]} {currentYear}</span></p>
                 <span onClick={()=>handleShiftRight({checkYear,setCY,setCheckYear,setCM,currentMonth})}>{">>"}</span>
             </div>
 
@@ -53,7 +49,7 @@ export default function componentName() {
                                 attendence={final[0][index]} 
                                 name={final[1][index]}
                                 id={final[2][index]}
-                                tag={final[3][index]}
+                                tag={final[3]&&final[3][0][index]}
                             />
                     ))
 

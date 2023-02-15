@@ -74,6 +74,7 @@ export const calculateAttendence = ({data, days,month,year,holidays, YearCode}:a
     data &&data.map((item:number)=>(
         result.splice(item-1, 1, 13)
     ))
+
     // insert all holidays
     holiday.map((item:number)=>(
         result.splice(item-1, 1, 12)
@@ -117,7 +118,7 @@ export const CalendarBody=({attendence,name,days, id, tag}:Attendence)=>{
     return(
      <div className={styles.calenerDates}>
     
-        <p className={styles.calenderItemHeader} onClick={()=>router.push({pathname: "/admin/calendar/single", query:{name, id}})}>{name}</p>
+        <p className={styles.calenderItemHeader} onClick={()=>router.push({pathname: "/admin/calendar/single", query:{ id}})}>{name}</p>
 
         {
             !days?attendence.map((item:number,index:number)=>{
@@ -216,7 +217,6 @@ export const SingleCalendarBody=({attendence,name,days}:Attendence)=>{
 
 // return proper format of dates for preview
 export const setDates = ({data,currentMonth,yearCode,currentYear,month,holidays, single}:any) =>{
-    console.log("data")
     const calculate = (data:any) =>{
         return calculateAttendence({data,days:month[currentMonth][1],holidays,month:currentMonth, YearCode:yearCode, year: currentYear})
     }
@@ -224,7 +224,6 @@ export const setDates = ({data,currentMonth,yearCode,currentYear,month,holidays,
     
     // return when single [page] calendar access this
     if(single){
-        console.log(data, "data")
         const days = data &&data.map((item:any)=>(
             item.date
         ))
@@ -233,36 +232,53 @@ export const setDates = ({data,currentMonth,yearCode,currentYear,month,holidays,
     }
 
     // continue when home [page] calendar access this
-    const days = data &&data.map((item:any)=>(
-        item.attendance.month.days.map((item1:any)=>(
-            item1.date
-        ))
-    ))
+    const days = data &&data.data[0]?.list.map((item:any)=>(
+       item.attendance.map((date:any, index:number)=>{
+        const yes = currentMonth-1=== new Date(date.timein).getMonth()
 
-    // console.log(data)
-    const tags = data &&data.map((item:any)=>(
-        item.attendance.month.days.map((item1:any)=>(
-            {   
-                date: item1.date,
-                timeIn: item1.timeIn,
-                timeOut: item1.timeOut
+            if(yes){    
+            return(
+                date.presentDate
+            )}else{
+                0
             }
-        ))
+        })
     ))
-    const names = data &&data.map((item:any)=>(
-            item.name
-    )) as string[]
-    const ids = data &&data.map((item:any)=>(
-            item.user
+    if(days&& days[0] === undefined){
+        days.push(0)
+    }
+    // console.log("-----------")
+    const tags = data &&data.data[0]?.list.map((item:any)=>(
+        item.attendance.map((item1:any)=>{
+            return(
+                {   
+                    timeIn: String(new Date(item1.timein)).split(" ")[4],
+                    timeOut: String(new Date(item1.timeout)).split(" ")[4]
+                }
+            )
+        })
+    ))
+
+    const names = data &&data.name.map((item:any)=>(
+        item.email
     )) as string[]
 
-   
+    const ids = data &&data.data[0]?.list.map((item:any)=>(
+            item._id
+    )) as string[]
 
-    const final = days &&days.map((item:any)=>(
-        calculate(item)
-    )) as Number[]
+
+    const final = days &&days.map((item:any)=>{
+        if(item[0] !==undefined){
+
+            return (calculate(item))
+        }
+        else{
+            return calculate([])
+        }
+    }) as Number[]
     
-    return [final,names,ids, tags]
+    return [final,names,ids,tags]
 }
 
 

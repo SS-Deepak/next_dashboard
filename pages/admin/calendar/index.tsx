@@ -9,7 +9,7 @@ export default function index({data}:any) {
     <NavigationPanel>
       <div className={styles.EmployeeContainer}>
       <h2>Attendence</h2>
-      <div className={`${styles.EmployeesList} ${styles.compensation}`}>
+      <div className={`${styles.EmployeesList} ${styles.calendar}`}>
         
         <Calendar/>
       </div>

@@ -1,9 +1,10 @@
 
 export const CalendarFetcher = async({id, year, month, yearCode, data}:any)=>{
-    await fetch(`http://localhost:3000/api/attendance/${id}?year=${year}&month=${month}&yearCode=${yearCode}`,{
+    await fetch(`http://localhost:3000/api/attendance/${id}`,{
             method: "POST",
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${localStorage.getItem("token")}`
             },
             body: JSON.stringify({data})
         })

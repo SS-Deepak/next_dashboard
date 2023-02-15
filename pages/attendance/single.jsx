@@ -17,7 +17,7 @@ export default function index() {
         
       
         <div className={style.singleCalender}>
-            <Calendar/>
+            <Calendar employee={true}/>
         </div>
       </div>
       </div>

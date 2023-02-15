@@ -2,9 +2,9 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import styles from "../styles/calendar.module.css"
 import { setDates,  SingleCalendarBody, YearCode , handleShiftLeft, handleShiftRight, holidayList} from "./Handler"
-import { fetchSingleCalendar } from "@/services/calender"
+import { fetchEmployeeCalendar, fetchSingleCalendar } from "@/services/calender"
 
-export default function componentName({doj}:any) {
+export default function componentName({employee}:any) {
     const {query} = useRouter()
     const [month] = useState<any>({             // month with Name and number of days
         1: ["January", 31],
@@ -26,12 +26,11 @@ export default function componentName({doj}:any) {
     const [checkYear, setCheckYear] = useState<number>(0)                           //  used to recylce the month name
     const [data, setData] = useState<any>()  
     const [holiday, setHoliday] = useState<any>()
-
     
-    
-    fetchSingleCalendar({id:query.id, currentMonth, currentYear,setHoliday, doj, setData})
-    const holidays = holidayList({holiday, currentMonth}) ?? []
+    employee ? fetchEmployeeCalendar({setHoliday, setData}) : fetchSingleCalendar({id:query.id, currentMonth, currentYear,setHoliday, setData})
+    const holidays = holidayList({holiday, currentMonth}) || []
     const setDate = setDates({data, month,holidays, currentMonth, currentYear, yearCode,single:true}) as any
+    
   return (
         <div className={`${styles.calendarContainer} ${styles.singlePageCalendar}`}>
             <h1>{query.name}</h1>
