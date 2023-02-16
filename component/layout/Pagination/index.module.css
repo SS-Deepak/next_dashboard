@@ -1,0 +1,9 @@
+.paginationContainer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.rowPerPage{
+    font-size: .8rem;
+    color: #0009;
+}

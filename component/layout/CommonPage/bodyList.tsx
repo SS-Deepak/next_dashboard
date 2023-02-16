@@ -2,30 +2,24 @@ import styles from "./index.module.css"
 import {ListButtons, ListPanel} from "./commonList"
 import stylesData from "../../../controller/headerList/index.module.css"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
 import { deleteData } from "@/services/CRUD"
 import {BodyListProps} from "@/models/layout"
+import { useEmployee } from "@/component/Employees"
 
 
-export default function componentName({page,body, button,deletePopUp, title}:BodyListProps) {
-    
-    const [data, setData] = useState( Array(body))
+export default function componentName({page, button,deletePopUp,dataBody, title, }:BodyListProps) {
     const router = useRouter()
+    
+    const {body} = useEmployee() as any
+    const query = dataBody !== undefined ?dataBody:body===undefined?[]:body.data
     const btns = button && ListButtons.map(btn=>button.includes(btn.key))
-    useEffect(()=>{
-        if(page !== undefined){
-            setData(body[page])
-        }
-        
-        return ()=>{}
-    },[page])
-
 
     return (
         <div className={styles.listContainer}>
     {
-        (data||body) &&data.length>0? body.map((list:any, Bodyindex:any)=>{
-            const data = Object.keys(body && list)    // it will return keys if body data exist
+            query.length>0? query&&query.map((list:any, Bodyindex:any)=>{
+            
+            const data = Object.keys(list ? list: {})    // it will return keys if body&&body.data data exist
             const filterData = ListPanel.filter((item)=>data.includes(item.key))   // it will return filterd data from json file
             return(
                 

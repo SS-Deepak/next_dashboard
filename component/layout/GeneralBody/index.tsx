@@ -8,10 +8,10 @@ import {
 } from "./components"
 import { useEmpList } from "@/pages/admin/employees"
 import { GeneralBodyProps } from "@/models/layout"
+import Pagination from "../Pagination/index"
 
-
-export function GeneralPage({btnTitle, page, header,data, buttons, modal, deleteModal,title}:GeneralBodyProps) {
-    const body = useEmpList()
+export function GeneralPage({btnTitle, page, header,data, buttons, modal, deleteModal,title,pagination}:GeneralBodyProps) {
+    // const body = useEmpList()
     
   return (
     <div className={styles.EmployeesList}>
@@ -22,8 +22,10 @@ export function GeneralPage({btnTitle, page, header,data, buttons, modal, delete
     <HeaderList data={header&&[...header]}/>
 
     <div className={styles.checkScroll}>
-      <BodyList title={title} body={data?data:body} button={buttons} deletePopUp={deleteModal}/>
+      <BodyList title={title} dataBody={data} button={buttons} deletePopUp={deleteModal}/>
     </div>
+
+    <Pagination pagination={pagination}/>
   </div>
   );
 }
