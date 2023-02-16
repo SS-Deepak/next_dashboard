@@ -3,7 +3,7 @@ import useSWR from "swr"
 
 export const fetchData =({setEmployees, setHolidays}:any)=>{
     const fetcher = async(list:string)=>{
-        const response = await fetch(`http://localhost:3000/api/${list}`,{
+        const response = await fetch(`${process.env.BASE_PATH}/${list}`,{
             headers:{
                 "Authorization" : `Bearer ${localStorage.getItem("token")}`
             }
@@ -13,6 +13,6 @@ export const fetchData =({setEmployees, setHolidays}:any)=>{
     }
 
 
-    useSWR(["http://localhost:3000/api/employees"],()=>fetcher("employees"))
-    useSWR(["http://localhost:3000/api/holidays"],()=>fetcher("holidays"))
+    useSWR([`${process.env.BASE_PATH}/employees`],()=>fetcher("employees"))
+    useSWR([`${process.env.BASE_PATH}/holidays`],()=>fetcher("holidays"))
 }

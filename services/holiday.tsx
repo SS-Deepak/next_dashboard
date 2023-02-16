@@ -1,5 +1,5 @@
 export const fetchHolidayList = async ({setBody}:any)=>{
-    const data = await fetch("http://localhost:3000/api/holidays",{
+    const data = await fetch(`${process.env.BASE_PATH}/holidays`,{
         headers:{
             "Authorization": `Bearer ${localStorage.getItem("token")}`
         }

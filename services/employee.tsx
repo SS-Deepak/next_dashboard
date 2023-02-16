@@ -6,7 +6,7 @@ export const fetchEmployees = ({setBody}:any)=>{
 
     async function  fun(){
       
-      const res = await fetch("http://localhost:3000/api/employees",{
+      const res = await fetch(`${process.env.BASE_PATH}/employees`,{
         headers: {
           "Authorization" :`Bearer ${localStorage.getItem("token")}`
         }
@@ -25,8 +25,8 @@ export const fetchSingleEmployee = async (setPersonal:any, setLeave?:any)=>{
   const {query} = useRouter()
   
   if(query.id){
-    const url1 = `http://localhost:3000/api/employees/${query.id}`
-    const url2 = `http://localhost:3000/api/leaves/${query.id}`
+    const url1 = `${process.env.BASE_PATH}/employees/${query.id}`
+    const url2 = `${process.env.BASE_PATH}/leaves/${query.id}`
 
     
     const response = await fetch(url1,{
@@ -59,7 +59,7 @@ export const fetchAllReviews = async ({setBody}:any)=>{
 
     async function  fun(){
       
-      const res = await fetch("http://localhost:3000/api/reviews",{
+      const res = await fetch(`${process.env.BASE_PATH}/reviews`,{
         headers: {
           "Authorization" :`Bearer ${localStorage.getItem("token")}`
         }
@@ -75,7 +75,7 @@ export const fetchAllReviews = async ({setBody}:any)=>{
 export const fetchReviews = async (setData:any)=>{
   const {query} = useRouter()
 
-  const res = await fetch(`http://localhost:3000/api/reviews/${query.id}`,{
+  const res = await fetch(`${process.env.BASE_PATH}/reviews/${query.id}`,{
     headers: {
       "Authorization" : `Bearer ${localStorage.getItem("token")}`
     }
@@ -86,7 +86,7 @@ export const fetchReviews = async (setData:any)=>{
 }
 
 export const PaginationCall = async ({page, setBody}:any) =>{
-    const call = await fetch(`http://localhost:3000/api/employees?page=${page+1}`,{
+    const call = await fetch(`${process.env.BASE_PATH}/employees?page=${page+1}`,{
       headers: {
         "Authorization" : `Bearer ${localStorage.getItem("token")}`
       }
@@ -102,7 +102,7 @@ export const fetchLeaves = async ({setBody}:any)=>{
 
     async function  fun(){
       
-      const res = await fetch("http://localhost:3000/api/leaves",{
+      const res = await fetch(`${process.env.BASE_PATH}/leaves`,{
         headers: {
           "Authorization" :`Bearer ${localStorage.getItem("token")}`
         }

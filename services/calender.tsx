@@ -3,7 +3,7 @@ import useSWR from "swr"
 export function fetchSingleCalendar({id, currentMonth, currentYear,setHoliday, doj, setData}:any) {
     const fetchAttendance =async ()=>{
         if(id){
-            const response =  await fetch(`http://localhost:3000/api/attendance/${id}`,{
+            const response =  await fetch(`${process.env.BASE_PATH}/attendance/${id}`,{
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
                 }
@@ -17,13 +17,13 @@ export function fetchSingleCalendar({id, currentMonth, currentYear,setHoliday, d
 
         }
     }
-    useSWR(`http://localhost:3000/api/attendance/${id}` ,fetchAttendance ,{refreshInterval: 0})
+    useSWR(`${process.env.BASE_PATH}/attendance/${id}` ,fetchAttendance ,{refreshInterval: 0})
 }
 
 
 export function fetchMainCalendar({currentMonth, currentYear, setHoliday, setData}:any){
     const fetchAttendance =async ()=>{
-        const response = await fetch(`http://localhost:3000/api/attendance`,{
+        const response = await fetch(`${process.env.BASE_PATH}/attendance`,{
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
@@ -32,14 +32,14 @@ export function fetchMainCalendar({currentMonth, currentYear, setHoliday, setDat
         setHoliday(responseJSON.holiday)
         setData(responseJSON)
     }
-    useSWR(`http://localhost:3000/api/attendance` ,fetchAttendance )
+    useSWR(`${process.env.BASE_PATH}/attendance` ,fetchAttendance )
 
 }
 
 
 export function addAttendance (date:any, check:any){
     const fetchAttendance =async ()=>{
-        await fetch(`http://localhost:3000/api/attendance`,{
+        await fetch(`${process.env.BASE_PATH}/attendance`,{
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
@@ -55,7 +55,7 @@ export function addAttendance (date:any, check:any){
 export function fetchEmployeeCalendar({setHoliday, setData}:any) {
     const fetchAttendance =async ()=>{
       
-        const response =  await fetch(`http://localhost:3000/api/attendance/single`,{
+        const response =  await fetch(`${process.env.BASE_PATH}/attendance/single`,{
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
@@ -67,5 +67,5 @@ export function fetchEmployeeCalendar({setHoliday, setData}:any) {
         setData(responseJSON.data)
 
     }
-    useSWR(`http://localhost:3000/api/attendance/single` ,fetchAttendance ,{refreshInterval: 0})
+    useSWR(`${process.env.BASE_PATH}/attendance/single` ,fetchAttendance ,{refreshInterval: 0})
 }

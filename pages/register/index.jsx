@@ -11,7 +11,7 @@ export default function componentName() {
         phone: "",
     })
     const handleSubmit =async ()=>{
-        const response = await fetch('http://localhost:3000/api/register', {
+        const response = await fetch(`${process.env.BASE_PATH}/register`, {
             method: 'POST', // make sure the method is set to POST
             headers: {
               'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 export async function edit(id:any, result:any, setStatus:any) {
     
-    const response = await fetch(`http://localhost:3000/api/employees/${id}`,{
+    const response = await fetch(`${process.env.BASE_PATH}/employees/${id}`,{
         method: "POST",
         headers: {
             "Content-Type" : "application/json",

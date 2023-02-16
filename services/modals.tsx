@@ -1,6 +1,6 @@
 
 export const CalendarFetcher = async({id, year, month, yearCode, data}:any)=>{
-    await fetch(`http://localhost:3000/api/attendance/${id}`,{
+    await fetch(`${process.env.BASE_PATH}/attendance/${id}`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -12,7 +12,7 @@ export const CalendarFetcher = async({id, year, month, yearCode, data}:any)=>{
 
 
 export const addHolidayFetcher = async({holiday}:any)=>{
-    await fetch("http://localhost:3000/api/holidays",{
+    await fetch(`${process.env.BASE_PATH}/holidays`,{
         method:"POST",
         headers: {
             "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const addHolidayFetcher = async({holiday}:any)=>{
     })
 }
 export const editHolidayFetcher = async({holiday,id}:any)=>{
-    await fetch(`http://localhost:3000/api/holidays/${id}`,{
+    await fetch(`${process.env.BASE_PATH}/holidays/${id}`,{
         method:"PATCH",
         headers: {
             "Content-Type": "application/json",
