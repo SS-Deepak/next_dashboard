@@ -1,7 +1,8 @@
 import styles from "../CommonPage/index.module.css"
-import { FormEvent } from "react"
+import { FormEvent, useState } from "react"
 import { GeneralPage } from "."
 import { useDetails } from "@/pages/admin/employees/detail/[id]"
+import { fetchReviews } from "@/services/employee"
 
  // upper tabs
  export const TabsHeader = ({mainTabs, setTabIndex}:any) => (
@@ -68,17 +69,17 @@ const TabsBody1 = () => {
     </div>
 )}
 const TabsBody3 =()=>{
-  const details = useDetails()
+  const [data, setData] = useState([]) as any
+  !data.status &&fetchReviews(setData)
   return(
     <GeneralPage 
           header={["hashIndex","en", "remark"]}
-          data={details}
+          data={data.data}
           page="reviews"
           btnTitle="Add New Review"
         />
 )}
 const TabsBody2 =({modal}:any)=>{
-  console.log(modal)
   const {leave} = useDetails()
   return( 
     <GeneralPage 

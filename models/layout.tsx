@@ -1,10 +1,10 @@
 export interface BodyListProps{
     page?:string,
-    body:any,
     button:any,
     personal?:any,
     deletePopUp?: any,
-    title?: any
+    title?: any,
+    dataBody?: any
 }
 
 export interface IndexProps{
@@ -16,7 +16,8 @@ export interface IndexProps{
     buttons?: any,
     details?: boolean,
     modal?:any,
-    deleteModal?: any
+    deleteModal?: any,
+    pagination?: any
 }
 
 export interface CompensationIndexProps{
@@ -37,7 +38,8 @@ export interface GeneralBodyProps{
     buttons?: any,
     modal?: any,
     deleteModal?: any,
-    title?: any
+    title?: any,
+    pagination?: any
 }
 
 export interface TopHeaderProps{

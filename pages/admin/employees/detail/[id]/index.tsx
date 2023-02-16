@@ -7,11 +7,13 @@ import { fetchSingleEmployee } from "@/services/employee";
 const detailContext = createContext({}) 
 
 export default function componentName() {
-  const [personal, setPersonal] = useState()
-  const [leave, setLeave] = useState()
+  const [personal, setPersonal] = useState([]) as any
+  const [leave, setLeave] = useState([]) as any
 
+  if(!Boolean(personal.email)){
+    fetchSingleEmployee(setPersonal, setLeave)
+  }
   
-  fetchSingleEmployee(setPersonal, setLeave)
 
   return (
     <detailContext.Provider value={{personal,leave}}>

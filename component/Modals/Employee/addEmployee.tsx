@@ -10,23 +10,9 @@ import { CalendarFetcher } from "../../../services/modals";
 
 export default function AddEmployee({open, doj}:any) {
     const router= useRouter()
-
     const [visible, setVisible] = useState(false)
-    const [date, setDate] = useState(new Date(Date.now()))
-    const currentYear = new Date(Date.now()).getFullYear()
-    
-    const dojYear = new Date(doj).getFullYear()
-    const yearCode = currentYear - dojYear
-    const year = new Date(date).getFullYear()
-    const month = new Date(date).getMonth()
+    const [error, setError] = useState(false)
 
-    const selectedDate = new Date(date).getDate()
-
-    const [data, setData] = useState({
-        timeIn: "",
-        timeOut: "",
-        date: selectedDate
-    })
 
     const style = {
         position: 'absolute',
@@ -39,36 +25,67 @@ export default function AddEmployee({open, doj}:any) {
         p: 4,
       };
 
-      const handleSubmit = async (e:any)=>{
+     
+    const [user, setUser] = useState({
+        firstname:"",
+        email:"",
+        password:"",
+        phone: "",
+    })
+    const handleSubmit =async (e:any)=>{
         e.preventDefault()
+
         setVisible(true)
-        setTimeout(()=>{
-            open()
-            setVisible(false)
-            router.push("/calendar")
-        },2500)
-        
-        CalendarFetcher({id:router.query.id, year, month, yearCode, data})
-      } 
+
+        const response = await fetch('http://localhost:3000/api/register', {
+            method: 'POST', // make sure the method is set to POST
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user) // send the secret as payload in the body
+          })
+          const data = await response.json()
+          if(data.code !== 409){
+
+            setTimeout(()=>{
+                open()
+                setVisible(false)
+                router.reload()
+            },2500)
+        }else{
+            setError(true)
+            setTimeout(()=>{
+                setError(false)
+                setVisible(false)
+            },1500)
+        }
+            
+    }
 
   return (
     <Box sx={style}>
 
         <div className={styles.model_container}>
-            <h1>Add Employee</h1>
-            
+        <h1>Register</h1>
+            {error &&<p className={styles.danger}>Email not valid!</p>}
             <form>
+        
                 <div className={styles.input}>
-                    <label>Time In</label>
-                    <input type="date" value={data.timeIn} onChange={(e)=>setData({...data, timeIn: e.target.value})}/>
+                <input type="text" placeholder='enter an name' onChange={(e)=>setUser({...user, firstname:e.target.value})} value={user.firstname}/>
                 </div>
                 <div className={styles.input}>
-                    <label>Time Out</label>
-                    <input type="date"  value={data.timeOut} onChange={(e)=>setData({...data, timeOut: e.target.value})}/>
+                <input type="text" placeholder='enter an email' onChange={(e)=>setUser({...user, email:e.target.value})} value={user.email}/>
+                </div>
+                <div className={styles.input}>
+                <input type="text" placeholder='enter an password' onChange={(e)=>setUser({...user, password:e.target.value})} value={user.password}/>
+                </div>
+                <div className={styles.input}>
+                <input type="text" placeholder='enter an phone' onChange={(e)=>setUser({...user, phone:e.target.value})} value={user.phone}/>
                 </div>
 
-                <button onClick={handleSubmit} >{!visible?"Add":<CircularProgress style={{height: "28px", width: '28px'}} color="inherit" />}</button>
-            </form>
+                <button onClick={(e)=>handleSubmit(e)}>{!visible?"Register":<CircularProgress style={{height: "28px", width: '28px'}} color="inherit" />}</button>
+
+        </form>
         </div>
     </Box>
   );

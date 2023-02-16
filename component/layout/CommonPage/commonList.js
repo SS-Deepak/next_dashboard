@@ -17,7 +17,7 @@ export const ListPanel = [
     Type("subject","Lmedium"),
     Type("fromdate","small"),
     Type("todate","small"),
-    Type("status","small"),
+    // Type("status","small"),
     Type("comment","small"),
     
     Type("employeeName","large"),
