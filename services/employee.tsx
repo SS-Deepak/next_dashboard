@@ -54,6 +54,24 @@ export const fetchSingleEmployee = async (setPersonal:any, setLeave?:any)=>{
 }
 
 
+export const fetchAllReviews = async ({setBody}:any)=>{
+  useEffect(()=>{
+
+    async function  fun(){
+      
+      const res = await fetch("http://localhost:3000/api/reviews",{
+        headers: {
+          "Authorization" :`Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      const responseJSON = await res.json()
+      setBody(responseJSON)
+    }
+    fun()
+
+    return ()=>{}
+  },[])
+}
 export const fetchReviews = async (setData:any)=>{
   const {query} = useRouter()
 
@@ -67,9 +85,6 @@ export const fetchReviews = async (setData:any)=>{
   setData(data)
 }
 
-
-
-
 export const PaginationCall = async ({page, setBody}:any) =>{
     const call = await fetch(`http://localhost:3000/api/employees?page=${page+1}`,{
       headers: {
@@ -78,5 +93,26 @@ export const PaginationCall = async ({page, setBody}:any) =>{
     })
     const data = await call.json()
     setBody(data)
+
+}
+
+
+export const fetchLeaves = async ({setBody}:any)=>{
+  useEffect(()=>{
+
+    async function  fun(){
+      
+      const res = await fetch("http://localhost:3000/api/leaves",{
+        headers: {
+          "Authorization" :`Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      const responseJSON = await res.json()
+      setBody(responseJSON)
+    }
+    fun()
+
+    return ()=>{}
+  },[])
 
 }

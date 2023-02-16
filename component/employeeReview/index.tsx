@@ -1,24 +1,13 @@
-import CommonPage from "../layout/CommonPage"
-
+import PaginatePanel from "../layout/CommonPage/CommonPagePagination"
+import { fetchAllReviews } from "@/services/employee"
 
 export default function index() {
   return (
-    <CommonPage 
+    <PaginatePanel 
+      fetchData={fetchAllReviews}
       title="Employee Reviews" 
       btnTitle="Add New Employee Review" 
       header={["hashIndex","en", "remark"]}
-
-      body={[
-      {
-        en:"Deepak",
-        remark:"Kumar",
-      },
-      {
-        en:"Deepak",
-        remark:"Kumar",
-      }
-    ]}
-
     />
   )
 }

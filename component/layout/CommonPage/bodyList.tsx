@@ -4,13 +4,13 @@ import stylesData from "../../../controller/headerList/index.module.css"
 import { useRouter } from "next/router"
 import { deleteData } from "@/services/CRUD"
 import {BodyListProps} from "@/models/layout"
-import { useEmployee } from "@/component/Employees"
+import { usePaginate } from "@/component/layout/CommonPage/CommonPagePagination"
 
 
 export default function componentName({page, button,deletePopUp,dataBody, title, }:BodyListProps) {
     const router = useRouter()
     
-    const {body} = useEmployee() as any
+    const {body} = usePaginate() as any
     const query = dataBody !== undefined ?dataBody:body===undefined?[]:body.data
     const btns = button && ListButtons.map(btn=>button.includes(btn.key))
 

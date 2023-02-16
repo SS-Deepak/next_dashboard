@@ -25,7 +25,7 @@ export function GeneralPage({btnTitle, page, header,data, buttons, modal, delete
       <BodyList title={title} dataBody={data} button={buttons} deletePopUp={deleteModal}/>
     </div>
 
-    <Pagination pagination={pagination}/>
+    {pagination && <Pagination pagination={pagination}/>}
   </div>
   );
 }
