@@ -18,7 +18,7 @@ export const TabsBody = ({tabIndex,modal}:any) => {
   return(
     <div className={styles.tabsBody}>
         <>{
-          tabIndex === 0 ?<TabsBody1/>: tabIndex ===1?<TabsBody2 modal={modal}/>:<TabsBody3/>
+          tabIndex === 0 ?<TabsBody1/>: tabIndex ===1?<TabsBody2 />:<TabsBody3 modal={modal}/>
         }</>
     </div>
   )
@@ -68,7 +68,7 @@ const TabsBody1 = () => {
       </div>
     </div>
 )}
-const TabsBody3 =()=>{
+const TabsBody3 =({modal}:any)=>{
   const [data, setData] = useState([]) as any
   !data.status &&fetchReviews(setData)
   return(
@@ -77,9 +77,10 @@ const TabsBody3 =()=>{
           data={data.data}
           page="reviews"
           btnTitle="Add New Review"
+          modal={modal}
         />
 )}
-const TabsBody2 =({modal}:any)=>{
+const TabsBody2 =()=>{
   const {leave} = useDetails()
   return( 
     <GeneralPage 
@@ -87,7 +88,6 @@ const TabsBody2 =({modal}:any)=>{
       header={["hashIndex","name", "sol","fd","td", "status", "comment", "btns"]}
       data={leave}
       page="leaves"
-      modal={modal}
     />
     )
 }

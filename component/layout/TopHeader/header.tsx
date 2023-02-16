@@ -4,9 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass, faUser, faCaretDown } from "@fortawesome/free-solid-svg-icons"
 import { useRef } from "react"
 import Modal from "@mui/material/Modal"
-// import {AddHolidayModal} from "../../Modals/Holiday/AddHolidaysModal"
-import {EditHoliday} from "../../Modals/Holiday/EditHolidayModal"
-import { useRouter } from "next/router"
 import { TopHeaderProps } from "@/models/layout"
 
 
@@ -57,12 +54,16 @@ export const LeaveInput = ()=>{
 )
   }
 
-export function TopHeader({title, page, ModalPopUp}:TopHeaderProps) {
+export function TopHeader({title, page, ModalPopUp, setSearch}:TopHeaderProps) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false)
   };
+
+  const handleSearch = (e:any) =>{
+      setSearch(e.target.value)
+  }
 
   return (
     <>
@@ -79,12 +80,12 @@ export function TopHeader({title, page, ModalPopUp}:TopHeaderProps) {
 
       <div className={styles.employeesSearch}>
         <div className={styles.input}>
-          {page==="holiday" ? <Select/> :
+          {title==="Add New Holiday" ? <Select/> :
             <FontAwesomeIcon icon={faMagnifyingGlass}/>
           }
-          <input type="text" placeholder="Enter Keyword"/>
+          <input type="text" placeholder="Enter Keyword" onChange={(e)=>handleSearch(e)}/>
         </div>
-        <button onClick={handleOpen}>{title}</button>
+        {title===""?null:<button onClick={handleOpen}>{title}</button>}
       </div>
     }
       </>
@@ -93,7 +94,7 @@ export function TopHeader({title, page, ModalPopUp}:TopHeaderProps) {
 
 const Select =() =>(
   <div className={styles.holidaySelect}>
-    <select name="holidayYear" id="holidayYear" defaultValue="2023">
+    <select name="holidayYear" id="holidayYear" defaultValue="2023" >
       <option value="2021">2021</option>
       <option value="2022">2022</option>
       <option value="2023">2023</option>

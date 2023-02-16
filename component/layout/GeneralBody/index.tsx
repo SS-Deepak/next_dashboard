@@ -3,26 +3,23 @@ import {TopHeader} from "../TopHeader/header"
 import BodyList from "../CommonPage/bodyList"
 import HeaderList from "@/controller/headerList/List"
 import { useState } from "react"
-import {
-  TabsHeader,TabsBody
-} from "./components"
-import { useEmpList } from "@/pages/admin/employees"
+import {  TabsHeader,TabsBody } from "./components"
 import { GeneralBodyProps } from "@/models/layout"
 import Pagination from "../Pagination/index"
 
-export function GeneralPage({btnTitle, page, header,data, buttons, modal, deleteModal,title,pagination}:GeneralBodyProps) {
-    // const body = useEmpList()
-    
+export function GeneralPage({btnTitle, searchType, page, header,data, buttons, modal, deleteModal,title,pagination}:GeneralBodyProps) {
+    const [search, setSearch] = useState("")
+
   return (
     <div className={styles.EmployeesList}>
     {page === "leave"? null:
-      <TopHeader ModalPopUp={modal} title={btnTitle || ""}/>
+      <TopHeader setSearch={setSearch} ModalPopUp={modal} title={btnTitle || ""}/>
     }
 
     <HeaderList data={header&&[...header]}/>
 
     <div className={styles.checkScroll}>
-      <BodyList title={title} dataBody={data} button={buttons} deletePopUp={deleteModal}/>
+      <BodyList search={search} searchType={searchType} title={title} dataBody={data} button={buttons} deletePopUp={deleteModal}/>
     </div>
 
     {pagination && <Pagination pagination={pagination}/>}

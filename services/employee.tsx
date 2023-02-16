@@ -116,3 +116,36 @@ export const fetchLeaves = async ({setBody}:any)=>{
   },[])
 
 }
+export const fetchHolidayList = async ({setBody}:any)=>{
+  useEffect(()=>{
+
+    async function  fun(){
+      
+      const res = await fetch(`${process.env.BASE_PATH}/holidays`,{
+        headers: {
+          "Authorization" :`Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      const responseJSON = await res.json()
+      setBody(responseJSON)
+      console.log(responseJSON,"sdfdf")
+    }
+    fun()
+
+    return ()=>{}
+  },[])
+
+}
+
+
+export const addReview = async (data:any, id:any)=>{
+      const res = await fetch(`${process.env.BASE_PATH}/reviews/${id}`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization" :`Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(data)
+      })
+      await res.json()
+}

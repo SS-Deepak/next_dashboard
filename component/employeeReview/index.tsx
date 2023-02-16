@@ -4,6 +4,7 @@ import { fetchAllReviews } from "@/services/employee"
 export default function index() {
   return (
     <PaginatePanel 
+      searchType="employeeName"
       fetchData={fetchAllReviews}
       title="Employee Reviews" 
       btnTitle="Add New Employee Review" 

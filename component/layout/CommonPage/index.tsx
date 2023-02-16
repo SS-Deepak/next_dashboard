@@ -4,7 +4,7 @@ import { IndexProps } from "@/models/layout"
 
 
 
-export default function index({title, btnTitle, page, header, body, buttons,details, modal,deleteModal, pagination}:IndexProps
+export default function index({title, btnTitle,searchType, page, header, body, buttons,details, modal,deleteModal, pagination}:IndexProps
 ) {
   return (
     <div className={styles.EmployeeContainer}>
@@ -14,10 +14,10 @@ export default function index({title, btnTitle, page, header, body, buttons,deta
         details ? <DetailsPage modal={modal}/> : <GeneralPage
                                                       title={title}
                                                       btnTitle={btnTitle}
-                                                      // page={page}
                                                       pagination={pagination}
                                                       header={header}
                                                       data={body}
+                                                      searchType={searchType}
                                                       buttons={buttons}
                                                       modal={modal}
                                                       deleteModal={deleteModal}

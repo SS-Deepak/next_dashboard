@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import {useState} from "react"
 import { useRouter } from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
-import { CalendarFetcher } from "../../../services/modals";
+import { addReview } from "../../../services/employee";
 
 export function reviewEmployee({open, doj}:any) {
     const router= useRouter()
@@ -34,19 +34,20 @@ export function reviewEmployee({open, doj}:any) {
       const handleSubmit = async (e:any)=>{
         e.preventDefault()
         setVisible(true)
+        addReview(data, router.query.id)
+
         setTimeout(()=>{
             open()
             setVisible(false)
-            router.push("/calendar")
-        },2500)
-        // CalendarFetcher({id:router.query.id, year, month, yearCode, data})
+            router.reload()
+        },1500)
       } 
 
   return (
     <Box sx={style}>
 
         <div className={styles.model_container}>
-            <h1>Add Employee</h1>
+            <h1>Add Review</h1>
             
             <form>
                 <div className={styles.input}>

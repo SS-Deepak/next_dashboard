@@ -1,14 +1,15 @@
 import {  useState, createContext, useContext } from "react"
 import CommonPage from "./index"
 
-const employeeContext = createContext({})
+const paginateContext = createContext({})
 
-export default function index({fetchData, modal, title, btnTitle,header, buttons}:any) {
+export default function index({fetchData, modal, title, btnTitle,header, buttons, searchType}:any) {
   const [body, setBody] = useState() as any
   const [paging, setPaging] = useState() as any
   const [status, setStatus] = useState(true)
 
   fetchData({setBody})
+  
 
   if(body!==undefined && status){
     const data = Object.entries(body)
@@ -25,20 +26,20 @@ export default function index({fetchData, modal, title, btnTitle,header, buttons
   
 
   return (
-    <employeeContext.Provider value={{body, setBody}}>
-
+    <paginateContext.Provider value={{body, setBody}}>
       <CommonPage
         title={title}
         btnTitle={btnTitle}
         header={header}
-        pagination={{paging, callPaging: () =>useContext(employeeContext)}}
+        pagination={{paging, callPaging: () =>useContext(paginateContext)}}
         buttons={buttons}
         modal={modal?.AddEmployee}
         deleteModal = {modal?.DeleteModal}
+        searchType={searchType}
       /> 
-    </employeeContext.Provider>
+    </paginateContext.Provider>
 
   )
 }
 
-export const usePaginate = () =>useContext(employeeContext)
+export const usePaginate = () =>useContext(paginateContext)

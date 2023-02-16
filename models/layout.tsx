@@ -4,7 +4,9 @@ export interface BodyListProps{
     personal?:any,
     deletePopUp?: any,
     title?: any,
-    dataBody?: any
+    dataBody?: any,
+    search?:any,
+    searchType?: any
 }
 
 export interface IndexProps{
@@ -17,7 +19,8 @@ export interface IndexProps{
     details?: boolean,
     modal?:any,
     deleteModal?: any,
-    pagination?: any
+    pagination?: any,
+    searchType?: any
 }
 
 export interface CompensationIndexProps{
@@ -39,11 +42,14 @@ export interface GeneralBodyProps{
     modal?: any,
     deleteModal?: any,
     title?: any,
-    pagination?: any
+    pagination?: any,
+    searchType?:any
 }
 
 export interface TopHeaderProps{
     title: string,
     page?: string,
-    ModalPopUp?: any
+    ModalPopUp?: any,
+    setSearch?: any,
+    blurSearch?:any
   }

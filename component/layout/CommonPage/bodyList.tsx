@@ -5,19 +5,38 @@ import { useRouter } from "next/router"
 import { deleteData } from "@/services/CRUD"
 import {BodyListProps} from "@/models/layout"
 import { usePaginate } from "@/component/layout/CommonPage/CommonPagePagination"
+import { useEffect, useState } from "react"
 
 
-export default function componentName({page, button,deletePopUp,dataBody, title, }:BodyListProps) {
+export default function componentName({page, button,deletePopUp,dataBody, title ,searchType, search}:BodyListProps) {
     const router = useRouter()
-    
     const {body} = usePaginate() as any
     const query = dataBody !== undefined ?dataBody:body===undefined?[]:body.data
     const btns = button && ListButtons.map(btn=>button.includes(btn.key))
+    
+    const [dataFilter, setDataFilter] = useState() as any
+    const renderData = search ? dataFilter: query
+
+    // console.log(query, dataBody, body)
+    
+    // search filter
+    useEffect(()=>{
+        const filter = query.filter((item:any)=>{
+            const yes = String(item[searchType]).toLowerCase().search(String(search).toLowerCase())
+            
+            return  yes>-1 && item 
+        })
+        setDataFilter(filter)
+
+        return ()=>{}
+    },[search])
+
+    
 
     return (
         <div className={styles.listContainer}>
     {
-            query.length>0? query&&query.map((list:any, Bodyindex:any)=>{
+            renderData.length>0? renderData&&renderData.map((list:any, Bodyindex:any)=>{
             
             const data = Object.keys(list ? list: {})    // it will return keys if body&&body.data data exist
             const filterData = ListPanel.filter((item)=>data.includes(item.key))   // it will return filterd data from json file
