@@ -7,9 +7,11 @@ export default function index({fetchData, modal, title, btnTitle,header, buttons
   const [body, setBody] = useState() as any
   const [paging, setPaging] = useState() as any
   const [status, setStatus] = useState(true)
+  const [year, setYear] = useState(new Date(Date.now()).getFullYear())as any 
 
-  fetchData({setBody})
-  
+  // console.log(title, year)
+
+  fetchData({setBody,year})
 
   if(body!==undefined && status){
     const data = Object.entries(body)
@@ -26,14 +28,15 @@ export default function index({fetchData, modal, title, btnTitle,header, buttons
   
 
   return (
-    <paginateContext.Provider value={{body, setBody}}>
+    <paginateContext.Provider value={{body,fetchData, setBody,title:title.toLowerCase(),year,setYear}}>
       <CommonPage
         title={title}
         btnTitle={btnTitle}
         header={header}
         pagination={{paging, callPaging: () =>useContext(paginateContext)}}
         buttons={buttons}
-        modal={modal?.AddEmployee}
+        year={title === "Holidays"? setYear: null}
+        modal={modal?.Add}
         deleteModal = {modal?.DeleteModal}
         searchType={searchType}
       /> 

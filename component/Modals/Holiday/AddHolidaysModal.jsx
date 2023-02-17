@@ -25,6 +25,8 @@ export function AddHolidayModal({open}) {
         p: 4,
       };
 
+      
+
       const handleSubmit =async (e) => {
         e.preventDefault()
         if(holiday.date !== "" && holiday.title !== ""){
@@ -33,7 +35,7 @@ export function AddHolidayModal({open}) {
 
             open()
             router.push({
-                pathname: "/holiday",
+                pathname: "/admin/holiday",
                 query:{
                     load: true
                 }
@@ -42,7 +44,7 @@ export function AddHolidayModal({open}) {
       }
 
   return (
-    <Box sx={style} className={styles.box} onClick={()=>open()}>
+    <Box sx={style} className={styles.box} >
 
         <div className={styles.model_container}>
             <h1>Add Holiday</h1>

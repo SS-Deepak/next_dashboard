@@ -20,7 +20,8 @@ export interface IndexProps{
     modal?:any,
     deleteModal?: any,
     pagination?: any,
-    searchType?: any
+    searchType?: any,
+    year?:any
 }
 
 export interface CompensationIndexProps{

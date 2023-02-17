@@ -12,7 +12,7 @@ export default function index() {
     <PaginatePanel 
           searchType="email"
           fetchData={fetchEmployees} 
-          modal={{AddEmployee, DeleteModal}} 
+          modal={{Add:AddEmployee, DeleteModal}} 
           title="Employees" 
           btnTitle="Add New Employee" 
           header={["hashIndex","emp_email", "fn","ln","doj", "btns"]}

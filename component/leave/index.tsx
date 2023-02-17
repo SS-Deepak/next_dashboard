@@ -6,7 +6,7 @@ export default function index() {
     <PaginationPanel
       searchType="name"
       fetchData={fetchLeaves} 
-      title="Leave" 
+      title="Leaves" 
       header={["hashIndex","name", "sol","fd","td", "status", "comment", "btns"]}
       buttons={[
             "rejectBtn",

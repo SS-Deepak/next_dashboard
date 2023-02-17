@@ -5,7 +5,8 @@ import { faMagnifyingGlass, faUser, faCaretDown } from "@fortawesome/free-solid-
 import { useRef } from "react"
 import Modal from "@mui/material/Modal"
 import { TopHeaderProps } from "@/models/layout"
-
+import { usePaginate } from "../CommonPage/CommonPagePagination"
+import {fetchYearBasedHoliday} from "@/services/employee"
 
 export const LeaveInput = ()=>{
   const refShow:any = useRef()
@@ -92,9 +93,21 @@ export function TopHeader({title, page, ModalPopUp, setSearch}:TopHeaderProps) {
   )
 }
 
-const Select =() =>(
-  <div className={styles.holidaySelect}>
-    <select name="holidayYear" id="holidayYear" defaultValue="2023" >
+const handleSelect = async(e:any, setYear:any,setBody:any) =>{
+  setYear(e.target.value)
+  const year = e.target.value
+
+  fetchYearBasedHoliday({year, setBody})
+
+}
+
+const Select =() =>{
+  const {setYear, setBody} = usePaginate() as any
+
+  return(
+    <div className={styles.holidaySelect} >
+    <select name="holidayYear" id="holidayYear" defaultValue="2023" onChange={(e)=>handleSelect(e, setYear, setBody)}>
+      <option value=""></option>
       <option value="2021">2021</option>
       <option value="2022">2022</option>
       <option value="2023">2023</option>
@@ -104,3 +117,4 @@ const Select =() =>(
     </select>
   </div>
 )
+}

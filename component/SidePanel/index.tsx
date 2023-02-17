@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import {useRef, useState} from 'react';
 import {useToggle} from "../../Context/headerToggle"
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,7 +31,7 @@ interface Props{
 
 export default function index() {
   const {show,setShow,loading} = useToggle();
-  const role = useRole()
+  const {role, setVisible} = useRole() as any
 
   const router = useRouter();
 
@@ -43,7 +43,13 @@ export default function index() {
     span?.classList.toggle(`${styles.hidden}`)
   }
   const handleClick = (path:string|undefined)=>{
-    path?router.push(`${path}`):null
+    if(path){
+      setVisible(false)
+      router.push(path)
+      setTimeout(()=>{
+        setVisible(true)
+      },1500)
+    }
   }
   const Row = ({icon, title, path}:Props)=>(
     <li onClick={()=>handleClick(path)}>
@@ -52,6 +58,14 @@ export default function index() {
       { title !== "Masters"?<span>{title}</span>: null}
     </li>
   );
+
+    const handleRoute = (path:string) =>{
+      setVisible(false)
+      setTimeout(()=>{
+        setVisible(true)
+        router.push(path)
+      },1500)
+    }
 
   const AdminPanel = () =>(
     <ul>
@@ -73,12 +87,12 @@ export default function index() {
         <ul className={styles.selectHidden}>
           <li>System</li>
           <li>Setting</li>
-          <li onClick={()=>router.push("/admin/compensation")}>Compensation</li>
-          <li onClick={()=>router.push("/admin/designations")}>Designation</li>
-          <li onClick={()=>router.push("/admin/departments")}>Departments</li>
-          <li onClick={()=>router.push("/admin/status")}>Status</li>
-          <li onClick={()=>router.push("/admin/clients")}>Clients</li>
-          <li onClick={()=>router.push("/admin/projects")}>Projects</li>
+          <li onClick={()=>handleRoute("/admin/compensation")}>Compensation</li>
+          <li onClick={()=>handleRoute("/admin/designations")}>Designation</li>
+          <li onClick={()=>handleRoute("/admin/departments")}>Departments</li>
+          <li onClick={()=>handleRoute("/admin/status")}>Status</li>
+          <li onClick={()=>handleRoute("/admin/clients")}>Clients</li>
+          <li onClick={()=>handleRoute("/admin/projects")}>Projects</li>
           <li>Timesheet</li>
         </ul>
       </div>

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect } from "react"
+import useSWR from "swr"
 
 export const fetchEmployees = ({setBody}:any)=>{
   useEffect(()=>{
@@ -93,12 +94,11 @@ export const PaginationCall = async ({page, setBody}:any) =>{
     })
     const data = await call.json()
     setBody(data)
-
 }
 
 
 export const fetchLeaves = async ({setBody}:any)=>{
-  useEffect(()=>{
+  
 
     async function  fun(){
       
@@ -110,25 +110,26 @@ export const fetchLeaves = async ({setBody}:any)=>{
       const responseJSON = await res.json()
       setBody(responseJSON)
     }
-    fun()
+  
 
-    return ()=>{}
-  },[])
+    useSWR(`${process.env.BASE_PATH}/leaves`,fun)
+
+
 
 }
-export const fetchHolidayList = async ({setBody}:any)=>{
+export const fetchHolidayList = async ({setBody,year}:any)=>{
   useEffect(()=>{
 
     async function  fun(){
-      
-      const res = await fetch(`${process.env.BASE_PATH}/holidays`,{
+      const url = `${process.env.BASE_PATH}/holidays?year=${year}`
+      console.log(url,year)
+      const res = await fetch(url,{
         headers: {
           "Authorization" :`Bearer ${localStorage.getItem("token")}`
         }
       })
       const responseJSON = await res.json()
       setBody(responseJSON)
-      console.log(responseJSON,"sdfdf")
     }
     fun()
 
@@ -137,6 +138,16 @@ export const fetchHolidayList = async ({setBody}:any)=>{
 
 }
 
+export const fetchYearBasedHoliday = async ({year, setBody}:any)=>{
+  const url = `${process.env.BASE_PATH}/holidays?year=${year}`
+  const res = await fetch(url,{
+    headers: {
+      "Authorization" :`Bearer ${localStorage.getItem("token")}`
+    }
+  })
+  const responseJSON = await res.json()
+  setBody(responseJSON)
+}
 
 export const addReview = async (data:any, id:any)=>{
       const res = await fetch(`${process.env.BASE_PATH}/reviews/${id}`,{

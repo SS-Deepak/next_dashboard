@@ -7,6 +7,7 @@ export default function componentName() {
     <PaginatePanel
       searchType="title"
       fetchData={fetchHolidayList}
+      
       title="Holidays" 
       btnTitle="Add New Holiday" 
       header={["hashIndex","hd","title", "btns"]}
@@ -14,7 +15,7 @@ export default function componentName() {
         "editBtn",
         "deleteBtn",
       ]}
-      modal={AddHolidayModal}
+      modal={{Add:AddHolidayModal}}
     
     />
   );

@@ -2,22 +2,26 @@ import * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
 import styles from "./index.module.css"
 import { PaginationCall } from '@/services/employee';
+import { usePaginate } from '../CommonPage/CommonPagePagination';
+import { callData } from '@/services/paginate';
 
 export default function TablePaginationDemo({pagination}:any) {
   const [page, setPage] = React.useState(0);
-  const {body,setBody} = pagination.callPaging() as any
+  const {body,setBody,title} = usePaginate() as any
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number,
   ) => {
     setPage(newPage);
+    callData({page:newPage+1, title, setBody})
   };
 
-  React.useEffect(()=>{
-    pagination && PaginationCall({page,setBody})
-    return ()=>{}
-  },[page])
+
+  // React.useEffect(()=>{
+  //   pagination && PaginationCall({page,setBody})
+  //   return ()=>{}
+  // },[page])
 
 
    return (

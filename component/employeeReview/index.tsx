@@ -6,8 +6,8 @@ export default function index() {
     <PaginatePanel 
       searchType="employeeName"
       fetchData={fetchAllReviews}
-      title="Employee Reviews" 
-      btnTitle="Add New Employee Review" 
+      title="Reviews" 
+      btnTitle="" 
       header={["hashIndex","en", "remark"]}
     />
   )

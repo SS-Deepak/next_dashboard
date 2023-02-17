@@ -17,7 +17,6 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
     const [dataFilter, setDataFilter] = useState() as any
     const renderData = search ? dataFilter: query
 
-    // console.log(query, dataBody, body)
     
     // search filter
     useEffect(()=>{
