@@ -6,6 +6,7 @@ import { deleteData } from "@/services/CRUD"
 import {BodyListProps} from "@/models/layout"
 import { usePaginate } from "@/component/layout/CommonPage/CommonPagePagination"
 import { useEffect, useState } from "react"
+import { LoginAsUser } from "@/services/loginAsUser"
 
 
 export default function componentName({page, button,deletePopUp,dataBody, title ,searchType, search}:BodyListProps) {
@@ -84,6 +85,8 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
                                     const link = router.asPath.split("/")[1]
                                     const link1 = router.asPath.split("/")[2]
                                     router.push(`/${link}/${link1}/edit/${list.id}`)
+                                }else if("login"){
+                                    LoginAsUser({data: {email: list.email, password: list.password}, router})
                                 }
                             }
                             return(
@@ -100,4 +103,9 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
 
     </div>
   );
+}
+
+
+const setNewUser = () => {
+    
 }

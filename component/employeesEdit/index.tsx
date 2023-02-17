@@ -1,7 +1,7 @@
 import { useEdit } from "@/pages/admin/employees/edit/[id]";
 import { edit } from "@/services/editEmployeeAdmin";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "./container"
 import styles from "./index.module.css"
 
@@ -14,6 +14,7 @@ export default function componentName() {
     alert("Details updated successfully✔✔")
     router.push("/employees")
   }
+
   
   return (
     <div className={styles.editContainer}>

@@ -34,13 +34,13 @@ export default function componentName() {
       
       if(data.token){
         const d = new Date();
-      d.setTime(d.getTime() + (40*24*60*60*1000));
-      let expires = "expires="+ d.toUTCString();
-      document.cookie = "role" + "=" + data.role + ";" + expires + ";path=/";
-        localStorage.setItem("token", data.token)
-        localStorage.setItem("user", JSON.stringify(data))
-        router.push("/")
-      }
+        d.setTime(d.getTime() + (40*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = "role" + "=" + data.role + ";" + expires + ";path=/";
+            localStorage.setItem("token", data.token)
+            localStorage.setItem("user", JSON.stringify(data))
+            router.push("/")
+        }
     }
     
     useEffect(()=>{

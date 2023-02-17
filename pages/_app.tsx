@@ -10,12 +10,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const [visible, setVisible] = useState(true)
 
   useEffect(()=>{
-    const roleToken = document.cookie.split(" ")
-    const yes = roleToken.some((data:any)=>(
-      data.includes("admin")
-    ))
-    !yes ? setRole("admin") : setRole("employee")
     
+    if(localStorage.getItem("userToken")){
+      setRole("employee")
+    }else{
+      setRole("admin")
+    }
   })
 
   return(

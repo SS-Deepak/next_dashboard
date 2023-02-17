@@ -107,15 +107,13 @@ export default function index() {
         </div>
 
         <ul className={styles.selectHidden}>
-          <li>System</li>
-          <li>Setting</li>
-          <li onClick={()=>router.push("/compensation")}>Compensation</li>
-          <li onClick={()=>router.push("/designations")}>Designation</li>
-          <li onClick={()=>router.push("/departments")}>Departments</li>
-          <li onClick={()=>router.push("/status")}>Status</li>
-          <li onClick={()=>router.push("/clients")}>Clients</li>
-          <li onClick={()=>router.push("/projects")}>Projects</li>
-          <li>Timesheet</li>
+          
+          <li onClick={()=>router.push("/")}>Dashboard</li>
+          <li onClick={()=>router.push("/attendance")}>Attendance</li>
+          <li onClick={()=>router.push("/admin/leave")}>Leaves</li>
+          <li onClick={()=>router.push("/admin/holiday")}>Holidays</li>
+          <li onClick={()=>router.push("/admin/clients")}>Clients</li>
+          <li onClick={()=>router.push("/edit")}>Profile</li>
         </ul>
       </div>
   )
@@ -129,7 +127,9 @@ export default function index() {
 
         <div className={styles.panelData}>
           {
-            role === "admin" ? <AdminPanel/> : <EmployeePanel/>
+            role === "admin" ? 
+            <AdminPanel/> 
+            : <EmployeePanel/>
           }
           
         </div>

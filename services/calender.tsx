@@ -38,12 +38,19 @@ export function fetchMainCalendar({currentMonth, currentYear, setHoliday, setDat
 
 
 export function addAttendance (date:any, check:any){
+    let token:any;
+    if(localStorage.getItem("userToken")){
+        token=localStorage.getItem("userToken")
+    }else{
+        token=localStorage.getItem("token")
+    }
+
     const fetchAttendance =async ()=>{
         await fetch(`${process.env.BASE_PATH}/attendance`,{
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({check, date})
         })
@@ -57,7 +64,7 @@ export function fetchEmployeeCalendar({setHoliday, setData}:any) {
       
         const response =  await fetch(`${process.env.BASE_PATH}/attendance/single`,{
             headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
+                "Authorization": `Bearer ${localStorage.getItem("userToken")}`
             }
         })
             
