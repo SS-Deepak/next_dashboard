@@ -3,9 +3,11 @@ import { FormEvent, useState } from "react"
 import { GeneralPage } from "."
 import { useDetails } from "@/pages/admin/employees/detail/[id]"
 import { fetchReviews } from "@/services/employee"
+// import { getOfferLetter } from "@/services/settingService"
+import { useRouter } from "next/router"
 
- // upper tabs
- export const TabsHeader = ({mainTabs, setTabIndex}:any) => (
+// upper tabs
+export const TabsHeader = ({mainTabs, setTabIndex}:any) => (
   <div className={styles.tabsHeader} ref={mainTabs}>
       <div className={`${styles.tabs} ${styles.show}`} onClick={(e)=>handleTabs(e, setTabIndex)}>Personal Details</div>
       <div className={styles.tabs} onClick={(e)=>handleTabs(e, setTabIndex)}>Leaves</div>
@@ -15,10 +17,11 @@ import { fetchReviews } from "@/services/employee"
 
 // main tabs body
 export const TabsBody = ({tabIndex,modal}:any) => {
+  const {query} = useRouter()
   return(
     <div className={styles.tabsBody}>
         <>{
-          tabIndex === 0 ?<TabsBody1/>: tabIndex ===1?<TabsBody2 />:<TabsBody3 modal={modal}/>
+          tabIndex === 0 ?<TabsBody1 id={query.id}/>: tabIndex ===1?<TabsBody2 />:<TabsBody3 modal={modal}/>
         }</>
     </div>
   )
@@ -40,9 +43,11 @@ const handleTabs = (e:FormEvent<HTMLInputElement> | any, setTabIndex:any) => {
     })
 }
  
-  
+
+
+
 // based on tabs index value tabs will display
-const TabsBody1 = () => {
+const TabsBody1 = ({id}:any) => {
   
   return(
     <div className={styles.personalDetail}>
@@ -60,10 +65,10 @@ const TabsBody1 = () => {
       </div>
 
       <div className={styles.letter}>
-        <Chip title="Offer Letter"/>
-        <Chip title="Appointment Letter"/>
+        <Chip title="Offer Letter"  id={id} link="offer_letter"/>
+        <Chip title="Appointment Letter"  id={id} link="appoint_letter"/>
         <Chip title="Salary Slip"/>
-        <Chip title="Releaving Letter"/>
+        <Chip title="Releaving Letter"  id={id} link="releaving_letter"/>
         <Chip title="Curriculum Vitae/Resume"/>
       </div>
     </div>
@@ -144,7 +149,7 @@ const PersonalTable = ({data}:any) => {
       <tr>
         <th>Mother Name</th>
         <td>{data.motherName?data.motherName:"N/A"}</td>
-      </tr>
+      </tr>   
       <tr>
         <th>Gender</th>
         <td>{data.gender?data.gender:"N/A"}</td>
@@ -199,8 +204,24 @@ const BankTable = ()=>{
 )}
 
 // document details data
-const Chip = ({title}:any) =>(
-  <div className={styles.chip}>
-    {title}
-  </div>
+const Chip = ({title}:any) =>{
+  const {query} = useRouter()
+  const data = title.toLowerCase().split(" ").join("_")
+  const selection  = ["offer_letter", "appointment_letter", "releaving_letter"]
+  const yes = selection.includes(data)
+  const url = `http://localhost:3000/api/employees/${query.id}/${data}`
+  return(
+<>{
+  yes?
+  <a target="_blank" rel="noopener" href={url}>
+    <div className={styles.chip}>
+      {title}
+    </div>
+  </a>:<div className={styles.chip}>
+      {title}
+    </div>
+}</>
+
+
 )
+}

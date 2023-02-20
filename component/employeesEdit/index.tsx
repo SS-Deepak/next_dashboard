@@ -12,7 +12,7 @@ export default function componentName() {
 
   if(status){
     alert("Details updated successfully✔✔")
-    router.push("/employees")
+    router.reload()
   }
 
   
@@ -41,6 +41,6 @@ const filterData = (data:any, query:any,setStatus:any) =>{
   ))
   filterResponse.pop()
   const result = Object.fromEntries(filterResponse)
-  
+  console.log(result)
   edit(query.id, result, setStatus)
 }

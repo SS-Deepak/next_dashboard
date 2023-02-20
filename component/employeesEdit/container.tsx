@@ -1,7 +1,7 @@
 import styles from "./index.module.css"
 import { Input } from "./inputs"
 
-export default function componentName({list, title}:any) {
+export default function componentName({list, title, value, type}:any) {
   return (
     <div className={styles.detailsBox}>
         <h3>{title}</h3>
@@ -9,7 +9,7 @@ export default function componentName({list, title}:any) {
         <div className={styles.detailsBoxContainer}>
             {
                 list.map((item:any, index:number)=>{
-                        return <Input item={item} key={index}/>
+                        return <Input type={type} item={item} value={value} key={index}/>
                 })
             }
         </div>

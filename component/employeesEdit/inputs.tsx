@@ -1,6 +1,8 @@
 import { useEdit } from "@/pages/admin/employees/edit/[id]"
+import Image from "next/image"
 import styles from "./index.module.css"
-
+import LOGO from "../../assets/Images/logo.png"
+import { useSetting } from "../setting"
 const TimeZone = ({keyItem}:any)=>{
     const edit = useEdit()
 
@@ -106,11 +108,11 @@ const Select = ({keyItem, list}:any)=>{
     )
 }
 
-export const Input = ({item}:any) =>{
+export const Input = ({item, value,type}:any) =>{
 
     const select = ["Designation", "Department", "Gender", "Time Zone"]
     const dateType = ["Resignation Date", "Offer Letter Date" ,"Offer Joining Date", "DOJ", "DOB"]
-    const fileType = ["Resume", "Employee Photograph"]
+    const fileType = ["Resume", "Employee Photograph","Logo"]
 
     const dataType = (item:any) =>{
         const selectYes = select.some(data=>data === item) 
@@ -131,16 +133,36 @@ export const Input = ({item}:any) =>{
 
     return(
         <div className={styles.detailsInput} >
-            <label htmlFor={item}>{item}</label>
-            <DetailsData item={item} input={inputType}/> 
+            {   item==="BLANK"?null:
+                item === "COMPANY_IMAGE"? <Image alt="Company_Logo" src={LOGO} width={170} height={40}
+                />:
+                    <>{
+                        <>
+                            <label htmlFor={item}>{item}</label>
+                            <DetailsData type={type} item={item} value={value!==undefined&&value} input={inputType}/> 
+                        </>
+                    }
+                    </>
+            }
         </div>
     )
 }
 
-const DetailsData = ({item, input}:any) =>{
-    const edit = useEdit()
+const DetailsData = ({item, value, input, type}:any) =>{
+    const edit = type !== "setting"? useEdit(): useSetting() as any
     let key = item.toLowerCase().split(" ")
-    
+    let valueData;
+    const item_key = edit.finalData !== undefined ? item.split(" ").map((item:any)=>(
+        item.toLowerCase()
+    )).join("_") : ""
+        
+    if(typeof(value) === 'object'){
+        valueData = value.filter((item:any)=>{
+            return item.name === item_key
+        }
+        )
+    }
+
     // format the key
     if(key.length>1){
         const update = key.map((item:string, index:number)=>{
@@ -157,7 +179,7 @@ const DetailsData = ({item, input}:any) =>{
     }else{
         key = String(key)
     }
-    
+
     if(item === "Gender"){
         return <Select keyItem="gender" list={["Male", "Female"]}/>
     }else if(item === "Designation"){
@@ -167,6 +189,11 @@ const DetailsData = ({item, input}:any) =>{
     }else if(item === "Time Zone"){
         return <TimeZone keyItem="timeZone" />
     }else{
-        return <input type={input} placeholder={`Enter ${item}`} onChange={(e)=>edit.setData({key, value: e.target.value})}/>
+       
+        return <input type={input} 
+        placeholder={`Enter ${item}`} 
+        // value={edit.finalData ===""?valueData !== undefined && valueData?.length > 0 ? valueData[0].value:"":edit.finalData&&edit.finalData[item_key]}  
+        // onChange={(e)=>edit.setFinalData({...(edit.finalData), [item_key]: e.target.value})}
+        />
     }
 }

@@ -86,7 +86,7 @@ export default function index() {
 
         <ul className={styles.selectHidden}>
           <li>System</li>
-          <li>Setting</li>
+          <li onClick={()=>handleRoute("/admin/settings")}>Setting</li>
           <li onClick={()=>handleRoute("/admin/compensation")}>Compensation</li>
           <li onClick={()=>handleRoute("/admin/designations")}>Designation</li>
           <li onClick={()=>handleRoute("/admin/departments")}>Departments</li>
