@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import useSWR from "swr"
+import formidable from "formidable"
 
 export const fetchEmployees = ({setBody}:any)=>{
   useEffect(()=>{
@@ -22,10 +23,11 @@ export const fetchEmployees = ({setBody}:any)=>{
       
 }
 
-export const fetchSingleEmployee = async (setPersonal:any, setLeave?:any)=>{
-  const {query} = useRouter()
-  
-  if(query.id){
+export const fetchSingleEmployee = async (query:any, setPersonal:any,personal:any, setLeave?:any)=>{
+
+async function  call(){
+
+  if(query.id  ){
     const url1 = `${process.env.BASE_PATH}/employees/${query.id}`
     const url2 = `${process.env.BASE_PATH}/leaves/${query.id}`
 
@@ -39,7 +41,6 @@ export const fetchSingleEmployee = async (setPersonal:any, setLeave?:any)=>{
     const resJson = await response.json()
     
     resJson.data !== undefined ? setPersonal( resJson.data ) : setPersonal([])
-    
     if(setLeave){
       const leavesResponse = await fetch(url2,{
         headers: {
@@ -48,9 +49,29 @@ export const fetchSingleEmployee = async (setPersonal:any, setLeave?:any)=>{
       })
       const leaveJson = await leavesResponse.json()
       leaveJson.data !== undefined ? setLeave( leaveJson.data ) : setLeave([])
-      // console.log(leaveJson,"leave", url2)
     } 
   }
+  else{
+    const url2 = `${process.env.BASE_PATH}/leaves/single`
+
+    if(setLeave){
+      const leavesResponse = await fetch(url2,{
+        headers: {
+          "Authorization" : `Bearer ${localStorage.getItem("userToken")}`
+        }
+      })
+      const leaveJson = await leavesResponse.json()
+      leaveJson.data !== undefined ? setLeave( leaveJson.data ) : setLeave([])
+    } 
+  }
+}
+if(!Boolean(personal.status)){
+  call()
+}
+
+useEffect(()=>{
+  // return () => {}
+})
 
 }
 
@@ -160,3 +181,111 @@ export const addReview = async (data:any, id:any)=>{
       })
       await res.json()
 }
+
+export const settingEmployee = async (body:any, setStatus:any, id:any)=>{
+  // useEffect(()=>{
+    async function  fun(){
+      const res = await fetch(`${process.env.BASE_PATH}/employees/${id.id}`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization" :`Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(body.data)
+      })
+      const responseJSON = await res.json()
+
+      setStatus(responseJSON.status)
+    }
+    fun()
+
+    return ()=>{}
+  // },[])
+}
+
+export const fetchDetails = async ({setBody,id,status, setStatus}:any) =>{
+  // useEffect(()=>{
+    async function  fun(){
+      
+        const res = await fetch(`${process.env.BASE_PATH}/employees/${id}`,{
+          headers: {
+            "Authorization" :`Bearer ${localStorage.getItem("token")}`
+          }
+        })
+        const responseJSON = await res.json()
+        setBody(responseJSON.data)
+
+
+        if(responseJSON.status === false){
+          setStatus(true)
+        }else{
+          setStatus(false)
+        }
+      }
+      if(status){
+        fun()
+      }
+      
+  
+      // return ()=>{}
+    // },[])
+}
+
+
+
+
+export const exportMultipleDocs = async ({form_data}:any)=>{
+  try{
+    const res = await fetch(`${process.env.BASE_PATH}/files/multi`,{
+        method: 'POST',
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: form_data
+      },
+    )
+
+    return await res.json()
+
+  }catch(error){
+    console.log("error", error)
+  }
+}
+
+export const exportDocs = async ({form_data}:any)=>{
+  try{
+    const res = await fetch(`${process.env.BASE_PATH}/files`,{
+        method: 'POST',
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: form_data
+      },
+    )
+
+    return await res.json()
+
+  }catch(error){
+    console.log("error", error)
+  }
+}
+
+export const updateProfile = async(id:any)=>{
+  try{
+    const data = await fetch(process.env.BASE_PATH+"/employees/profile",{
+      method: 'POST',
+      headers:{
+        "Content-Type" : "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify({id})
+    },
+    )
+    const dataJSON = await data.json()
+    
+    return {dataJSON,code:data.status}
+  }catch (error){
+    console.log(error)
+  }
+}
+

@@ -10,18 +10,18 @@ import { LoginAsUser } from "@/services/loginAsUser"
 
 
 export default function componentName({page, button,deletePopUp,dataBody, title ,searchType, search}:BodyListProps) {
+
     const router = useRouter()
     const {body} = usePaginate() as any
-    const query = dataBody !== undefined ?dataBody:body===undefined?[]:body.data
+    const query = dataBody !== undefined ?dataBody.length > 1? dataBody: Array(dataBody):body===undefined?[]:body.data
     const btns = button && ListButtons.map(btn=>button.includes(btn.key))
     
     const [dataFilter, setDataFilter] = useState() as any
     const renderData = search ? dataFilter: query
 
-    
     // search filter
     useEffect(()=>{
-        const filter = query.filter((item:any)=>{
+        const filter = query?.filter((item:any)=>{
             const yes = String(item[searchType]).toLowerCase().search(String(search).toLowerCase())
             
             return  yes>-1 && item 
@@ -30,8 +30,6 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
 
         return ()=>{}
     },[search])
-
-    
 
     return (
         <div className={styles.listContainer}>

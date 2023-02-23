@@ -31,6 +31,7 @@ export function fetchMainCalendar({currentMonth, currentYear, setHoliday, setDat
         const responseJSON = await response.json()
         setHoliday(responseJSON.holiday)
         setData(responseJSON)
+        console.log(responseJSON)
     }
     useSWR(`${process.env.BASE_PATH}/attendance` ,fetchAttendance )
 
@@ -39,6 +40,7 @@ export function fetchMainCalendar({currentMonth, currentYear, setHoliday, setDat
 
 export function addAttendance (date:any, check:any){
     let token:any;
+
     if(localStorage.getItem("userToken")){
         token=localStorage.getItem("userToken")
     }else{

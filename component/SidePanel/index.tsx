@@ -110,7 +110,7 @@ export default function index() {
           
           <li onClick={()=>router.push("/")}>Dashboard</li>
           <li onClick={()=>router.push("/attendance")}>Attendance</li>
-          <li onClick={()=>router.push("/admin/leave")}>Leaves</li>
+          <li onClick={()=>router.push("/leaves")}>Leaves</li>
           <li onClick={()=>router.push("/admin/holiday")}>Holidays</li>
           <li onClick={()=>router.push("/admin/clients")}>Clients</li>
           <li onClick={()=>router.push("/edit")}>Profile</li>

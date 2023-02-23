@@ -18,7 +18,6 @@ export default function index() {
             <Page title="Upcoming Holiday" headerTitle={["Title", "Date"]} data={holiday}/>
         </div>
     </div>
-    
   )
 }
 

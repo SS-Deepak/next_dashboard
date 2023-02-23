@@ -7,10 +7,9 @@ import { fetchSingleEmployee } from "@/services/employee";
 const EditContext = createContext({}) as any
 
 export default function componentName() {
-  const [finalData, setFinalData] = useState() as any
+  const [finalData, setFinalData] = useState("") as any
   const [yes, setYes] = useState(true)
 
-  console.log(finalData)
     // fetchSingleEmployee(setData)
     // console.log(data)
 

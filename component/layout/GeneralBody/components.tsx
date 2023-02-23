@@ -1,10 +1,11 @@
+import { useRouter } from "next/router"
 import styles from "../CommonPage/index.module.css"
-import { FormEvent, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { GeneralPage } from "."
 import { useDetails } from "@/pages/admin/employees/detail/[id]"
-import { fetchReviews } from "@/services/employee"
-// import { getOfferLetter } from "@/services/settingService"
-import { useRouter } from "next/router"
+import { fetchReviews,exportDocs } from "@/services/employee"
+import { DocumentUpload } from "@/component/filesUpload/docUpload"
+import ProfileImage from '../../filesUpload/profilePic/index'
 
 // upper tabs
 export const TabsHeader = ({mainTabs, setTabIndex}:any) => (
@@ -42,7 +43,6 @@ const handleTabs = (e:FormEvent<HTMLInputElement> | any, setTabIndex:any) => {
       }
     })
 }
- 
 
 
 
@@ -58,11 +58,7 @@ const TabsBody1 = ({id}:any) => {
         <BankTable/>
       </div>
 
-      <div className={styles.doc}>
-        <h1>Document Upload</h1>
-        <input type="file" />
-        <button>Save</button>
-      </div>
+      <DocumentUpload call={(data:any)=>console.log(data,"data")}/>
 
       <div className={styles.letter}>
         <Chip title="Offer Letter"  id={id} link="offer_letter"/>
@@ -101,6 +97,10 @@ const TabsBody2 =()=>{
 // personal tabs data
 const PersonalDetail = () =>{
   const {personal} = useDetails()
+  const [change, setChange] = useState(false)
+  const [selectedImage, setSelectedImage] = useState("") 
+  const [selectedFile, setSelectedFile] = useState<File>() as any
+
   
   return(
 <div className={styles.biography}>
@@ -108,7 +108,7 @@ const PersonalDetail = () =>{
     personal&&<>
         <h1>Biography</h1>
         <div className={styles.bioTop}>
-          <span>150X150</span>
+          <ProfileImage/>
 
           <div className={styles.bioDetails}>
             <h2>{personal.firstname}</h2>

@@ -17,10 +17,17 @@ export default function index() {
   useEffect(()=>{
     if(localStorage.getItem("guestUser")){
       const user = localStorage.getItem("guestUser") as any
-      setName(JSON.parse(user).name)
+      if(user){
+
+        const data = JSON.parse(user).name
+        data && setName(data)
+      }
     }else{
       const user = localStorage.getItem("user") as any
-      setName(JSON.parse(user).name)
+      if(user){
+        const data = JSON.parse(user).name
+        data && setName(data)
+      }
     }
   })
 

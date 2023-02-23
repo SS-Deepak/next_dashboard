@@ -29,6 +29,7 @@ export default function componentName({employee}:any) {
     
     employee ? fetchEmployeeCalendar({setHoliday, setData}) : fetchSingleCalendar({id:query.id, currentMonth, currentYear,setHoliday, setData})
     const holidays = holidayList({holiday, currentMonth}) || []
+    console.log(data)
     const setDate = setDates({data, month,holidays, currentMonth, currentYear, yearCode,single:true}) as any
     
   return (

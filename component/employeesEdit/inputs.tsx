@@ -3,11 +3,12 @@ import Image from "next/image"
 import styles from "./index.module.css"
 import LOGO from "../../assets/Images/logo.png"
 import { useSetting } from "../setting"
-const TimeZone = ({keyItem}:any)=>{
-    const edit = useEdit()
+
+const TimeZone = ({keyItem,finalData}:any)=>{
+    const edit = useEdit()as any
 
     return(
-    <select  onChange={(e)=>edit.setData({key:keyItem, value: e.target.value})} name="timezone" defaultValue="(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi" >
+    <select  onChange={(e)=>edit.setFinalData({...finalData, [keyItem]: e.target.value})} name="timezone" defaultValue="(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi" >
         <option value="Etc/GMT+12">(GMT-12:00) International Date Line West</option>
         <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
         <option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
@@ -93,11 +94,11 @@ const TimeZone = ({keyItem}:any)=>{
     </select>
 )}
 
-const Select = ({keyItem, list}:any)=>{
-    const edit = useEdit()
+const Select = ({keyItem, list,finalData}:any)=>{
+    const edit = useEdit() as any
 
     return(
-        <select onChange={(e)=>edit.setData({key:keyItem, value: e.target.value})}>
+        <select onChange={(e)=>edit.setFinalData({...finalData, [keyItem]: e.target.value})}>
             <option value=""></option>
             {
                 list.map((item:any, index: number)=>(
@@ -152,15 +153,22 @@ const DetailsData = ({item, value, input, type}:any) =>{
     const edit = type !== "setting"? useEdit(): useSetting() as any
     let key = item.toLowerCase().split(" ")
     let valueData;
-    const item_key = edit.finalData !== undefined ? item.split(" ").map((item:any)=>(
+
+    const item_set = item === "DOB" ? "dob" : item ==="DOJ"? "doj" :item === "PAN No" ? "panNo": item === "ZIP"? item === "Resignation Date"? "employee_resign_date": "zip": item === "Offer Letter Date"? "offer_letter_date": item === "Offer Joining Date"? "employee_offer_joining_date": (item[0].toLowerCase() + (item.substr(1).split(" ").join("")))
+    const item_key = edit.finalData !== undefined && type === "setting"? item.split(" ").map((item:any)=>(
         item.toLowerCase()
-    )).join("_") : ""
-        
+    )).join("_") : item_set
+
     if(typeof(value) === 'object'){
-        valueData = value.filter((item:any)=>{
+        if(type==="setting"){
+            valueData = value.filter((item:any)=>{
             return item.name === item_key
         }
-        )
+        )}else{
+            valueData = Object.entries(value[0]?value[0]:value).filter((item:any)=>{
+                return item[0] === item_key 
+            })
+        }
     }
 
     // format the key
@@ -181,19 +189,19 @@ const DetailsData = ({item, value, input, type}:any) =>{
     }
 
     if(item === "Gender"){
-        return <Select keyItem="gender" list={["Male", "Female"]}/>
+        return <Select keyItem="gender" list={["Male", "Female"]} finalData={edit.finalData}/>
     }else if(item === "Designation"){
-        return <Select keyItem="designation" list={["Android Developer", "Business Development Executive", "Hardware Executive","Project Manager", "Reciptionist","Sales Executive", "SEO", "Team Lead","Trainee","Web Designer", "Web Developer"]}/>
+        return <Select keyItem="designation" finalData={edit.finalData} list={["Android Developer", "Business Development Executive", "Hardware Executive","Project Manager", "Reciptionist","Sales Executive", "SEO", "Team Lead","Trainee","Web Designer", "Web Developer"]}/>
     }else if(item === "Department"){
-        return <Select keyItem="department" list={["Accounts", "Human Resourse","Mobile App Development","Sales & Marketing", "SEO","Web Development"]}/>
+        return <Select keyItem="department" finalData={edit.finalData} list={["Accounts", "Human Resourse","Mobile App Development","Sales & Marketing", "SEO","Web Development"]}/>
     }else if(item === "Time Zone"){
         return <TimeZone keyItem="timeZone" />
     }else{
        
         return <input type={input} 
-        placeholder={`Enter ${item}`} 
-        // value={edit.finalData ===""?valueData !== undefined && valueData?.length > 0 ? valueData[0].value:"":edit.finalData&&edit.finalData[item_key]}  
-        // onChange={(e)=>edit.setFinalData({...(edit.finalData), [item_key]: e.target.value})}
+            placeholder={`Enter ${item}`} 
+            value={edit.finalData ===""?valueData !== undefined && valueData?.length > 0 ? valueData[0].value ?? valueData[0][1]:"":edit.finalData&&edit.finalData[item_key]}  
+            onChange={(e)=>edit.setFinalData({...(edit.finalData), [item_key]: e.target.value})}
         />
     }
 }
