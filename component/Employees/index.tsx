@@ -1,5 +1,3 @@
-import {  useState, createContext, useContext } from "react"
-import CommonPage from "../layout/CommonPage/index"
 import { fetchEmployees } from "@/services/employee"
 import AddEmployee from "../Modals/Employee/addEmployee"
 import {DeleteModal} from "../Modals/Delete/delete"

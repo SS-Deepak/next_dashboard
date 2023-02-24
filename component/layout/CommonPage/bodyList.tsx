@@ -10,10 +10,9 @@ import { LoginAsUser } from "@/services/loginAsUser"
 
 
 export default function componentName({page, button,deletePopUp,dataBody, title ,searchType, search}:BodyListProps) {
-
     const router = useRouter()
     const {body} = usePaginate() as any
-    const query = dataBody !== undefined ?dataBody.length > 1? dataBody: Array(dataBody):body===undefined?[]:body.data
+    const query = dataBody !== undefined ?dataBody.length > 1? dataBody: dataBody[0] === undefined?Array(dataBody):dataBody:body===undefined?[]:body.data
     const btns = button && ListButtons.map(btn=>button.includes(btn.key))
     
     const [dataFilter, setDataFilter] = useState() as any
@@ -35,11 +34,9 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
         <div className={styles.listContainer}>
     {
             renderData.length>0? renderData&&renderData.map((list:any, Bodyindex:any)=>{
-            
             const data = Object.keys(list ? list: {})    // it will return keys if body&&body.data data exist
             const filterData = ListPanel.filter((item)=>data.includes(item.key))   // it will return filterd data from json file
             return(
-                
                 // single list
                 <div key={Bodyindex} className={styles.employeesListContainer}>
 
@@ -101,9 +98,4 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
 
     </div>
   );
-}
-
-
-const setNewUser = () => {
-    
 }

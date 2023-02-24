@@ -18,10 +18,6 @@ export const DocumentUpload = ({call}:any) => {
   
   
     return(
-      <div className={styles.doc}>
-        <h1>Document Upload</h1>
         <input type="file" multiple onChange={(e)=>handleChange(e)}/>
-        <button>Save</button>
-      </div>
     )
   }

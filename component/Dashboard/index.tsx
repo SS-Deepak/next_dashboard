@@ -7,7 +7,6 @@ export default function index() {
     const [employees, setEmployees] = useState<any[]>([])
     const [holiday, setHolidays] = useState<any[]>([])
     
-    console.log(employees)
     fetchData({setEmployees, setHolidays})
   
     return (

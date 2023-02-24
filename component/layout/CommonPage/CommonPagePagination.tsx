@@ -9,8 +9,6 @@ export default function index({fetchData, modal, title, btnTitle,header, buttons
   const [status, setStatus] = useState(true)
   const [year, setYear] = useState(new Date(Date.now()).getFullYear())as any 
 
-  // console.log(title, year)
-
   fetchData({setBody,year})
 
   if(body!==undefined && status){

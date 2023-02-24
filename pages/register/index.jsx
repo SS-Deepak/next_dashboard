@@ -8,9 +8,12 @@ export default function componentName() {
         name:"",
         email:"",
         password:"",
-        phone: "",
+        phoneNo: "",
     })
-    const handleSubmit =async ()=>{
+
+    const handleSubmit =async (e)=>{
+      e.preventDefault()
+
         const response = await fetch(`${process.env.BASE_PATH}/register`, {
             method: 'POST', // make sure the method is set to POST
             headers: {
@@ -19,7 +22,6 @@ export default function componentName() {
             body: JSON.stringify(user) // send the secret as payload in the body
           })
           const data = await response.json()
-            
     }
 
 
@@ -39,10 +41,10 @@ export default function componentName() {
           <input type="text" placeholder='enter an password' onChange={(e)=>setUser({...user, password:e.target.value})} value={user.password}/>
         </div>
         <div className={styles.input}>
-          <input type="text" placeholder='enter an phone' onChange={(e)=>setUser({...user, phone:e.target.value})} value={user.phone}/>
+          <input type="text" placeholder='enter an phone' onChange={(e)=>setUser({...user, phoneNo:e.target.value})} value={user.phoneNo}/>
         </div>
 
-        <button onClick={()=>handleSubmit()}>Register</button>
+        <button onClick={(e)=>handleSubmit(e)}>Register</button>
         <p>Already have an account? <span onClick={()=>router.push('/login')}>click here</span></p>
 
         </form>

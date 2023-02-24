@@ -1,7 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import useSWR from "swr"
-import formidable from "formidable"
 
 export const fetchEmployees = ({setBody}:any)=>{
   useEffect(()=>{
@@ -23,7 +22,7 @@ export const fetchEmployees = ({setBody}:any)=>{
       
 }
 
-export const fetchSingleEmployee = async (query:any, setPersonal:any,personal:any, setLeave?:any)=>{
+export const fetchSingleEmployee = async (query?:any, setPersonal?:any,personal?:any, setLeave?:any)=>{
 
 async function  call(){
 
@@ -65,7 +64,8 @@ async function  call(){
     } 
   }
 }
-if(!Boolean(personal.status)){
+
+if(query.id && !Boolean(personal.status)){
   call()
 }
 

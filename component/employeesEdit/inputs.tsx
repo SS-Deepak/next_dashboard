@@ -3,6 +3,7 @@ import Image from "next/image"
 import styles from "./index.module.css"
 import LOGO from "../../assets/Images/logo.png"
 import { useSetting } from "../setting"
+import { DocumentUpload } from "../filesUpload/docUpload"
 
 const TimeZone = ({keyItem,finalData}:any)=>{
     const edit = useEdit()as any
@@ -155,6 +156,7 @@ const DetailsData = ({item, value, input, type}:any) =>{
     let valueData;
 
     const item_set = item === "DOB" ? "dob" : item ==="DOJ"? "doj" :item === "PAN No" ? "panNo": item === "ZIP"? item === "Resignation Date"? "employee_resign_date": "zip": item === "Offer Letter Date"? "offer_letter_date": item === "Offer Joining Date"? "employee_offer_joining_date": (item[0].toLowerCase() + (item.substr(1).split(" ").join("")))
+
     const item_key = edit.finalData !== undefined && type === "setting"? item.split(" ").map((item:any)=>(
         item.toLowerCase()
     )).join("_") : item_set
@@ -197,11 +199,14 @@ const DetailsData = ({item, value, input, type}:any) =>{
     }else if(item === "Time Zone"){
         return <TimeZone keyItem="timeZone" />
     }else{
-       
-        return <input type={input} 
+        if(input === "file"){
+            return <DocumentUpload call={(data:any)=>console.log("yes")}/>
+        }else{
+            return <input type={input} 
             placeholder={`Enter ${item}`} 
             value={edit.finalData ===""?valueData !== undefined && valueData?.length > 0 ? valueData[0].value ?? valueData[0][1]:"":edit.finalData&&edit.finalData[item_key]}  
             onChange={(e)=>edit.setFinalData({...(edit.finalData), [item_key]: e.target.value})}
-        />
+            />
+        }
     }
 }

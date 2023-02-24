@@ -58,7 +58,11 @@ const TabsBody1 = ({id}:any) => {
         <BankTable/>
       </div>
 
-      <DocumentUpload call={(data:any)=>console.log(data,"data")}/>
+      <div className={styles.doc}>
+        <h1>Document Upload</h1>
+        <DocumentUpload call={(data:any)=>console.log(data,"data")}/>
+        <button>Save</button>
+      </div>
 
       <div className={styles.letter}>
         <Chip title="Offer Letter"  id={id} link="offer_letter"/>
