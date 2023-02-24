@@ -76,7 +76,7 @@ export default function index() {
       <Row icon={faCircleArrowUp} title="Appraisal"/>
       <Row icon={faHandPeace} title="Reviews" path='/admin/employee_review'/>
       <Row icon={faCalendarCheck} title="Holidays" path='/admin/holiday'/>
-      <Row icon={faUser} title="Admins"/>
+      <Row icon={faUser} title="Admins"  path='/admin/admins'/>
 
       <div className={styles.select} ref={showList} >
         <div className={styles.selectVisible} onClick={handleList}>

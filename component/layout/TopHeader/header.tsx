@@ -6,7 +6,7 @@ import { useRef } from "react"
 import Modal from "@mui/material/Modal"
 import { TopHeaderProps } from "@/models/layout"
 import { usePaginate } from "../CommonPage/CommonPagePagination"
-import {fetchYearBasedHoliday} from "@/services/employee"
+import {fetchYearBasedHoliday} from "@/services/employeeService"
 
 export const LeaveInput = ()=>{
   const refShow:any = useRef()

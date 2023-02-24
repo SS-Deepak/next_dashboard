@@ -1,7 +1,7 @@
 import NavigationPanel from "@/component/Navigation/index"
 import EmployeeDetails from "@/component/Employees/detail/index"
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchSingleEmployee } from "@/services/employee";
+import { fetchSingleEmployee } from "@/services/employeeService";
 import { useRouter } from "next/router";
 
 

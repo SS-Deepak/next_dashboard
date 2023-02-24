@@ -1,6 +1,6 @@
 import {AddHolidayModal} from "../Modals/Holiday/AddHolidaysModal"
 import PaginatePanel from "../layout/CommonPage/CommonPagePagination"
-import { fetchHolidayList } from "@/services/employee";
+import { fetchHolidayList } from "@/services/employeeService";
 
 export default function componentName() {
   return (

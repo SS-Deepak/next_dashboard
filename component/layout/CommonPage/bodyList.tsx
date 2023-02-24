@@ -2,11 +2,11 @@ import styles from "./index.module.css"
 import {ListButtons, ListPanel} from "./commonList"
 import stylesData from "../../../controller/headerList/index.module.css"
 import { useRouter } from "next/router"
-import { deleteData } from "@/services/CRUD"
+import { deleteData } from "@/services/CRUDService"
 import {BodyListProps} from "@/models/layout"
 import { usePaginate } from "@/component/layout/CommonPage/CommonPagePagination"
 import { useEffect, useState } from "react"
-import { LoginAsUser } from "@/services/loginAsUser"
+import { LoginAsUser } from "@/services/loginAsUserService"
 
 
 export default function componentName({page, button,deletePopUp,dataBody, title ,searchType, search}:BodyListProps) {
@@ -71,15 +71,17 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
                             const handleClick = () =>{
                                 if(del){
                                     const check = prompt("Are you sure??","YES")
+                                    if(title === "Admins"){
+                                        title = "employees"
+                                    }
                                     check === "YES" ? deleteData({title, id:list.id}):null
-
                                     setTimeout(()=>{
                                         router.reload()
                                     },1000)
                                 }else if(edit){
                                     const link = router.asPath.split("/")[1]
                                     const link1 = router.asPath.split("/")[2]
-                                    router.push(`/${link}/${link1}/edit/${list.id}`)
+                                    router.push(`/${link}/employees/edit/${list.id}`)
                                 }else if("login"){
                                     LoginAsUser({data: {email: list.email, password: list.password}, router})
                                 }

@@ -1,4 +1,4 @@
-import { fetchEmployees } from "@/services/employee"
+import { fetchEmployees } from "@/services/employeeService"
 import AddEmployee from "../Modals/Employee/addEmployee"
 import {DeleteModal} from "../Modals/Delete/delete"
 import PaginatePanel from "../layout/CommonPage/CommonPagePagination"

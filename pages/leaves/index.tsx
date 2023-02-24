@@ -1,5 +1,5 @@
 import { GeneralPage } from "@/component/layout/GeneralBody"
-import { fetchSingleEmployee } from "@/services/employee" 
+import { fetchSingleEmployee } from "@/services/employeeService" 
 import {useState} from "react"
 import NavigationPanel from "@/component/Navigation/index"
 

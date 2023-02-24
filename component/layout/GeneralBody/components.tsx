@@ -3,7 +3,7 @@ import styles from "../CommonPage/index.module.css"
 import { FormEvent, useEffect, useState } from "react"
 import { GeneralPage } from "."
 import { useDetails } from "@/pages/admin/employees/detail/[id]"
-import { fetchReviews,exportDocs } from "@/services/employee"
+import { fetchReviews,exportDocs } from "@/services/employeeService"
 import { DocumentUpload } from "@/component/filesUpload/docUpload"
 import ProfileImage from '../../filesUpload/profilePic/index'
 

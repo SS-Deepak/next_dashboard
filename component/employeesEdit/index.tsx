@@ -1,11 +1,11 @@
 import { useEdit } from "@/pages/admin/employees/edit/[id]";
-import { edit } from "@/services/editEmployeeAdmin";
-import { settingEmployee } from "@/services/employee";
+import { edit } from "@/services/editEmployeeAdminService";
+import { settingEmployee } from "@/services/employeeService";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Container from "./container"
 import styles from "./index.module.css"
-import { fetchDetails } from "@/services/employee";
+import { fetchDetails } from "@/services/employeeService";
 
 
 export default function componentName() {
@@ -27,7 +27,7 @@ export default function componentName() {
     <div className={styles.editContainer}>
         <h1>Add/Edit Employees</h1>
         <div className={styles.detailsContainer}>
-            <Container title="Personal Detail" value={data!==undefined&&data} list={["Email", "Password", "First Name", "Last Name", "DOB", "Gender", "Father Name", "Mother Name", "Religion", "Nationality"]}/>
+            <Container title="Personal Detail" value={data!==undefined&&data} list={["Email", "Password", "First Name", "Last Name", "DOB", "Gender", "Father Name", "Mother Name", "Religion", "Nationality", "Role"]}/>
             <Container title="Joining Details" value={data!==undefined&&data} list={["DOJ", "Designation", "Department", "Resume", "Employee Photograph"]}/>
             <Container title="Offer Details" value={data!==undefined&&data} list={["Offer Letter Date", "Offer Joining Date", "Salary", "Designation"]}/>
             <Container title="Resignation Details" value={data!==undefined&&data} list={["Resignation Date", "Review"]}/>

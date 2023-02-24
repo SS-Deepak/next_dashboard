@@ -1,5 +1,5 @@
 import styles from "../../layout/CommonPage/index.module.css"
-import { exportMultipleDocs } from "@/services/employee"
+import { exportMultipleDocs } from "@/services/employeeService"
 
 export const DocumentUpload = ({call}:any) => {
 

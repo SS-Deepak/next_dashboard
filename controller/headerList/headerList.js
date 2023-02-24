@@ -8,7 +8,7 @@ const Type = (title, key, width)=>{
 export const List = [
     Type(" ","blankIndex","verySmall"),
     Type("#","hashIndex","verySmall"),
-  
+    
     Type("Email","emp_email","medium"),
     Type("First Name","fn","small"),
     Type("Last Name","ln","small"),
@@ -32,7 +32,7 @@ export const List = [
     Type("Name","cname","Lmedium"),
     Type("Email ID","cemail","Lmedium"),
     Type("Phone","cphone","Lmedium"),
-
+    
     Type("Date added","p_da","S_small"),
     Type("Estimated Delivery Date","p_edd","S_small"),
     Type("Name","p_name","S_small"),
@@ -42,6 +42,7 @@ export const List = [
     Type("Created By","p_created_at","SS_small"),
     Type("Assign To","p_assign_to","SS_small"),
     
+    Type("Date Added", "date", "Xmedium"),
     Type("","btns","Xmedium"),
     
 ]

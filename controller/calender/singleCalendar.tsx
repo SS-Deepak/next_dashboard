@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import styles from "../styles/calendar.module.css"
 import { setDates,  SingleCalendarBody, YearCode , handleShiftLeft, handleShiftRight, holidayList} from "./Handler"
-import { fetchEmployeeCalendar, fetchSingleCalendar } from "@/services/calender"
+import { fetchEmployeeCalendar, fetchSingleCalendar } from "@/services/calenderService"
 
 export default function componentName({employee}:any) {
     const {query} = useRouter()

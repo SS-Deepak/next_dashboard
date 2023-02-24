@@ -1,9 +1,9 @@
 import * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
 import styles from "./index.module.css"
-import { PaginationCall } from '@/services/employee';
+import { PaginationCall } from '@/services/employeeService';
 import { usePaginate } from '../CommonPage/CommonPagePagination';
-import { callData } from '@/services/paginate';
+import { callData } from '@/services/paginateService';
 
 export default function TablePaginationDemo({pagination}:any) {
   const [page, setPage] = React.useState(0);

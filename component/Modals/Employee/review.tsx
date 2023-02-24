@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import {useState} from "react"
 import { useRouter } from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
-import { addReview } from "../../../services/employee";
+import { addReview } from "../../../services/employeeService";
 
 export function reviewEmployee({open, doj}:any) {
     const router= useRouter()

@@ -31,7 +31,6 @@ export function fetchMainCalendar({currentMonth, currentYear, setHoliday, setDat
         const responseJSON = await response.json()
         setHoliday(responseJSON.holiday)
         setData(responseJSON)
-        console.log(responseJSON)
     }
     useSWR(`${process.env.BASE_PATH}/attendance` ,fetchAttendance )
 

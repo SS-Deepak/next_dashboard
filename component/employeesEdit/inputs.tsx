@@ -112,7 +112,7 @@ const Select = ({keyItem, list,finalData}:any)=>{
 
 export const Input = ({item, value,type}:any) =>{
 
-    const select = ["Designation", "Department", "Gender", "Time Zone"]
+    const select = ["Designation", "Department", "Gender", "Time Zone", "Role"]
     const dateType = ["Resignation Date", "Offer Letter Date" ,"Offer Joining Date", "DOJ", "DOB"]
     const fileType = ["Resume", "Employee Photograph","Logo"]
 
@@ -196,6 +196,8 @@ const DetailsData = ({item, value, input, type}:any) =>{
         return <Select keyItem="designation" finalData={edit.finalData} list={["Android Developer", "Business Development Executive", "Hardware Executive","Project Manager", "Reciptionist","Sales Executive", "SEO", "Team Lead","Trainee","Web Designer", "Web Developer"]}/>
     }else if(item === "Department"){
         return <Select keyItem="department" finalData={edit.finalData} list={["Accounts", "Human Resourse","Mobile App Development","Sales & Marketing", "SEO","Web Development"]}/>
+    }else if(item === "Role"){
+        return <Select keyItem="role" finalData={edit.finalData} list={["admin", "employee"]}/>
     }else if(item === "Time Zone"){
         return <TimeZone keyItem="timeZone" />
     }else{

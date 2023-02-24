@@ -1,5 +1,5 @@
 import { useEdit } from "@/pages/admin/employees/edit/[id]";
-import { edit } from "@/services/editEmployeeAdmin";
+import { edit } from "@/services/editEmployeeAdminService";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
 import Container from "../employeesEdit/container"

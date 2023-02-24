@@ -1,5 +1,5 @@
 import PaginatePanel from "../layout/CommonPage/CommonPagePagination"
-import { fetchAllReviews } from "@/services/employee"
+import { fetchAllReviews } from "@/services/employeeService"
 
 export default function index() {
   return (

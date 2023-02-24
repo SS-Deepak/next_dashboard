@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import {useState} from "react"
 import { useRouter } from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
-import { CalendarFetcher } from "../../../services/modals";
+import { CalendarFetcher } from "../../../services/modalsService";
 
 export function DeleteModal({open, doj}:any) {
     const router= useRouter()

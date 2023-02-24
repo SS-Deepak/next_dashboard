@@ -1,6 +1,6 @@
 import {Page} from "./List"
 import {useState} from "react"
-import { fetchData } from "@/services/dashboard"
+import { fetchData } from "@/services/dashboardService"
 import styles from "./index.module.css"
 
 export default function index() {

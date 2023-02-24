@@ -1,8 +1,8 @@
 import NavigationPanel from "../../../component/Navigation/index"
 import Employees from "../../../component/Employees/index"
 import { createContext, useContext, useEffect, useState } from "react";
-import { Login } from "@/services/auth";
-import {Check} from "@/services/redirect"
+import { Login } from "@/services/authService";
+import {Check} from "@/services/redirectService"
 
 const empDataContext = createContext({})
 export default function Home() {

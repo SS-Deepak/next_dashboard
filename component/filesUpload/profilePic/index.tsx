@@ -1,4 +1,4 @@
-import { exportDocs, updateProfile } from "@/services/employee";
+import { exportDocs, updateProfile } from "@/services/employeeService";
 import styles from "../../layout/CommonPage/index.module.css"
 import {useState} from "react"
 

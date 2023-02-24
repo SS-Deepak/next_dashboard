@@ -5,7 +5,7 @@ import styles from "../index.module.css"
 import { Box } from "@mui/material";
 import {useState} from "react"
 import {useRouter} from  "next/router"
-import { addHolidayFetcher } from "@/services/modals";
+import { addHolidayFetcher } from "@/services/modalsService";
 
 export function AddHolidayModal({open}) {
     const router = useRouter()

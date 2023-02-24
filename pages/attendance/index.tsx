@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import NavigationPanel from "@/component/Navigation/index"
 import styles from "@/component/layout/CommonPage/index.module.css"
-import {addAttendance} from "@/services/calender"
+import {addAttendance} from "@/services/calenderService"
 import { useRouter } from "next/router"
 
 

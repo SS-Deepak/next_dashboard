@@ -2,6 +2,43 @@ import { useRouter } from "next/router"
 import { useEffect } from "react"
 import useSWR from "swr"
 
+export const fetchAdmins = ({setBody}:any)=>{
+  useEffect(()=>{
+console.log("admin")
+    async function  fun(){
+      
+      const res = await fetch(`${process.env.BASE_PATH}/employees/admin`,{
+        headers: {
+          "Authorization" :`Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      const responseJSON = await res.json()
+      setBody(responseJSON)
+    }
+    fun()
+
+    return ()=>{}
+  },[])
+      
+}
+export const changeRole = ({user, token, setStatus}:any)=>{
+
+    async function  fun(){
+      
+      const response = await fetch(`${process.env.BASE_PATH}/employees/change_role`, {
+        method: 'POST', // make sure the method is set to POST
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(user) // send the secret as payload in the body
+      })
+      const data = await response.json()
+      setStatus(data.code)
+    }
+    fun()
+
+}
 export const fetchEmployees = ({setBody}:any)=>{
   useEffect(()=>{
 
@@ -21,6 +58,8 @@ export const fetchEmployees = ({setBody}:any)=>{
   },[])
       
 }
+
+
 
 export const fetchSingleEmployee = async (query?:any, setPersonal?:any,personal?:any, setLeave?:any)=>{
 

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styles from "../styles/calendar.module.css"
 import { CalendarHead, CalendarBody, YearCode, setDates ,handleShiftLeft, handleShiftRight, holidayList } from "./Handler"
-import { fetchMainCalendar } from "@/services/calender"
+import { fetchMainCalendar } from "@/services/calenderService"
 
 
 export default function componentName() {
@@ -31,7 +31,6 @@ export default function componentName() {
     
     const holidays = holidayList({holiday, currentMonth})
     const final = setDates({data, month,holidays, currentMonth, currentYear, yearCode,single:false}) as any
-    console.log(final, data)
     return (
         <div className={`${styles.calendarContainer} ${styles.mainCalendar}`}>
             <div className={styles.calendarHeading}>
