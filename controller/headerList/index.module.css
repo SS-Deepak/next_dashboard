@@ -42,10 +42,10 @@
 }
 
 .danger{
-    color: #DD4B39;
+    color: #DD4B39 !important;
 }
 .success{
-    color: #00A65A;
+    color: #00A65A !important;
 }
 
 .email{

@@ -1,24 +1,22 @@
 import { GeneralPage } from "@/component/layout/GeneralBody"
-import { fetchSingleEmployee } from "@/services/employeeService" 
+import { fetchSingleEmployeeLeaves } from "@/services/employeeService" 
 import {useState} from "react"
 import NavigationPanel from "@/component/Navigation/index"
+import { Make_A_Leave } from "@/component/Modals/Leave/index.module"
 
 export default function componentName() {
-    // const {leave} = useDetails()
-    const [personal, setPersonal] = useState([]) as any
-    const [leave, setLeave] = useState([]) as any
+    const [leave, setLeave] = useState("") as any
   
-    if(!Boolean(personal.email)){
-      fetchSingleEmployee(setPersonal, setLeave)
-    }
-    console.log(leave)
+    fetchSingleEmployeeLeaves( setLeave)
+
     return( 
         <NavigationPanel>
             <GeneralPage 
-                btnTitle="Search"
+                btnTitle="Take Leave"
                 header={["hashIndex","name", "sol","fd","td", "status", "comment", "btns"]}
                 data={leave}
                 page="leaves"
+                modal={Make_A_Leave}
             />
         </NavigationPanel>
       )

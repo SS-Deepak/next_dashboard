@@ -2,6 +2,7 @@ import { fetchLeaves } from "@/services/employeeService"
 import PaginationPanel from "@/component/layout/CommonPage/CommonPagePagination"
 
 export default function index() {
+  
   return (
     <PaginationPanel
       searchType="name"

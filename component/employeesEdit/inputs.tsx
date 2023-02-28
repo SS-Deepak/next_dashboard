@@ -4,6 +4,8 @@ import styles from "./index.module.css"
 import LOGO from "../../assets/Images/logo.png"
 import { useSetting } from "../setting"
 import { DocumentUpload } from "../filesUpload/docUpload"
+import { useEmployeeType } from "."
+import { useEmployeeEdit } from "@/pages/edit"
 
 const TimeZone = ({keyItem,finalData}:any)=>{
     const edit = useEdit()as any
@@ -98,8 +100,10 @@ const TimeZone = ({keyItem,finalData}:any)=>{
 const Select = ({keyItem, list,finalData}:any)=>{
     const edit = useEdit() as any
 
+    const employee = useEmployeeType()
+
     return(
-        <select onChange={(e)=>edit.setFinalData({...finalData, [keyItem]: e.target.value})}>
+        <select onChange={(e)=>!employee&&edit.setFinalData({...finalData, [keyItem]: e.target.value})}>
             <option value=""></option>
             {
                 list.map((item:any, index: number)=>(
@@ -111,6 +115,7 @@ const Select = ({keyItem, list,finalData}:any)=>{
 }
 
 export const Input = ({item, value,type}:any) =>{
+    const employee = useEmployeeType()
 
     const select = ["Designation", "Department", "Gender", "Time Zone", "Role"]
     const dateType = ["Resignation Date", "Offer Letter Date" ,"Offer Joining Date", "DOJ", "DOB"]
@@ -132,6 +137,9 @@ export const Input = ({item, value,type}:any) =>{
         }
     }
     const inputType = dataType(item)
+    const notValid = ["Email", "Password", "DOJ", "Salary", "Designation", "Department"]
+    
+    const setDisable = notValid.includes(item) ? true:false
 
     return(
         <div className={styles.detailsInput} >
@@ -141,7 +149,7 @@ export const Input = ({item, value,type}:any) =>{
                     <>{
                         <>
                             <label htmlFor={item}>{item}</label>
-                            <DetailsData type={type} item={item} value={value!==undefined&&value} input={inputType}/> 
+                            <DetailsData disable={employee&&setDisable?true: false} type={type} item={item} value={value!==undefined&&value} input={inputType}/> 
                         </>
                     }
                     </>
@@ -150,8 +158,10 @@ export const Input = ({item, value,type}:any) =>{
     )
 }
 
-const DetailsData = ({item, value, input, type}:any) =>{
-    const edit = type !== "setting"? useEdit(): useSetting() as any
+const DetailsData = ({item, value, input, type, disable}:any) =>{
+    let edit = type !== "setting"? useEdit(): useSetting() as any
+    const employee = useEmployeeType()
+    edit = employee ? useEmployeeEdit() : edit
     let key = item.toLowerCase().split(" ")
     let valueData;
 
@@ -197,17 +207,18 @@ const DetailsData = ({item, value, input, type}:any) =>{
     }else if(item === "Department"){
         return <Select keyItem="department" finalData={edit.finalData} list={["Accounts", "Human Resourse","Mobile App Development","Sales & Marketing", "SEO","Web Development"]}/>
     }else if(item === "Role"){
-        return <Select keyItem="role" finalData={edit.finalData} list={["admin", "employee"]}/>
+        return <Select disabled={disable} keyItem="role" finalData={edit.finalData} list={["admin", "employee"]}/>
     }else if(item === "Time Zone"){
         return <TimeZone keyItem="timeZone" />
     }else{
         if(input === "file"){
-            return <DocumentUpload call={(data:any)=>console.log("yes")}/>
+            return <DocumentUpload call={type === "setting"? type:"employee"}/>
         }else{
             return <input type={input} 
-            placeholder={`Enter ${item}`} 
-            value={edit.finalData ===""?valueData !== undefined && valueData?.length > 0 ? valueData[0].value ?? valueData[0][1]:"":edit.finalData&&edit.finalData[item_key]}  
-            onChange={(e)=>edit.setFinalData({...(edit.finalData), [item_key]: e.target.value})}
+                placeholder={`Enter ${item}`} 
+                disabled={disable}
+                value={edit.finalData ===""?valueData !== undefined && valueData?.length > 0 ? valueData[0].value ?? valueData[0][1]:"":edit.finalData&&edit.finalData[item_key]}  
+                onChange={(e)=>edit.setFinalData({...(edit.finalData), [item_key]: e.target.value})}
             />
         }
     }

@@ -18,7 +18,6 @@ export const LoginAsUser = async ({data,router}:any) =>{
         let expires = "expires="+ d.toUTCString();
         document.cookie = "userRole" + "=" + "employee" + ";" + expires + ";path=/";
 
-        console.log("token", responseJSON.token)
             localStorage.setItem("userToken", responseJSON.token)
             localStorage.setItem("guestUser", JSON.stringify(responseJSON))
             router.push("/")

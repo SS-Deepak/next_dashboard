@@ -60,7 +60,7 @@ const TabsBody1 = ({id}:any) => {
 
       <div className={styles.doc}>
         <h1>Document Upload</h1>
-        <DocumentUpload call={(data:any)=>console.log(data,"data")}/>
+        <DocumentUpload call={(data:any)=>console.log(data,"component.tsx")}/>
         <button>Save</button>
       </div>
 

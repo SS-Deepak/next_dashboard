@@ -5,7 +5,7 @@ import styles from "./index.module.css"
 export default function componentName() {
     const router = useRouter()
     const [user, setUser] = useState({
-        name:"",
+      firstName:"",
         email:"",
         password:"",
         phoneNo: "",
@@ -32,7 +32,7 @@ export default function componentName() {
         <h1>Register</h1>
         
         <div className={styles.input}>
-          <input type="text" placeholder='enter an name' onChange={(e)=>setUser({...user, name:e.target.value})} value={user.name}/>
+          <input type="text" placeholder='enter an name' onChange={(e)=>setUser({...user, firstName:e.target.value})} value={user.firstName}/>
         </div>
         <div className={styles.input}>
           <input type="text" placeholder='enter an email' onChange={(e)=>setUser({...user, email:e.target.value})} value={user.email}/>

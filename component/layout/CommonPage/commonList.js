@@ -9,15 +9,15 @@ export const ListPanel = [
   
     Type("hashIndex","verySmall"),
     Type("email","medium"),
-    Type("firstname","small"),
-    Type("lastname","small"),
+    Type("firstName","small"),
+    Type("lastName","small"),
     Type("doj","Xsmall"),
     
     Type("name","Xsmall"),
     Type("subject","Lmedium"),
     Type("fromdate","small"),
     Type("todate","small"),
-    // Type("status","small"),
+    Type("status","small"),
     Type("comment","small"),
     
     Type("employeeName","large"),

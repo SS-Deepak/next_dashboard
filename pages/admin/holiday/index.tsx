@@ -4,7 +4,7 @@ import NavigationPanel from "../../../component/Navigation/index"
 export default function componentName({data}:any) {
   return (
     <NavigationPanel>
-        <Holiday/>
+        <Holiday emp={false}/>
     </NavigationPanel>
   );
 }

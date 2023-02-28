@@ -4,7 +4,6 @@ import useSWR from "swr"
 
 export const fetchAdmins = ({setBody}:any)=>{
   useEffect(()=>{
-console.log("admin")
     async function  fun(){
       
       const res = await fetch(`${process.env.BASE_PATH}/employees/admin`,{
@@ -65,7 +64,6 @@ export const fetchSingleEmployee = async (query?:any, setPersonal?:any,personal?
 
 async function  call(){
 
-  if(query.id  ){
     const url1 = `${process.env.BASE_PATH}/employees/${query.id}`
     const url2 = `${process.env.BASE_PATH}/leaves/${query.id}`
 
@@ -89,7 +87,23 @@ async function  call(){
       leaveJson.data !== undefined ? setLeave( leaveJson.data ) : setLeave([])
     } 
   }
-  else{
+  
+
+
+
+
+useEffect(()=>{
+  call()
+  return () => {}
+})
+
+}
+
+export const fetchSingleEmployeeLeaves = async ( setLeave?:any)=>{
+
+async function  call(){
+
+ 
     const url2 = `${process.env.BASE_PATH}/leaves/single`
 
     if(setLeave){
@@ -98,19 +112,17 @@ async function  call(){
           "Authorization" : `Bearer ${localStorage.getItem("userToken")}`
         }
       })
+
       const leaveJson = await leavesResponse.json()
       leaveJson.data !== undefined ? setLeave( leaveJson.data ) : setLeave([])
     } 
-  }
 }
 
-if(query.id && !Boolean(personal.status)){
-  call()
-}
 
 useEffect(()=>{
-  // return () => {}
-})
+  call()
+  return () => {}
+},[])
 
 }
 
@@ -182,7 +194,6 @@ export const fetchHolidayList = async ({setBody,year}:any)=>{
 
     async function  fun(){
       const url = `${process.env.BASE_PATH}/holidays?year=${year}`
-      console.log(url,year)
       const res = await fetch(url,{
         headers: {
           "Authorization" :`Bearer ${localStorage.getItem("token")}`
@@ -311,13 +322,31 @@ export const exportDocs = async ({form_data}:any)=>{
 
 export const updateProfile = async(id:any)=>{
   try{
-    const data = await fetch(process.env.BASE_PATH+"/employees/profile",{
+    const data = await fetch(process.env.BASE_PATH+"/employees/upload?label=profile",{
       method: 'POST',
       headers:{
         "Content-Type" : "application/json",
         "Authorization": `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify({id})
+    },
+    )
+    const dataJSON = await data.json()
+    
+    return {dataJSON,code:data.status}
+  }catch (error){
+    console.log(error)
+  }
+}
+export const updateFile = async({label, file}:any)=>{
+  try{
+    const data = await fetch(process.env.BASE_PATH+`/employees/upload?label=${label}`,{
+      method: 'POST',
+      headers:{
+        "Content-Type" : "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify({id: file})
     },
     )
     const dataJSON = await data.json()

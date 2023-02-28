@@ -7,11 +7,14 @@ import {BodyListProps} from "@/models/layout"
 import { usePaginate } from "@/component/layout/CommonPage/CommonPagePagination"
 import { useEffect, useState } from "react"
 import { LoginAsUser } from "@/services/loginAsUserService"
+import { LeaveStatus } from "@/services/editEmployeeAdminService"
+import { useRole } from "@/pages/_app"
 
 
 export default function componentName({page, button,deletePopUp,dataBody, title ,searchType, search}:BodyListProps) {
     const router = useRouter()
     const {body} = usePaginate() as any
+    const {setVisible} = useRole() as any
     const query = dataBody !== undefined ?dataBody.length > 1? dataBody: dataBody[0] === undefined?Array(dataBody):dataBody:body===undefined?[]:body.data
     const btns = button && ListButtons.map(btn=>button.includes(btn.key))
     
@@ -29,6 +32,8 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
 
         return ()=>{}
     },[search])
+
+    // console.log(renderData)
 
     return (
         <div className={styles.listContainer}>
@@ -67,8 +72,11 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
                         ListButtons.map((item, index)=>{
                             const del = item.title === "Delete" 
                             const edit = item.title === "Edit"
+                            const Reject = item.title === "Reject"
+                            const Accept = item.title === "Accept"
 
                             const handleClick = () =>{
+                                setVisible(false)
                                 if(del){
                                     const check = prompt("Are you sure??","YES")
                                     if(title === "Admins"){
@@ -84,6 +92,14 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
                                     router.push(`/${link}/employees/edit/${list.id}`)
                                 }else if("login"){
                                     LoginAsUser({data: {email: list.email, password: list.password}, router})
+                                }
+                                if(Reject){
+                                    LeaveStatus({id: list._id, status: "Rejected"})
+                                    router.reload()
+                                }
+                                if(Accept){
+                                    LeaveStatus({id: list._id, status: "Accepted"})
+                                    router.reload()
                                 }
                             }
                             return(

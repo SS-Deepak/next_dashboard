@@ -26,7 +26,7 @@ export default function AddEmployee({open, doj}:any) {
 
      
     const [user, setUser] = useState({
-        firstname:"",
+        firstName:"",
         email:"",
         password:"",
         phoneNo: "",
@@ -73,7 +73,7 @@ export default function AddEmployee({open, doj}:any) {
             <form>
         
                 <div className={styles.input}>
-                <input type="text" placeholder='enter an name' onChange={(e)=>setUser({...user, firstname:e.target.value})} value={user.firstname}/>
+                <input type="text" placeholder='enter an name' onChange={(e)=>setUser({...user, firstName:e.target.value})} value={user.firstName}/>
                 </div>
                 <div className={styles.input}>
                 <input type="text" placeholder='enter an email' onChange={(e)=>setUser({...user, email:e.target.value})} value={user.email}/>

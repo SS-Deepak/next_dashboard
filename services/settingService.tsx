@@ -36,7 +36,7 @@ export const fetchDetails = async ({setBody}:any) =>{
 // }
 
 
-export const SettingsData = async (body:any, setStatus:any)=>{
+export const SettingsData = async (body?:any, setStatus?:any)=>{
   // useEffect(()=>{
     async function  fun(){
       
@@ -50,7 +50,7 @@ export const SettingsData = async (body:any, setStatus:any)=>{
       })
       const responseJSON = await res.json()
 
-      setStatus(responseJSON.status)
+      setStatus&&setStatus(responseJSON.status)
     }
     fun()
 

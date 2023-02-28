@@ -18,6 +18,10 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   })
 
+  setTimeout(()=>{
+    setVisible(true)
+  },2000)
+  
   return(
     <homeContext.Provider value={{role, setVisible}}>
       {visible?<Component {...pageProps} />:<Loader/>}

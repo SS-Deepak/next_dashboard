@@ -73,7 +73,7 @@ export default function index() {
       <Row icon={faPeopleGroup} title="Employees" path='/admin/employees'/>
       <Row icon={faCalendarDays} title="Attendence" path='/admin/calendar'/>
       <Row icon={faCalendarXmark} title="Leave" path='/admin/leave'/>
-      <Row icon={faCircleArrowUp} title="Appraisal"/>
+      {/* <Row icon={faCircleArrowUp} title="Appraisal"/> */}
       <Row icon={faHandPeace} title="Reviews" path='/admin/employee_review'/>
       <Row icon={faCalendarCheck} title="Holidays" path='/admin/holiday'/>
       <Row icon={faUser} title="Admins"  path='/admin/admins'/>
@@ -85,15 +85,13 @@ export default function index() {
         </div>
 
         <ul className={styles.selectHidden}>
-          <li>System</li>
           <li onClick={()=>handleRoute("/admin/settings")}>Setting</li>
-          <li onClick={()=>handleRoute("/admin/compensation")}>Compensation</li>
           <li onClick={()=>handleRoute("/admin/designations")}>Designation</li>
           <li onClick={()=>handleRoute("/admin/departments")}>Departments</li>
-          <li onClick={()=>handleRoute("/admin/status")}>Status</li>
-          <li onClick={()=>handleRoute("/admin/clients")}>Clients</li>
-          <li onClick={()=>handleRoute("/admin/projects")}>Projects</li>
-          <li>Timesheet</li>
+          <li >#Status</li>
+          <li >#Clients</li>
+          <li >#Projects</li>
+          <li>#Timesheet</li>
         </ul>
       </div>
     </ul>
@@ -111,7 +109,7 @@ export default function index() {
           <li onClick={()=>router.push("/")}>Dashboard</li>
           <li onClick={()=>router.push("/attendance")}>Attendance</li>
           <li onClick={()=>router.push("/leaves")}>Leaves</li>
-          <li onClick={()=>router.push("/admin/holiday")}>Holidays</li>
+          <li onClick={()=>router.push("/holiday")}>Holidays</li>
           <li onClick={()=>router.push("/admin/clients")}>Clients</li>
           <li onClick={()=>router.push("/edit")}>Profile</li>
         </ul>

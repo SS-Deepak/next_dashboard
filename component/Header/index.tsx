@@ -32,6 +32,7 @@ export default function index() {
   })
 
   const handleUser = () => {
+
     if(localStorage.getItem("userToken")){
       localStorage.removeItem("userToken")
       localStorage.removeItem("guestUser")
@@ -55,6 +56,7 @@ export default function index() {
         <Image src={LogoutImage} alt="logout" height={25} width={25}/>
         <p>{name}</p>
       </div>
+      
     </div>
   )
 }

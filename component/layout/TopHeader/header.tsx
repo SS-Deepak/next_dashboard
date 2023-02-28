@@ -7,6 +7,7 @@ import Modal from "@mui/material/Modal"
 import { TopHeaderProps } from "@/models/layout"
 import { usePaginate } from "../CommonPage/CommonPagePagination"
 import {fetchYearBasedHoliday} from "@/services/employeeService"
+import { useRouter } from "next/router"
 
 export const LeaveInput = ()=>{
   const refShow:any = useRef()
@@ -20,9 +21,7 @@ export const LeaveInput = ()=>{
     select.current.innerHTML = value
   }
 
-  const handleChange = (e:any) =>{
-    console.log(e.target.value)
-  }
+  
   return(
 
  
@@ -30,7 +29,7 @@ export const LeaveInput = ()=>{
  
     <div className={styles.input}>
       <FontAwesomeIcon icon={faUser}/>
-      <input type="text" placeholder="Enter Name" onChange={(e)=>handleChange(e)}/>
+      <input type="text" placeholder="Enter Name" />
     </div>
 
     <div className={styles.input}>
@@ -66,6 +65,8 @@ export function TopHeader({title, page, ModalPopUp, setSearch}:TopHeaderProps) {
       setSearch(e.target.value)
   }
 
+  const router = useRouter()
+  const holiday = router.asPath.split("/").includes("holiday")
   return (
     <>
     {
@@ -81,7 +82,7 @@ export function TopHeader({title, page, ModalPopUp, setSearch}:TopHeaderProps) {
 
       <div className={styles.employeesSearch}>
         <div className={styles.input}>
-          {title==="Add New Holiday" ? <Select/> :
+          {holiday ? <Select/> :
             <FontAwesomeIcon icon={faMagnifyingGlass}/>
           }
           <input type="text" placeholder="Enter Keyword" onChange={(e)=>handleSearch(e)}/>

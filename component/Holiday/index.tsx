@@ -2,16 +2,16 @@ import {AddHolidayModal} from "../Modals/Holiday/AddHolidaysModal"
 import PaginatePanel from "../layout/CommonPage/CommonPagePagination"
 import { fetchHolidayList } from "@/services/employeeService";
 
-export default function componentName() {
+export default function componentName(emp:any) {
   return (
     <PaginatePanel
       searchType="title"
       fetchData={fetchHolidayList}
-      
+      main={emp}
       title="Holidays" 
-      btnTitle="Add New Holiday" 
+      btnTitle={!emp.emp && "Add New Holiday" }
       header={["hashIndex","hd","title", "btns"]}
-      buttons={[
+      buttons={!emp.emp && [
         "editBtn",
         "deleteBtn",
       ]}
