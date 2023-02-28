@@ -22,8 +22,8 @@ export  function ListHeader({id, date, title}:Props) {
 
 
 const sort = (a:any,b:any) =>{
-  var dateA = new Date(a) as any
-  var dateB = new Date(b) as any
+  var dateA = new Date(a).getMonth() as any
+  var dateB = new Date(b).getMonth() as any
   return  dateA - dateB;
 }
 
@@ -51,7 +51,7 @@ return(
                 if(date&&date[0].includes("Invalid")) return
 
                   return(
-                      <List key={index} id={String(index+1)} title={item.firstname || item.title} date={`${date[2]}-${date[1]}`}/>
+                      <List key={index} id={String(index+1)} title={item.firstName || item.title} date={`${date[2]}-${date[1]}`}/>
                       )
 
               }):<h1>No Data found</h1>

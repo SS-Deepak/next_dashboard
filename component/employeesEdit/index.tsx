@@ -7,6 +7,7 @@ import Container from "./container"
 import styles from "./index.module.css"
 import { fetchDetails } from "@/services/employeeService";
 import { useEmployeeEdit } from "@/pages/edit";
+import { useRole } from "@/pages/_app";
 
 const employeeTypeContext = createContext({})
 
@@ -16,14 +17,19 @@ export default function componentName({emp}:any) {
   const edit  = emp ? useEmployeeEdit() :useEdit() as any
   const [data, setBody] = useState("") as any
   const [userId, setUserId] = useState("")
+  const {role}  = useRole() as any
 
   
   useEffect(()=>{
-    const data = localStorage.getItem("guestUser") as any
-    const user = JSON.parse(data)
+    const data1 = localStorage.getItem("guestUser") as any
+    const data2 = localStorage.getItem("user") as any
+
+    const user = role === "admin" ? JSON.parse(data1) : JSON.parse(data2)
+
     const userID = user !== null && user.id 
     user !== null &&setUserId(userID)
   })
+
   let id = router.query.id  ?? userId
   fetchDetails({setBody, id, status, setStatus})
 

@@ -14,6 +14,7 @@ export const ListPanel = [
     Type("doj","Xsmall"),
     
     Type("name","Xsmall"),
+    Type("value","Xmedium"),
     Type("subject","Lmedium"),
     Type("fromdate","small"),
     Type("todate","small"),

@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import {useState} from "react"
 import {useRouter} from  "next/router"
 import { addHolidayFetcher } from "@/services/modalsService";
+import { useRole } from "@/pages/_app";
 
 export function AddHolidayModal({open}) {
     const router = useRouter()
@@ -14,6 +15,7 @@ export function AddHolidayModal({open}) {
         title:"",
         check:false
     })
+    const {setVisible} = useRole()
     const style = {
         position: 'absolute',
         top: '50%',
@@ -34,12 +36,7 @@ export function AddHolidayModal({open}) {
             addHolidayFetcher({holiday})
 
             open()
-            router.push({
-                pathname: "/admin/holiday",
-                query:{
-                    load: true
-                }
-            })
+            setVisible(false)
         }
       }
 

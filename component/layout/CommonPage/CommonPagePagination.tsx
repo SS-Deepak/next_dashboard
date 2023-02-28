@@ -9,7 +9,7 @@ export default function index({fetchData, modal, title, btnTitle,header, buttons
   const [status, setStatus] = useState(true)
   const [year, setYear] = useState(new Date(Date.now()).getFullYear())as any 
 
-  fetchData({setBody,year})
+  fetchData({setBody,year, data:title.toLowerCase()})
 
   if(body!==undefined && status){
     const data = Object.entries(body)

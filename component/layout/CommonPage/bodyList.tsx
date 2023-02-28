@@ -20,6 +20,7 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
     
     const [dataFilter, setDataFilter] = useState() as any
     const renderData = search ? dataFilter: query
+    const [local, setLocal] = useState() as any
 
     // search filter
     useEffect(()=>{
@@ -29,11 +30,12 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
             return  yes>-1 && item 
         })
         setDataFilter(filter)
+        const localData = localStorage.getItem("user") as any
+        setLocal(JSON.parse(localData).id)
 
         return ()=>{}
     },[search])
 
-    // console.log(renderData)
 
     return (
         <div className={styles.listContainer}>
@@ -79,19 +81,23 @@ export default function componentName({page, button,deletePopUp,dataBody, title 
                                 setVisible(false)
                                 if(del){
                                     const check = prompt("Are you sure??","YES")
-                                    if(title === "Admins"){
+                                    if(title === "Department" || title === "Designation"){
+                                        title = "settings"
+                                    }
+                                    else if(title === "Admins"){
                                         title = "employees"
                                     }
                                     check === "YES" ? deleteData({title, id:list.id}):null
-                                    setTimeout(()=>{
-                                        router.reload()
-                                    },1000)
+                              
                                 }else if(edit){
                                     const link = router.asPath.split("/")[1]
                                     const link1 = router.asPath.split("/")[2]
                                     router.push(`/${link}/employees/edit/${list.id}`)
                                 }else if("login"){
-                                    LoginAsUser({data: {email: list.email, password: list.password}, router})
+                                    
+                                    if(!(local=== list.id)){
+                                        LoginAsUser({data: {email: list.email, password: list.password}, router})
+                                    }
                                 }
                                 if(Reject){
                                     LeaveStatus({id: list._id, status: "Rejected"})

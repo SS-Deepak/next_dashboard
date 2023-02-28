@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styles from "./index.module.css"
+import {useRole} from "../_app"
 
 export default function componentName() {
     const router = useRouter()
+    const {setVisible} = useRole()
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const passFormat = /^[0-9]{4,10}$/
     const [checkmail, setMailCheck] = useState(false)
@@ -13,9 +15,12 @@ export default function componentName() {
         email:"",
         password:""
     })
+
     
     const handleSubmit =async (e)=>{
       e.preventDefault()
+      localStorage.removeItem("user")
+      localStorage.removeItem("token")
 
       if(user.email.trim() === "" || user.password.trim() === ""){
         setError(true)
@@ -37,10 +42,13 @@ export default function componentName() {
         d.setTime(d.getTime() + (40*24*60*60*1000));
         let expires = "expires="+ d.toUTCString();
         document.cookie = "role" + "=" + data.role + ";" + expires + ";path=/";
-            localStorage.setItem("token", data.token)
-            localStorage.setItem("user", JSON.stringify(data))
-            router.push("/")
-        }
+        
+        localStorage.setItem("token", data.token)
+        localStorage.setItem("user", JSON.stringify(data))
+        router.push("/")
+        setVisible(false)
+        router.reload()
+      }
     }
     
     useEffect(()=>{
@@ -52,7 +60,6 @@ export default function componentName() {
     },[user.email, user.password])
 
     useEffect(()=>{
-
       setTimeout(()=>{
         setError(false)
       },4000)

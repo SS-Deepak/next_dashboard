@@ -6,6 +6,9 @@ import { useSetting } from "../setting"
 import { DocumentUpload } from "../filesUpload/docUpload"
 import { useEmployeeType } from "."
 import { useEmployeeEdit } from "@/pages/edit"
+import { useEffect, useState } from "react"
+import {masterServiceFetch} from "services/modalsService"
+
 
 const TimeZone = ({keyItem,finalData}:any)=>{
     const edit = useEdit()as any
@@ -99,14 +102,26 @@ const TimeZone = ({keyItem,finalData}:any)=>{
 
 const Select = ({keyItem, list,finalData}:any)=>{
     const edit = useEdit() as any
-
     const employee = useEmployeeType()
+    const [modalList, setList] = useState() as any
+    
+    useEffect(()=>{
+        if(keyItem === "designation" || keyItem === "department"){
+            masterServiceFetch({data:keyItem}).then((doc:any)=>setList(doc.data))
+        }
+        return () =>{}
+    },[])
+
+    const modalListUpdate = modalList&& modalList.map((item:any)=>(
+        item.value
+    ))
+    const validList = modalListUpdate ?? list
 
     return(
         <select onChange={(e)=>!employee&&edit.setFinalData({...finalData, [keyItem]: e.target.value})}>
             <option value=""></option>
             {
-                list.map((item:any, index: number)=>(
+                validList.map((item:any, index: number)=>(
                     <option key={index} value={item}>{item}</option>
                     ))
             }

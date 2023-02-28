@@ -1,8 +1,8 @@
-import {useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useToggle} from "../../Context/headerToggle"
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faL, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import {
   faHome,
   faUser,
@@ -30,35 +30,42 @@ interface Props{
 
 
 export default function index() {
+  const router = useRouter();
   const {show,setShow,loading} = useToggle();
   const {role, setVisible} = useRole() as any
+  const showList = useRef<any>(null)
 
-  const router = useRouter();
 
   const hide = `${styles.sidePanelContainer} ${styles.hide}`
-  const showList = useRef<any>(null)
 
   const handleList = ()=>{
     const span = showList.current; 
     span?.classList.toggle(`${styles.hidden}`)
   }
+
   const handleClick = (path:string|undefined)=>{
     if(path){
       setVisible(false)
-      router.push(path)
+      const redirectPath = path.includes("admin") && role === "employee" ? path+"s" : path
+      router.push(redirectPath)
+
       setTimeout(()=>{
         setVisible(true)
       },1500)
     }
   }
-  const Row = ({icon, title, path}:Props)=>(
-    <li onClick={()=>handleClick(path)}>
-      <FontAwesomeIcon icon={icon} />
-      <p>{title}</p>
-      { title !== "Masters"?<span>{title}</span>: null}
-    </li>
-  );
 
+  const Row = ({icon, title, path}:Props)=>{
+    
+    return(
+      <li onClick={()=>handleClick(path)}>
+        <FontAwesomeIcon icon={icon} />
+        <p>{title}</p>
+        { title !== "Masters"?<span>{title}</span>: null}
+      </li>
+    );
+  }
+  
     const handleRoute = (path:string) =>{
       setVisible(false)
       setTimeout(()=>{
@@ -69,11 +76,10 @@ export default function index() {
 
   const AdminPanel = () =>(
     <ul>
-      <Row icon={faHome} title="DashBoard" path='/'/>
+      <Row icon={faHome} title="DashBoard" path='/' />
       <Row icon={faPeopleGroup} title="Employees" path='/admin/employees'/>
       <Row icon={faCalendarDays} title="Attendence" path='/admin/calendar'/>
       <Row icon={faCalendarXmark} title="Leave" path='/admin/leave'/>
-      {/* <Row icon={faCircleArrowUp} title="Appraisal"/> */}
       <Row icon={faHandPeace} title="Reviews" path='/admin/employee_review'/>
       <Row icon={faCalendarCheck} title="Holidays" path='/admin/holiday'/>
       <Row icon={faUser} title="Admins"  path='/admin/admins'/>
@@ -100,7 +106,7 @@ export default function index() {
   const EmployeePanel = () =>(
     <div className={styles.select} ref={showList} >
         <div className={styles.selectVisible} onClick={handleList}>
-          <Row icon={faGauge} title="Masters"/>
+          <Row icon={faGauge} title="Masters" />
           <FontAwesomeIcon icon={faCaretDown}/>
         </div>
 
@@ -110,11 +116,11 @@ export default function index() {
           <li onClick={()=>router.push("/attendance")}>Attendance</li>
           <li onClick={()=>router.push("/leaves")}>Leaves</li>
           <li onClick={()=>router.push("/holiday")}>Holidays</li>
-          <li onClick={()=>router.push("/admin/clients")}>Clients</li>
           <li onClick={()=>router.push("/edit")}>Profile</li>
         </ul>
       </div>
   )
+    
 
   return (
     <div className={show?styles.sidePanelContainer: hide}>

@@ -26,7 +26,6 @@ export default function AddEmployee({open, doj}:any) {
 
      
     const [user, setUser] = useState({
-        firstName:"",
         email:"",
         password:"",
         phoneNo: "",
@@ -72,9 +71,7 @@ export default function AddEmployee({open, doj}:any) {
             {error &&<p className={styles.danger}>Email not valid!</p>}
             <form>
         
-                <div className={styles.input}>
-                <input type="text" placeholder='enter an name' onChange={(e)=>setUser({...user, firstName:e.target.value})} value={user.firstName}/>
-                </div>
+               
                 <div className={styles.input}>
                 <input type="text" placeholder='enter an email' onChange={(e)=>setUser({...user, email:e.target.value})} value={user.email}/>
                 </div>

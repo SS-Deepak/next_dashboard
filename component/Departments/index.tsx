@@ -1,27 +1,22 @@
-import CommonPage from "../layout/CommonPage/index"
+import { masterServiceFetch } from "@/services/modalsService";
+import PaginationPanel from "@/component/layout/CommonPage/CommonPagePagination"
+import { DepartmentModal } from "../Modals/Masters/departmentModal";
 
 export default function componentName() {
   return (
-      <CommonPage 
-        title="Department" 
-        btnTitle="Add New Department"
-        header={["hashIndex","title", "btns"]}
-
-      body={[
-      {
-        
-        title:"Sankranti",
-      },
-      {
-       
-        title:"Sankranti",
-      },
-   ]}
-
+    <PaginationPanel
+      searchType="value"
+      fetchData={masterServiceFetch} 
+      title="Department" 
+      header={["hashIndex","title", "btns"]}
+      btnTitle="Add New Department"
       buttons={[
-        "editBtn",
         "deleteBtn",
-      ]}
-      />
+        ]}
+        modal={{Add:DepartmentModal}} 
+    />
+
   );
 }
+
+

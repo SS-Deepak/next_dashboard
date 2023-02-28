@@ -15,13 +15,8 @@ export default function componentName() {
     body={data !== undefined && data.data} 
     modal={AddAdmin} 
     title="Admins" 
-    btnTitle="Add New Admin" 
+    btnTitle="Change Role" 
     header={["hashIndex","emp_email", "date", "btns"]}
-    buttons={[
-      "editBtn",
-      "deleteBtn",
-    ]}
-    
     />
   );
 }

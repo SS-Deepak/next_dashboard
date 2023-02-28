@@ -44,3 +44,27 @@ export const editHolidayFetcher = async({holiday,id}:any)=>{
 
 
 
+export const masterServiceFetch = async({setBody, data}:any)=>{
+    const response = await fetch(`${process.env.BASE_PATH}/settings/master?type=${data}`,{
+        headers: {
+            "Authorization" : `Bearer ${localStorage.getItem("token")}`
+        }
+    })
+    const resJSON = await response.json()
+    setBody&&setBody(resJSON)
+    return resJSON
+}
+
+
+export const masterService = async({data}:any)=>{
+    await fetch(`${process.env.BASE_PATH}/settings/master`,{
+        method:"POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization" : `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({[data.type]: data.title})
+    })
+}
+
+
